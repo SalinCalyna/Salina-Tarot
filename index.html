@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seni Seviyorum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep: #2B0B14;
+    --deep2: #43101F;
+    --cream: #FFF3ED;
+    --rose: #E8B4BC;
+    --crimson: #C9184A;
+    --gold: #F0C05A;
+    --leaf: #4C6B4F;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    min-height:100vh;
+    background: radial-gradient(ellipse at 50% -10%, var(--deep2) 0%, var(--deep) 55%, #1a0710 100%);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--cream);
+    overflow-x:hidden;
+  }
+
+  /* ---------- floating petals ---------- */
+  .petals{
+    position:fixed; inset:0; pointer-events:none; z-index:1;
+  }
+  .petal{
+    position:absolute;
+    top:-5%;
+    font-size: 18px;
+    opacity:.55;
+    color: var(--rose);
+    animation: fall linear infinite;
+    filter: drop-shadow(0 0 3px rgba(0,0,0,.3));
+  }
+  @keyframes fall{
+    0%   { transform: translateY(0) translateX(0) rotate(0deg); }
+    50%  { transform: translateY(50vh) translateX(20px) rotate(180deg); }
+    100% { transform: translateY(105vh) translateX(-15px) rotate(360deg); }
+  }
+
+  .stage{
+    position:relative; z-index:2;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 8vh 6vw 10vh;
+    text-align:center;
+  }
+
+  .eyebrow{
+    font-size: 13px;
+    letter-spacing: .35em;
+    text-transform:uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    opacity:.9;
+  }
+
+  h1{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    margin: 0 0 10px;
+    line-height:1.1;
+    color: var(--cream);
+  }
+
+  .sub{
+    font-size: clamp(.95rem, 2vw, 1.15rem);
+    color: var(--rose);
+    max-width: 480px;
+    margin: 0 auto 46px;
+    font-weight:500;
+  }
+
+  /* ---------- envelope ---------- */
+  .envelope-wrap{
+    perspective: 1400px;
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .envelope{
+    position:relative;
+    width: min(78vw, 340px);
+    height: calc(min(78vw, 340px) * 0.62);
+  }
+  .env-body{
+    position:absolute; inset:0;
+    background: linear-gradient(155deg, #f7e6d8, var(--cream));
+    border-radius: 8px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.05) inset;
+  }
+  .env-shadow-tri{
+    position:absolute; inset:0;
+    clip-path: polygon(0 0, 50% 46%, 100% 0);
+    background: linear-gradient(160deg, #e9c9b6, #e2b6a1);
+    border-radius: 8px 8px 0 0;
+    transform-origin: top center;
+    transition: transform .7s cubic-bezier(.6,-0.2,.2,1.3);
+    z-index:3;
+  }
+  .env-pocket{
+    position:absolute; inset:0;
+    clip-path: polygon(0 100%, 50% 40%, 100% 100%);
+    background: linear-gradient(200deg, #f2ddce, #f7e6d8);
+    border-radius: 0 0 8px 8px;
+    z-index:2;
+  }
+  .seal{
+    position:absolute; left:50%; top:38%;
+    transform: translate(-50%,-50%);
+    width: 46px; height: 46px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #e0446b, var(--crimson) 70%);
+    box-shadow: 0 4px 10px rgba(0,0,0,.35);
+    z-index:4;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 20px;
+    transition: transform .4s ease, opacity .4s ease;
+  }
+  .card{
+    position:absolute;
+    left:8%; right:8%;
+    bottom: 6%;
+    height: 78%;
+    background: var(--cream);
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+    transform: translateY(6%);
+    opacity:.98;
+    z-index:1;
+    transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
+  }
+
+  .hint{
+    margin-top: 26px;
+    font-size: .85rem;
+    color: var(--rose);
+    opacity:.8;
+    letter-spacing:.05em;
+  }
+
+  .envelope-wrap.open .env-shadow-tri{
+    transform: rotateX(180deg);
+  }
+  .envelope-wrap.open .seal{
+    opacity:0;
+    transform: translate(-50%,-50%) scale(.4);
+  }
+  .envelope-wrap.open .card{
+    transform: translateY(-58%);
+  }
+
+  /* ---------- letter ---------- */
+  .letter{
+    margin-top: 54px;
+    max-width: 560px;
+    width: 100%;
+    background: linear-gradient(180deg, #fffaf6, var(--cream));
+    color: #3a1620;
+    border-radius: 14px;
+    padding: 44px 34px 36px;
+    box-shadow: 0 30px 70px rgba(0,0,0,.5);
+    opacity:0;
+    transform: translateY(30px) scale(.97);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+    position:relative;
+  }
+  .letter.show{
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+  .letter::before{
+    content:"";
+    position:absolute; top:14px; left:14px; right:14px; bottom:14px;
+    border: 1px solid rgba(201,24,74,.18);
+    border-radius: 8px;
+    pointer-events:none;
+  }
+  .to-line{
+    font-family:'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--crimson);
+    margin-bottom: 6px;
+  }
+  .to-line .fillme{
+    border-bottom: 2px dotted rgba(201,24,74,.4);
+    padding: 0 4px;
+  }
+  .body-text{
+    font-size: 1.02rem;
+    line-height: 1.85;
+    text-align:left;
+    color:#4a2230;
+  }
+  .body-text p{ margin: 0 0 16px; }
+  .signature{
+    font-family:'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--crimson);
+    text-align:right;
+    margin-top: 18px;
+  }
+
+  /* ---------- tulip signature element ---------- */
+  .tulip-zone{
+    margin-top: 50px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    opacity:0;
+    transform: translateY(20px);
+    transition: opacity 1s ease .3s, transform 1s ease .3s;
+  }
+  .tulip-zone.show{ opacity:1; transform:translateY(0); }
+
+  .tulip-svg{ width: 120px; height: 150px; }
+  .tulip-petal{
+    transform-origin: 50% 100%;
+    animation: bloom 2.6s ease-in-out infinite alternate;
+  }
+  .tulip-petal.p2{ animation-delay:.15s; }
+  .tulip-petal.p3{ animation-delay:.3s; }
+  @keyframes bloom{
+    0%   { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.06) rotate(1.5deg); }
+  }
+  .stem{ animation: sway 3.4s ease-in-out infinite; transform-origin: 50% 100%; }
+  @keyframes sway{
+    0%,100%{ transform: rotate(-1.2deg); }
+    50%{ transform: rotate(1.2deg); }
+  }
+
+  .final-line{
+    margin-top: 18px;
+    font-family:'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold);
+    max-width: 420px;
+  }
+
+  footer{
+    margin-top: 60px;
+    font-size: .75rem;
+    color: rgba(255,255,255,.35);
+    letter-spacing:.08em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .petal, .tulip-petal, .stem{ animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<main class="stage">
+  <div class="eyebrow">bir mektup var</div>
+  <h1>Sana özel bir şey var</h1>
+  <p class="sub">Zarfa dokun, kalbimi aç.</p>
+
+  <div class="envelope-wrap" id="envelopeWrap" role="button" aria-label="Mektubu aç" tabindex="0">
+    <div class="envelope">
+      <div class="card"></div>
+      <div class="env-body"></div>
+      <div class="env-pocket"></div>
+      <div class="env-shadow-tri"></div>
+      <div class="seal">🌷</div>
+    </div>
+  </div>
+  <div class="hint" id="hint">zarfa dokun</div>
+
+  <div class="letter" id="letter">
+    <div class="to-line">Sevgili <span class="fillme">[adını buraya yaz]</span>,</div>
+    <div class="body-text">
+      <p>Gözlerimi her açtığımda aklımdaki ilk şey sensin, kapadığımda son düşüncem yine sen oluyorsun.</p>
+      <p>Sen yanımdayken en sıradan gün bile bir bayram gibi geçiyor; gülüşün bütün bir günü aydınlatmaya yetiyor.</p>
+      <p>Kalbim sana ait, aşkım. Bugün, yarın ve gelecek bütün günlerde de öyle olmaya devam edecek.</p>
+      <p>Seni tüm kalbimle seviyorum. 🌷</p>
+    </div>
+    <div class="signature">— seni seven</div>
+  </div>
+
+  <div class="tulip-zone" id="tulipZone">
+    <svg class="tulip-svg" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+      <path class="stem" d="M60 150 C 58 120, 62 100, 60 78" stroke="#4C6B4F" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path class="stem" d="M60 120 C 45 118, 35 108, 30 96" stroke="#4C6B4F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path class="stem" d="M60 130 C 75 128, 85 118, 90 108" stroke="#4C6B4F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <g>
+        <path class="tulip-petal p1" d="M60 30 C 40 35, 35 55, 40 78 C 48 70, 55 68, 60 78 C 60 60, 58 42, 60 30 Z" fill="#C9184A"/>
+        <path class="tulip-petal p2" d="M60 28 C 78 33, 84 54, 78 78 C 70 70, 63 68, 60 78 C 60 58, 60 40, 60 28 Z" fill="#e0446b"/>
+        <path class="tulip-petal p3" d="M60 26 C 52 32, 50 55, 56 80 C 58 70, 62 70, 64 80 C 70 55, 68 32, 60 26 Z" fill="#F0C05A" opacity="0.9"/>
+      </g>
+    </svg>
+    <p class="final-line">"Aşk, iki kalbin aynı anda çarpması değil; birbirini asla yalnız bırakmamasıdır."</p>
+  </div>
+
+  <footer>yapıldı, kalpten · özelleştirmek için köşe bracket [adını buraya yaz] kısmını değiştir</footer>
+</main>
+
+<script>
+  // ambient petals
+  const petalsHost = document.getElementById('petals');
+  const symbols = ['🌷','❤','✿'];
+  const count = window.innerWidth < 640 ? 12 : 20;
+  for(let i=0;i<count;i++){
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.fontSize = (12 + Math.random()*14) + 'px';
+    el.style.animationDuration = (9 + Math.random()*10) + 's';
+    el.style.animationDelay = (Math.random()*10) + 's';
+    petalsHost.appendChild(el);
+  }
+
+  const wrap = document.getElementById('envelopeWrap');
+  const letter = document.getElementById('letter');
+  const tulipZone = document.getElementById('tulipZone');
+  const hint = document.getElementById('hint');
+  let opened = false;
+
+  function openEnvelope(){
+    if(opened) return;
+    opened = true;
+    wrap.classList.add('open');
+    hint.style.opacity = '0';
+    setTimeout(()=>{
+      letter.classList.add('show');
+    }, 500);
+    setTimeout(()=>{
+      tulipZone.classList.add('show');
+    }, 1400);
+  }
+
+  wrap.addEventListener('click', openEnvelope);
+  wrap.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnvelope(); }
+  });
+</script>
+
+</body>
+</html>

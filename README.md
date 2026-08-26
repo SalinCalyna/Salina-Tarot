@@ -10,6 +10,6 @@ An elegant French-luxury tarot web app prototype built around a real Tarot de Ma
 - Reading history saved locally
 
 ## Run it
-Just open `index.html` in a browser — no build step needed.
+Just open `salina-tarot.html` in a browser — no build step needed.
 
 > Note: the "Ask Salina" AI reading feature requires a Claude API connection and will not work when this file is hosted standalone (e.g. on GitHub Pages) without a backend proxying the API key.

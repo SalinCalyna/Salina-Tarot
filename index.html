@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Salina Tarot — CyberGirlfriends</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Charmonman:wght@400;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --void:#0d0716;
@@ -27,7 +27,7 @@
       radial-gradient(ellipse 700px 500px at 85% 100%, rgba(111,224,140,0.10), transparent 60%),
       var(--void);
     color:var(--pearl);
-    font-family:'Noto Sans Thai','Cormorant Garamond',serif;
+    font-family:'Sarabun','EB Garamond',serif;
     min-height:100vh;
     overflow-x:hidden;
     position:relative;
@@ -39,7 +39,7 @@
   }
   /* subtle vignette for depth */
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;box-shadow:inset 0 0 180px rgba(0,0,0,0.65);}
-  .disp{font-family:'Noto Serif Thai','Playfair Display',serif;}
+  .disp{font-family:'Charmonman','Cinzel',serif;}
   ::selection{background:var(--gold); color:var(--void);}
   #app{max-width:720px;margin:0 auto;padding:28px 20px 80px;position:relative;min-height:100vh;}
 
@@ -94,7 +94,7 @@
   .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:8px;}
   .brand{display:flex;flex-direction:column;line-height:1;}
   .brand .k1{font-size:11px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;}
-  .brand .k2{font-family:'Playfair Display',serif;font-size:17px;letter-spacing:.12em;color:var(--gold-bright);}
+  .brand .k2{font-family:'Cinzel',serif;font-size:17px;letter-spacing:.12em;color:var(--gold-bright);}
   .langtoggle{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;font-size:12px;}
   .langtoggle button{border:none;background:transparent;color:var(--muted);padding:5px 12px;border-radius:999px;cursor:pointer;font-family:inherit;letter-spacing:.04em;}
   .langtoggle button.active{background:var(--gold);color:var(--void);font-weight:600;}
@@ -104,7 +104,7 @@
   /* HOME */
   .home{text-align:center;padding-top:6vh;position:relative;z-index:2;}
   .home .eyebrow{font-size:12px;letter-spacing:.35em;color:var(--muted);text-transform:uppercase;margin-bottom:22px;animation:fadeUp .6s ease;}
-  .home h1{font-family:'Playfair Display',serif;font-size:40px;letter-spacing:.06em;color:var(--gold-bright);margin:0;text-shadow:0 0 40px rgba(111,224,140,0.25);animation:fadeUp .8s ease .05s backwards;}
+  .home h1{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:38px;letter-spacing:.08em;color:var(--gold-bright);margin:0;text-shadow:0 0 40px rgba(111,224,140,0.3);animation:fadeUp .8s ease .05s backwards;}
   .home h2.disp{font-size:20px;font-weight:500;color:var(--pearl);margin:6px 0 22px;letter-spacing:.1em;animation:fadeUp .8s ease .1s backwards;}
   .home .tagline{font-size:18px;color:var(--muted);line-height:1.85;margin-bottom:38px;font-style:italic;animation:fadeUp .8s ease .15s backwards;}
   .home .ctaWrap{animation:fadeUp .8s ease .2s backwards;}
@@ -161,7 +161,7 @@
     background:linear-gradient(135deg, var(--gold-bright), var(--gold) 60%, #b8935a);
     color:var(--void);font-weight:600;letter-spacing:.03em;
     border:none;border-radius:3px;padding:16px 34px;font-size:16px;cursor:pointer;
-    font-family:'Noto Sans Thai',sans-serif;
+    font-family:'Sarabun',sans-serif;
     box-shadow:0 8px 28px rgba(111,224,140,0.28), inset 0 1px 0 rgba(255,255,255,0.35);
     transition:transform .25s cubic-bezier(.2,.8,.3,1), box-shadow .25s ease;
     position:relative;overflow:hidden;
@@ -206,11 +206,11 @@
   }
   .certSeal svg path, .certSeal svg circle{stroke:var(--void);fill:var(--void);}
   .stepLabel{font-size:12px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
-  .qTitle{font-family:'Playfair Display',serif;font-size:26px;color:var(--pearl);margin:0 0 26px;}
+  .qTitle{font-family:'Cinzel',serif;font-size:26px;color:var(--pearl);margin:0 0 26px;}
   textarea.qInput{
     width:100%;min-height:100px;background:rgba(255,255,255,0.03);
     border:1px solid var(--line);border-radius:2px;color:var(--pearl);
-    padding:16px;font-size:18px;font-family:'Cormorant Garamond',serif;line-height:1.5;resize:vertical;
+    padding:16px;font-size:18px;font-family:'EB Garamond',serif;line-height:1.5;resize:vertical;
   }
   textarea.qInput:focus{outline:none;border-color:var(--gold);}
   .chipRow{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 34px;}
@@ -253,22 +253,47 @@
   .traySlot{width:100px;display:flex;flex-direction:column;align-items:center;}
   .traySlot .label{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:8px;text-align:center;text-transform:uppercase;}
   .cardFront{
-    width:100px;height:158px;border-radius:5px;border:1px solid var(--gold);
+    width:100px;height:158px;border-radius:4px;border:2px solid var(--gold);
     background:linear-gradient(165deg, #1a2340, #0d1220 70%);
-    display:flex;flex-direction:column;align-items:center;justify-content:space-between;
-    padding:10px 6px;position:relative;
+    position:relative;padding:6px;
     box-shadow:0 10px 26px rgba(0,0,0,.55), inset 0 0 0 1px rgba(111,224,140,0.15);
   }
-  .cardFront .num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:.1em;}
+  .cardFront.majorCard{border-color:var(--burgundy-bright);}
+  .cardCorner{position:absolute;font-family:'Cinzel',serif;font-size:10px;color:var(--gold-bright);letter-spacing:.05em;z-index:1;}
+  .cardCorner.tl{top:6px;left:8px;}
+  .cardCorner.br{bottom:6px;right:8px;transform:rotate(180deg);}
+  .cardInnerFrame{
+    position:absolute;inset:5px;border:1px solid rgba(111,224,140,0.45);border-radius:2px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px 6px;
+  }
+  .cardFront.majorCard .cardInnerFrame{border-color:rgba(155,95,224,0.55);}
   .cardFront .icon{width:34px;height:34px;opacity:.9;}
-  .cardFront .fname{font-family:'Playfair Display',serif;font-size:12.5px;text-align:center;color:var(--pearl);line-height:1.25;}
-  .cardFront .orient{font-size:9px;letter-spacing:.15em;color:var(--gold-bright);text-transform:uppercase;}
+  .cardFront .fname{font-family:'Cinzel',serif;font-size:11.5px;text-align:center;color:var(--pearl);line-height:1.25;}
   .cardFront.reversed{transform:rotate(180deg);}
-  .cardFront.reversed .orient{transform:rotate(180deg);}
   .cardFront.empty{border-style:dashed;border-color:var(--line);background:transparent;box-shadow:none;}
 
-  .cardFlipIn{animation:flipIn .55s cubic-bezier(.2,.7,.3,1);}
-  @keyframes flipIn{from{transform:rotateY(90deg) scale(.8);opacity:0;}to{transform:rotateY(0) scale(1);opacity:1;}}
+  /* flip mechanics for the "reveal all together" moment */
+  .flipCard{width:100px;height:158px;perspective:900px;}
+  .flipInner{position:relative;width:100%;height:100%;transition:transform .75s cubic-bezier(.34,1.15,.4,1);transform-style:preserve-3d;}
+  .flipCard.flipped .flipInner{transform:rotateY(180deg);}
+  .flipFace{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+  .flipFace.flipFront{transform:rotateY(180deg);}
+  .trayCardBack{
+    width:100%;height:100%;border-radius:5px;border:1px solid var(--gold);
+    background:radial-gradient(circle at 50% 50%, rgba(111,224,140,0.22) 0%, transparent 45%),
+      repeating-linear-gradient(45deg, rgba(111,224,140,0.13) 0 2px, transparent 2px 7px),
+      linear-gradient(160deg, var(--deep2), var(--burgundy) 130%);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px rgba(0,0,0,.5);
+  }
+  .trayCardBack .backGlyph{font-size:28px;color:var(--gold-bright);opacity:.75;}
+  .flipCard.suspense{animation:suspensePulse .7s ease-in-out infinite alternate;}
+  @keyframes suspensePulse{
+    0%{filter:brightness(1);}
+    100%{filter:brightness(1.22) drop-shadow(0 0 16px rgba(111,224,140,0.45));}
+  }
+  .revealCta{text-align:center;margin:26px 0 6px;}
+  .revealHint{font-size:12px;color:var(--muted);margin-top:10px;}
 
   /* seal */
   .sealWrap{position:relative;text-align:center;margin:26px 0 10px;}
@@ -292,7 +317,7 @@
   .lockedCol .cardFront{width:150px;height:236px;}
   .lockedCol .cardFront .fname{font-size:16px;}
   .lockedCol .cardFront .icon{width:52px;height:52px;}
-  .lockedCol .cardFront .num{font-size:14px;}
+  .lockedCol .cardCorner{font-size:14px;}
   .lockedCol .orientLabel{margin-top:10px;font-size:13px;color:var(--muted);text-align:center;}
   .lockedCol .orientLabel b{color:var(--gold-bright);display:block;font-size:14px;}
 
@@ -300,11 +325,11 @@
   .salinaHead{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line);}
   .salinaAvatar{width:64px;height:64px;border-radius:50%;flex-shrink:0;overflow:hidden;border:1px solid var(--gold);box-shadow:0 6px 20px rgba(0,0,0,.4);}
   .salinaAvatar svg{width:100%;height:100%;display:block;}
-  .salinaName{font-family:'Playfair Display',serif;font-size:21px;color:var(--gold-bright);letter-spacing:.02em;}
+  .salinaName{font-family:'Cinzel',serif;font-size:21px;color:var(--gold-bright);letter-spacing:.02em;}
   .salinaSub{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:2px;}
 
-  .readingBody{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.85;color:var(--pearl);}
-  .readingBody h2{font-family:'Playfair Display',serif;font-size:19px;color:var(--gold-bright);border-bottom:1px solid var(--line);padding-bottom:8px;margin:30px 0 12px;letter-spacing:.02em;}
+  .readingBody{font-family:'EB Garamond',serif;font-size:18px;line-height:1.85;color:var(--pearl);}
+  .readingBody h2{font-family:'Cinzel',serif;font-size:19px;color:var(--gold-bright);border-bottom:1px solid var(--line);padding-bottom:8px;margin:30px 0 12px;letter-spacing:.02em;}
   .readingBody h2:first-child{margin-top:0;}
   .readingBody p{margin:0 0 14px;}
   .readingBody strong{color:var(--gold-bright);}
@@ -319,7 +344,7 @@
   /* HISTORY */
   .histItem{border:1px solid var(--line);border-radius:3px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s;}
   .histItem:hover{border-color:var(--gold);}
-  .histItem .hq{font-family:'Playfair Display',serif;font-size:15px;color:var(--pearl);margin-bottom:6px;}
+  .histItem .hq{font-family:'Cinzel',serif;font-size:15px;color:var(--pearl);margin-bottom:6px;}
   .histItem .hmeta{font-size:12px;color:var(--muted);letter-spacing:.05em;}
   .emptyState{text-align:center;padding:50px 20px;color:var(--muted);font-style:italic;}
 
@@ -797,7 +822,8 @@ const STR = {
     histBack:"← กลับหน้าแรก",
     question:"คำถาม",
     nextParty:"ถัดไป → ปาร์ตี้กบ 🐸", partyTitle:"ปาร์ตี้ฉลองคำทำนาย!", partySub:"ให้เหล่ากบเต้นฉลองไปกับคุณ",
-    muteMusic:"ปิดเสียง", playMusic:"เปิดเสียง", backHome:"กลับหน้าแรก"
+    muteMusic:"ปิดเสียง", playMusic:"เปิดเสียง", backHome:"กลับหน้าแรก",
+    revealAll:"เปิดไพ่ทั้งหมด ✦", revealHint:"ไพ่ทั้งสามใบพร้อมแล้ว แตะเพื่อเปิดเผยพร้อมกัน"
   },
   fr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -827,7 +853,8 @@ const STR = {
     histBack:"← Retour à l'accueil",
     question:"Question",
     nextParty:"Suivant → Fête des grenouilles 🐸", partyTitle:"La fête après le tirage !", partySub:"Les grenouilles dansent pour célébrer avec vous",
-    muteMusic:"Couper le son", playMusic:"Activer le son", backHome:"Retour à l'accueil"
+    muteMusic:"Couper le son", playMusic:"Activer le son", backHome:"Retour à l'accueil",
+    revealAll:"Révéler les trois cartes ✦", revealHint:"Vos trois cartes sont prêtes — touchez pour les révéler ensemble"
   },
   tr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -857,7 +884,8 @@ const STR = {
     histBack:"← Ana sayfaya dön",
     question:"Soru",
     nextParty:"İleri → Kurbağa Partisi 🐸", partyTitle:"Fal Sonrası Parti!", partySub:"Kurbağalar seninle kutluyor",
-    muteMusic:"Sesi kapat", playMusic:"Sesi aç", backHome:"Ana sayfaya dön"
+    muteMusic:"Sesi kapat", playMusic:"Sesi aç", backHome:"Ana sayfaya dön",
+    revealAll:"Tüm Kartları Aç ✦", revealHint:"Üç kartın hazır — birlikte açmak için dokun"
   }
 };
 
@@ -868,7 +896,8 @@ let state = {
   deck:[], picks:[], // {card, orientation, position}
   reading:null, loading:false, error:null,
   history:[],
-  musicOn:false, audioCtx:null, partyTimer:null
+  musicOn:false, audioCtx:null, partyTimer:null,
+  revealTriggered:false
 };
 function t(k){ return STR[state.lang][k]; }
 
@@ -965,6 +994,8 @@ function selectScreen(){
       <span class="n">${String(i+1).padStart(2,'0')}</span>${p.label}
     </div>`).join('');
 
+  const allPicked = state.picks.length===3;
+
   const deckHtml = state.deck.map(c=>{
     const taken = state.picks.some(p=>p.card.id===c.id);
     return `<div class="cardBack ${taken?'taken':''}" data-cardid="${c.id}"></div>`;
@@ -975,13 +1006,24 @@ function selectScreen(){
     if(!pick){
       return `<div class="traySlot"><div class="label">${p.label}</div><div class="cardFront empty"></div></div>`;
     }
+    const suspenseClass = (allPicked && !state.revealTriggered) ? 'suspense' : '';
     return `<div class="traySlot">
       <div class="label">${p.label}</div>
-      ${cardFrontHtml(pick.card, pick.orientation, true)}
+      <div class="flipCard ${suspenseClass}" data-idx="${i}">
+        <div class="flipInner">
+          <div class="flipFace flipBack"><div class="trayCardBack"><span class="backGlyph">✦</span></div></div>
+          <div class="flipFace flipFront">${cardFrontHtml(pick.card, pick.orientation, true)}</div>
+        </div>
+      </div>
     </div>`;
   }).join('');
 
-  const showSeal = state.picks.length===3;
+  const revealCta = (allPicked && !state.revealTriggered)
+    ? `<div class="revealCta">
+        <button class="goldbtn" id="btn-reveal-all"><span class="shimmerText">${t('revealAll')}</span></button>
+        <div class="revealHint">${t('revealHint')}</div>
+      </div>`
+    : '';
 
   return `
   <div class="panel">
@@ -989,26 +1031,54 @@ function selectScreen(){
     <div class="positionHint">${t('selectHint')}</div>
     <div class="posBadges">${badges}</div>
     <div class="traySpace">${trayHtml}</div>
-    ${showSeal ? sealHtml() : ''}
-    <div class="deckWrap">${deckHtml}</div>
-  </div>`;
-}
-function sealHtml(){
-  return `<div class="sealWrap">
-    <div class="sealRibbon"><svg viewBox="0 0 40 40" fill="none" stroke="var(--void)" stroke-width="2"><path d="M20 6 L22 17 L33 20 L22 23 L20 34 L18 23 L7 20 L18 17 Z"/></svg></div>
-    <div class="sealText">Locked</div>
-    <div class="sealSub">${state.lang==='th'?'กำลังผนึกผลไพ่...':'Verrouillage du tirage...'}</div>
+    ${revealCta}
+    ${!allPicked ? `<div class="deckWrap">${deckHtml}</div>` : ''}
   </div>`;
 }
 function cardFrontHtml(card, orientation, small){
   const rev = orientation==='reversed';
-  const label = rev ? t('reversed') : t('upright');
-  return `<div class="cardFront ${rev?'reversed':''} cardFlipIn">
-    <div class="num">${card.number==='court'?'':card.number}</div>
-    <div class="icon">${suitIcon(card.suit)}</div>
-    <div class="fname">${cardDisplayName(card, state.lang)}</div>
-    <div class="orient">${rev?'R':'U'}</div>
+  const isMajor = card.arcana==='major';
+  return `<div class="cardFront ${rev?'reversed':''} ${isMajor?'majorCard':''}">
+    <div class="cardCorner tl">${cardNumeral(card)}</div>
+    <div class="cardCorner br">${cardNumeral(card)}</div>
+    <div class="cardInnerFrame">
+      <div class="icon">${isMajor ? majorIcon(card.number) : suitIcon(card.suit)}</div>
+      <div class="fname">${cardDisplayName(card, state.lang)}</div>
+    </div>
   </div>`;
+}
+function cardNumeral(card){
+  if(card.arcana==='major') return card.number;
+  if(card.number==='court') return '';
+  return card.number;
+}
+function majorIcon(numeral){
+  const c = "var(--gold-bright)";
+  const icons = {
+    "0": `<circle cx="20" cy="14" r="6" fill="none" stroke="${c}" stroke-width="1.6"/><path d="M20 20 L20 32 M14 24 L26 24" stroke="${c}" stroke-width="1.6"/>`,
+    "I": `<path d="M20 6 L20 34 M12 12 L28 12" stroke="${c}" stroke-width="1.8"/><circle cx="20" cy="20" r="3" fill="${c}"/>`,
+    "II": `<path d="M20 6 a14 14 0 1 0 0 28 a10 10 0 1 1 0 -28 Z" fill="${c}" opacity="0.85"/>`,
+    "III": `<circle cx="20" cy="16" r="7" fill="none" stroke="${c}" stroke-width="1.6"/><path d="M14 30 Q20 22 26 30" stroke="${c}" stroke-width="1.6" fill="none"/>`,
+    "IV": `<path d="M10 30 L20 8 L30 30 Z" fill="none" stroke="${c}" stroke-width="1.6"/><path d="M14 24 L26 24" stroke="${c}" stroke-width="1.2"/>`,
+    "V": `<path d="M20 6 L20 34 M10 20 L30 20" stroke="${c}" stroke-width="1.8"/>`,
+    "VI": `<circle cx="14" cy="16" r="6" fill="none" stroke="${c}" stroke-width="1.5"/><circle cx="26" cy="16" r="6" fill="none" stroke="${c}" stroke-width="1.5"/>`,
+    "VII": `<rect x="10" y="14" width="20" height="14" rx="2" fill="none" stroke="${c}" stroke-width="1.6"/><circle cx="15" cy="30" r="3" fill="${c}"/><circle cx="25" cy="30" r="3" fill="${c}"/>`,
+    "VIII": `<path d="M20 6 L24 18 L36 20 L24 22 L20 34 L16 22 L4 20 L16 18 Z" fill="${c}" opacity="0.5"/><path d="M10 10 L30 30 M30 10 L10 30" stroke="${c}" stroke-width="1"/>`,
+    "IX": `<path d="M28 10 a12 12 0 1 0 -1 20" fill="none" stroke="${c}" stroke-width="1.6"/><circle cx="20" cy="20" r="2" fill="${c}"/>`,
+    "X": `<circle cx="20" cy="20" r="12" fill="none" stroke="${c}" stroke-width="1.4"/><path d="M20 8 L20 32 M8 20 L32 20" stroke="${c}" stroke-width="1"/>`,
+    "XI": `<path d="M12 24 Q20 8 28 24 Q20 20 12 24 Z" fill="${c}" opacity="0.7"/>`,
+    "XII": `<path d="M20 6 L20 26" stroke="${c}" stroke-width="1.8"/><circle cx="20" cy="30" r="4" fill="none" stroke="${c}" stroke-width="1.4"/>`,
+    "XIII": `<path d="M12 12 L28 28 M12 20 L24 32 M16 8 L28 20" stroke="${c}" stroke-width="1.4"/>`,
+    "XIV": `<path d="M10 20 Q20 8 30 20 Q20 32 10 20 Z" fill="none" stroke="${c}" stroke-width="1.4"/>`,
+    "XV": `<path d="M14 30 L14 18 Q20 8 26 18 L26 30" fill="none" stroke="${c}" stroke-width="1.6"/><circle cx="17" cy="18" r="1.4" fill="${c}"/><circle cx="23" cy="18" r="1.4" fill="${c}"/>`,
+    "XVI": `<rect x="14" y="10" width="12" height="22" fill="none" stroke="${c}" stroke-width="1.4"/><path d="M20 10 L14 22 L22 22 L16 32" stroke="${c}" stroke-width="1.2" fill="none"/>`,
+    "XVII": `<path d="M20 6 L22 16 L32 16 L23 22 L26 32 L20 26 L14 32 L17 22 L8 16 L18 16 Z" fill="${c}" opacity="0.7"/>`,
+    "XVIII": `<path d="M24 8 a12 12 0 1 0 0 24 a9 9 0 1 1 0 -24 Z" fill="${c}" opacity="0.75"/>`,
+    "XIX": `<circle cx="20" cy="20" r="8" fill="${c}" opacity="0.85"/><path d="M20 4 V10 M20 30 V36 M4 20 H10 M30 20 H36" stroke="${c}" stroke-width="1.4"/>`,
+    "XX": `<path d="M20 8 V20 M13 27 Q20 34 27 27" stroke="${c}" stroke-width="1.6" fill="none"/><circle cx="20" cy="6" r="2.4" fill="${c}"/>`,
+    "XXI": `<circle cx="20" cy="20" r="13" fill="none" stroke="${c}" stroke-width="1.4"/><path d="M20 7 L20 33 M7 20 L33 20" stroke="${c}" stroke-width="0.8" opacity="0.7"/>`
+  };
+  return `<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">${icons[numeral] || icons["X"]}</svg>`;
 }
 function lockedScreen(){
   const positions = [
@@ -1105,6 +1175,7 @@ function attachHandlers(){
   const bts=document.getElementById('btn-to-select'); if(bts) bts.onclick=()=>{
     state.deck = cryptoShuffle(FULL_DECK);
     state.picks = [];
+    state.revealTriggered = false;
     state.screen='select'; render();
   };
 
@@ -1115,17 +1186,28 @@ function attachHandlers(){
       const orientation = randomOrientation();
       state.picks.push({card, orientation});
       render();
-      if(state.picks.length===3){
-        setTimeout(()=>{ state.screen='locked'; render(); }, 900);
-      }
     };
   });
+  const bra=document.getElementById('btn-reveal-all'); if(bra) bra.onclick=()=>{
+    state.revealTriggered = true;
+    render();
+    // suspense build-up, then flip all three with a staggered cascade
+    setTimeout(()=>{
+      const cards = document.querySelectorAll('.flipCard');
+      cards.forEach((el,i)=>{
+        const inner = el.querySelector('.flipInner');
+        if(inner) inner.style.transitionDelay = (i*0.22)+'s';
+        requestAnimationFrame(()=> el.classList.add('flipped'));
+      });
+      setTimeout(()=>{ state.screen='locked'; render(); }, 2*220 + 750 + 200);
+    }, 850);
+  };
 
   const bas=document.getElementById('btn-ask-salina'); if(bas) bas.onclick=()=>{ state.screen='reading'; state.loading=true; state.error=null; render(); askSalina(); };
   const brs=document.getElementById('btn-retry-salina'); if(brs) brs.onclick=()=>{ state.loading=true; state.error=null; render(); askSalina(); };
   const brt=document.getElementById('btn-reset'); if(brt) brt.onclick=()=>{
     stopPartyMusic();
-    state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.screen='home'; render();
+    state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.revealTriggered=false; state.screen='home'; render();
   };
   const bnp=document.getElementById('btn-next-party'); if(bnp) bnp.onclick=()=>{
     state.screen='party'; render(); startPartyMusic();
@@ -1136,7 +1218,7 @@ function attachHandlers(){
   };
   const bph=document.getElementById('btn-party-home'); if(bph) bph.onclick=()=>{
     stopPartyMusic();
-    state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.screen='home'; render();
+    state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.revealTriggered=false; state.screen='home'; render();
   };
   document.querySelectorAll('[data-histidx]').forEach(h=>h.onclick=()=>{
     const entry = state.history[Number(h.dataset.histidx)];
@@ -1162,6 +1244,7 @@ const RT = {
     cardLine:(name, orientLabel, meaning, keywords)=>`ไพ่ <strong>${name}</strong> ปรากฏขึ้นในลักษณะ<strong>${orientLabel}</strong> สื่อถึง${meaning} แง่มุมที่โดดเด่นของไพ่ใบนี้คือเรื่อง${keywords}`,
     synthTitle:'✦ เมื่อไพ่ทั้งสามใบพูดพร้อมกัน',
     synthIntro:(n1,n2,n3)=>`เมื่อ <strong>${n1}</strong>, <strong>${n2}</strong> และ <strong>${n3}</strong> วางเรียงกัน เรื่องราวที่ปรากฏไม่ใช่สามเหตุการณ์แยกกัน แต่เป็นบทเดียวกันที่ค่อย ๆ คลี่คลาย — จากจุดที่คุณยืนอยู่ตอนนี้ ผ่านสิ่งที่ยังไม่ถูกมองเห็น ไปจนถึงหนทางที่รอคุณอยู่ข้างหน้า`,
+    synthQuestionEcho:(q)=>`หากมองย้อนกลับไปที่คำถามของคุณ — “${q}” — จะเห็นว่าไพ่ทั้งสามใบไม่ได้ตอบแบบตรง ๆ ว่าใช่หรือไม่ใช่ แต่กำลังชี้ให้คุณเห็นภาพที่กว้างกว่านั้น เป็นภาพที่คุณเองสามารถเลือกเดินต่อได้`,
     synthMajors:'การที่มีไพ่ชุดใหญ่ (Major Arcana) ปรากฏในไพ่ชุดนี้ บอกว่าเรื่องนี้ไม่ใช่แค่เหตุการณ์เล็ก ๆ ในชีวิตประจำวัน แต่เป็นบทเรียนหรือจุดเปลี่ยนที่มีน้ำหนักต่อเส้นทางชีวิตของคุณจริง ๆ',
     synthReversedHeavy:'หลายใบในสามใบนี้กลับหัว ซึ่งชวนให้คุณหันกลับมามองด้านในตัวเองก่อน — มีบางสิ่งที่ยังติดขัด ยังไม่คลี่คลาย และรอให้คุณยอมรับมันตรง ๆ ก่อนจะก้าวต่อไปได้อย่างมั่นคง',
     synthUprightHeavy:'พลังงานของไพ่ชุดนี้ค่อนไปทางเปิดกว้างและไหลลื่น สิ่งต่าง ๆ กำลังเคลื่อนไปในทิศทางที่คุณควบคุมได้ ถ้าคุณกล้าลงมือทำตามสิ่งที่ใจรู้อยู่แล้ว',
@@ -1180,6 +1263,7 @@ const RT = {
     cardLine:(name, orientLabel, meaning, keywords)=>`La carte <strong>${name}</strong> apparaît <strong>${orientLabel}</strong>, évoquant ${meaning} Ce qui domine dans cette carte, c'est ${keywords}`,
     synthTitle:'✦ Quand les trois cartes parlent ensemble',
     synthIntro:(n1,n2,n3)=>`Lorsque <strong>${n1}</strong>, <strong>${n2}</strong> et <strong>${n3}</strong> se rencontrent, ce n'est pas trois événements séparés, mais un seul chapitre qui se déploie — de l'endroit où vous vous trouvez, à travers ce qui reste invisible, jusqu'au chemin qui s'ouvre devant vous.`,
+    synthQuestionEcho:(q)=>`Si l'on revient à votre question — « ${q} » — ces trois cartes n'y répondent pas par un simple oui ou non, mais dessinent un tableau plus large, un chemin que vous seul(e) pouvez choisir de suivre.`,
     synthMajors:'La présence d\'arcanes majeurs dans ce tirage indique qu\'il ne s\'agit pas d\'un simple aléa du quotidien, mais d\'une véritable leçon ou d\'un tournant qui pèse sur votre chemin de vie.',
     synthReversedHeavy:'Plusieurs cartes sont renversées, ce qui vous invite à regarder d\'abord à l\'intérieur de vous-même — quelque chose reste bloqué, non résolu, et attend d\'être reconnu avant que vous puissiez avancer sereinement.',
     synthUprightHeavy:'L\'énergie de ce tirage est ouverte et fluide. Les choses évoluent dans une direction que vous pouvez guider, si vous osez agir selon ce que votre cœur sait déjà.',
@@ -1198,6 +1282,7 @@ const RT = {
     cardLine:(name, orientLabel, meaning, keywords)=>`<strong>${name}</strong> kartı <strong>${orientLabel}</strong> şekilde belirdi ve ${meaning} anlamına geliyor. Bu kartta öne çıkan tema: ${keywords}`,
     synthTitle:'✦ Üç kart birlikte konuştuğunda',
     synthIntro:(n1,n2,n3)=>`<strong>${n1}</strong>, <strong>${n2}</strong> ve <strong>${n3}</strong> yan yana geldiğinde, bu üç ayrı olay değil, tek bir bölümün aşama aşama açılmasıdır — şu an bulunduğun yerden, henüz görünmeyen etkiler üzerinden, önündeki yola doğru.`,
+    synthQuestionEcho:(q)=>`Sorduğun soruya geri dönersek — "${q}" — bu üç kart sana basit bir evet ya da hayır vermiyor; daha geniş bir resim çiziyor. O yolda ilerlemeyi seçmek sana kalmış.`,
     synthMajors:'Bu açılımda büyük arkana kartlarının bulunması, bunun sıradan bir günlük olay olmadığını; hayatının yönü üzerinde gerçekten ağırlığı olan bir ders ya da dönüm noktası olduğunu gösteriyor.',
     synthReversedHeavy:'Kartlardan birkaçı ters geldi; bu da önce içine dönüp bakmanı öneriyor — henüz çözülmemiş, kabul edilmeyi bekleyen bir şey var. Onu kabul etmeden emin adımlarla ilerlemek zor olacaktır.',
     synthUprightHeavy:'Bu açılımın enerjisi açık ve akışkan. Kalbinin zaten bildiği şeye göre hareket etme cesaretini gösterirsen, işler senin yönlendirebileceğin bir doğrultuda ilerliyor.',
@@ -1215,18 +1300,39 @@ function localMeaning(pick){
   return pick.orientation==='reversed' ? pick.card.reversed : pick.card.upright;
 }
 
+const CATEGORY_KEYWORDS = {
+  th:{ love:['รัก','แฟน','คนรัก','ความสัมพันธ์','เขา','สามี','ภรรยา','คู่','อกหัก','แต่งงาน'],
+       career:['งาน','อาชีพ','เรียน','สอบ','สัมภาษณ์','บริษัท','เจ้านาย','ลาออก','ทำงาน'],
+       money:['เงิน','การเงิน','ธุรกิจ','หนี้','ลงทุน','รายได้','เศรษฐกิจ','หุ้น'] },
+  fr:{ love:['amour','relation','copain','copine','couple','mari','femme','mariage'],
+       career:['travail','carrière','emploi','entretien','patron','étude','examen'],
+       money:['argent','finance','dette','investir','business','revenu'] },
+  tr:{ love:['aşk','ilişki','sevgili','eş','evlilik','flört'],
+       career:['iş','kariyer','sınav','patron','mülakat','meslek'],
+       money:['para','finans','borç','yatırım','gelir'] }
+};
+function detectCategoryFromQuestion(q, lang){
+  const dict = CATEGORY_KEYWORDS[lang] || CATEGORY_KEYWORDS.th;
+  const lower = (q||'').toLowerCase();
+  for(const cat of ['love','career','money']){
+    if(dict[cat].some(k => lower.includes(k.toLowerCase()))) return cat;
+  }
+  return null;
+}
+
 function buildLocalReading(){
   const lang = state.lang;
   const R = RT[lang];
   const posKeys = ['situation','hidden','direction'];
   const cardName = (c)=> cardDisplayName(c, lang);
+  const effectiveCategory = state.category!=='general' ? state.category : detectCategoryFromQuestion(state.question, lang);
 
   let html = `<p>${R.opening(state.question)}</p>`;
 
   state.picks.forEach((p,i)=>{
     const label = R.posLabel[posKeys[i]];
     const orientLabel = R.orient[p.orientation];
-    html += `<h2>${['I','II','III'][i]} — ${label}</h2>`;
+    html += `<h2>${label}</h2>`;
     html += `<p>${R.cardLine(cardName(p.card), orientLabel, localMeaning(p), p.card.keywords)}.</p>`;
   });
 
@@ -1235,14 +1341,15 @@ function buildLocalReading(){
 
   html += `<h2>${R.synthTitle}</h2>`;
   html += `<p>${R.synthIntro(cardName(state.picks[0].card), cardName(state.picks[1].card), cardName(state.picks[2].card))}</p>`;
+  html += `<p>${R.synthQuestionEcho(state.question)}</p>`;
   if(majors>=2){ html += `<p>${R.synthMajors}</p>`; }
   if(reversedCount>=2){ html += `<p>${R.synthReversedHeavy}</p>`; }
   else { html += `<p>${R.synthUprightHeavy}</p>`; }
 
-  if(state.category!=='general' && R.catTitle[state.category]){
+  if(effectiveCategory && effectiveCategory!=='general' && R.catTitle[effectiveCategory]){
     const dirPick = state.picks[2];
-    html += `<h2>${R.catTitle[state.category]}</h2>`;
-    html += `<p>${R.catBody(R.catTitle[state.category].replace(/^\S+\s/,''), cardName(dirPick.card), localMeaning(dirPick))}</p>`;
+    html += `<h2>${R.catTitle[effectiveCategory]}</h2>`;
+    html += `<p>${R.catBody(R.catTitle[effectiveCategory].replace(/^\S+\s/,''), cardName(dirPick.card), localMeaning(dirPick))}</p>`;
   }
 
   const dirPick = state.picks[2];

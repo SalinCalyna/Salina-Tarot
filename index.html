@@ -8,23 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#0a0a12;
-    --deep:#10182b;
-    --deep2:#161f36;
-    --burgundy:#5c1a2e;
-    --burgundy-bright:#8a2740;
-    --gold:#c9a868;
-    --gold-bright:#e8c783;
-    --pearl:#f3ecdd;
-    --muted:#9089a0;
-    --line: rgba(201,168,104,0.28);
+    --void:#0d0716;
+    --deep:#1a0f2e;
+    --deep2:#241640;
+    --burgundy:#5b2f8a;
+    --burgundy-bright:#9b5fe0;
+    --gold:#3f9e5c;
+    --gold-bright:#6fe08c;
+    --pearl:#f1e9fb;
+    --muted:#a996c4;
+    --line: rgba(111,224,140,0.28);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     background:
-      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(138,39,64,0.35), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 85% 100%, rgba(201,168,104,0.10), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(91,47,138,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 85% 100%, rgba(111,224,140,0.10), transparent 60%),
       var(--void);
     color:var(--pearl);
     font-family:'Noto Sans Thai','Cormorant Garamond',serif;
@@ -47,7 +47,7 @@
   .stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
   .stars span.star{position:absolute;width:2px;height:2px;background:var(--gold-bright);border-radius:50%;opacity:.35;animation:twinkle 4s ease-in-out infinite;}
   @keyframes twinkle{0%,100%{opacity:.15;}50%{opacity:.65;}}
-  .stars span.ember{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:radial-gradient(circle, #ffdca8, #c9683a 70%, transparent);animation:emberRise linear infinite;opacity:0;box-shadow:0 0 6px 1px rgba(255,180,110,0.5);}
+  .stars span.ember{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:radial-gradient(circle, #baffc9, #2f9e52 70%, transparent);animation:emberRise linear infinite;opacity:0;box-shadow:0 0 6px 1px rgba(111,224,140,0.5);}
   @keyframes emberRise{
     0%{transform:translateY(0) translateX(0);opacity:0;}
     10%{opacity:.75;}
@@ -60,6 +60,19 @@
   .flourish .fline{flex:1;height:1px;background:linear-gradient(90deg, transparent, var(--gold));}
   .flourish .fline.right{background:linear-gradient(90deg, var(--gold), transparent);}
   .flourish svg{width:16px;height:16px;flex-shrink:0;}
+
+  /* cauldron & frog */
+  .cauldronWrap{width:170px;margin:0 auto 6px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5));}
+  .cauldronWrap svg{width:100%;height:auto;display:block;}
+  .bubble{transform-origin:center;animation:bubbleRise 2.4s ease-in infinite;}
+  @keyframes bubbleRise{
+    0%{transform:translateY(0) scale(0.5);opacity:0;}
+    15%{opacity:1;}
+    85%{opacity:.7;}
+    100%{transform:translateY(-24px) scale(1.2);opacity:0;}
+  }
+  .steamWisp{animation:steamDrift 3.6s ease-in-out infinite;transform-origin:center;}
+  @keyframes steamDrift{0%,100%{opacity:.2;transform:translateY(0) translateX(0);}50%{opacity:.5;transform:translateY(-8px) translateX(3px);}}
 
   .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:8px;}
   .brand{display:flex;flex-direction:column;line-height:1;}
@@ -74,7 +87,7 @@
   /* HOME */
   .home{text-align:center;padding-top:6vh;position:relative;z-index:2;}
   .home .eyebrow{font-size:12px;letter-spacing:.35em;color:var(--muted);text-transform:uppercase;margin-bottom:22px;animation:fadeUp .6s ease;}
-  .home h1{font-family:'Playfair Display',serif;font-size:40px;letter-spacing:.06em;color:var(--gold-bright);margin:0;text-shadow:0 0 40px rgba(232,199,131,0.25);animation:fadeUp .8s ease .05s backwards;}
+  .home h1{font-family:'Playfair Display',serif;font-size:40px;letter-spacing:.06em;color:var(--gold-bright);margin:0;text-shadow:0 0 40px rgba(111,224,140,0.25);animation:fadeUp .8s ease .05s backwards;}
   .home h2.disp{font-size:20px;font-weight:500;color:var(--pearl);margin:6px 0 22px;letter-spacing:.1em;animation:fadeUp .8s ease .1s backwards;}
   .home .tagline{font-size:18px;color:var(--muted);line-height:1.85;margin-bottom:38px;font-style:italic;animation:fadeUp .8s ease .15s backwards;}
   .home .ctaWrap{animation:fadeUp .8s ease .2s backwards;}
@@ -89,7 +102,7 @@
   }
   .portraitGlow{
     position:absolute;inset:-30px;border-radius:50%;
-    background:radial-gradient(circle, rgba(232,199,131,0.28), rgba(138,39,64,0.16) 55%, transparent 75%);
+    background:radial-gradient(circle, rgba(111,224,140,0.28), rgba(91,47,138,0.16) 55%, transparent 75%);
     filter:blur(6px);z-index:0;
   }
   .portraitFrame{
@@ -107,7 +120,7 @@
     color:var(--void);font-weight:600;letter-spacing:.03em;
     border:none;border-radius:3px;padding:16px 34px;font-size:16px;cursor:pointer;
     font-family:'Noto Sans Thai',sans-serif;
-    box-shadow:0 8px 28px rgba(201,168,104,0.28), inset 0 1px 0 rgba(255,255,255,0.35);
+    box-shadow:0 8px 28px rgba(111,224,140,0.28), inset 0 1px 0 rgba(255,255,255,0.35);
     transition:transform .25s cubic-bezier(.2,.8,.3,1), box-shadow .25s ease;
     position:relative;overflow:hidden;
   }
@@ -118,7 +131,7 @@
   }
   @keyframes shimmerSweep{0%,55%{left:-60%;}100%{left:130%;}}
   .goldbtn .shimmerText{position:relative;z-index:1;}
-  .goldbtn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(201,168,104,0.4), inset 0 1px 0 rgba(255,255,255,0.4);}
+  .goldbtn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(111,224,140,0.4), inset 0 1px 0 rgba(255,255,255,0.4);}
   .goldbtn:active{transform:translateY(0);}
   .goldbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
   .ghostbtn{
@@ -160,7 +173,7 @@
   textarea.qInput:focus{outline:none;border-color:var(--gold);}
   .chipRow{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 34px;}
   .chip{border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--muted);cursor:pointer;background:transparent;font-family:inherit;}
-  .chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(201,168,104,0.08);}
+  .chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(111,224,140,0.08);}
   .navrow{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
 
   /* SHUFFLE / SELECT */
@@ -168,30 +181,30 @@
   .positionHint{font-size:15px;color:var(--muted);margin-bottom:22px;text-align:center;line-height:1.7;}
   .posBadges{display:flex;justify-content:center;gap:10px;margin-bottom:26px;}
   .posBadge{border:1px solid var(--line);border-radius:2px;padding:8px 14px;font-size:12px;letter-spacing:.05em;color:var(--muted);text-align:center;min-width:88px;}
-  .posBadge.done{border-color:var(--gold);color:var(--gold-bright);background:rgba(201,168,104,0.06);}
+  .posBadge.done{border-color:var(--gold);color:var(--gold-bright);background:rgba(111,224,140,0.06);}
   .posBadge .n{display:block;font-size:10px;color:var(--muted);letter-spacing:.2em;margin-bottom:3px;}
 
   .deckWrap{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:14px;border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,0.015);}
   .cardBack{
     width:34px;height:52px;border-radius:3px;cursor:pointer;position:relative;flex-shrink:0;
     background:
-      radial-gradient(circle at 50% 50%, rgba(232,199,131,0.22) 0%, transparent 45%),
-      repeating-linear-gradient(45deg, rgba(201,168,104,0.13) 0 2px, transparent 2px 7px),
+      radial-gradient(circle at 50% 50%, rgba(111,224,140,0.22) 0%, transparent 45%),
+      repeating-linear-gradient(45deg, rgba(111,224,140,0.13) 0 2px, transparent 2px 7px),
       linear-gradient(160deg, var(--deep2), var(--burgundy) 130%);
     border:1px solid var(--gold);
     transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease, opacity .3s ease;
     box-shadow:0 2px 6px rgba(0,0,0,0.35);
   }
   .cardBack::after{
-    content:"";position:absolute;inset:4px;border:1px solid rgba(201,168,104,0.5);border-radius:2px;
-    background-image:radial-gradient(circle, rgba(232,199,131,0.55) 0.5px, transparent 0.5px);
+    content:"";position:absolute;inset:4px;border:1px solid rgba(111,224,140,0.5);border-radius:2px;
+    background-image:radial-gradient(circle, rgba(111,224,140,0.55) 0.5px, transparent 0.5px);
     background-size:6px 6px;background-position:center;
   }
   .cardBack::before{
     content:"✦";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     font-size:9px;color:var(--gold-bright);opacity:.6;z-index:1;
   }
-  .cardBack:hover:not(.taken){transform:translateY(-6px) scale(1.04);box-shadow:0 12px 22px rgba(0,0,0,0.55), 0 0 14px rgba(232,199,131,0.25);}
+  .cardBack:hover:not(.taken){transform:translateY(-6px) scale(1.04);box-shadow:0 12px 22px rgba(0,0,0,0.55), 0 0 14px rgba(111,224,140,0.25);}
   .cardBack.taken{opacity:0;pointer-events:none;transform:scale(.4);}
 
   .traySpace{display:flex;gap:14px;justify-content:center;margin:30px 0;min-height:170px;}
@@ -202,7 +215,7 @@
     background:linear-gradient(165deg, #1a2340, #0d1220 70%);
     display:flex;flex-direction:column;align-items:center;justify-content:space-between;
     padding:10px 6px;position:relative;
-    box-shadow:0 10px 26px rgba(0,0,0,.55), inset 0 0 0 1px rgba(201,168,104,0.15);
+    box-shadow:0 10px 26px rgba(0,0,0,.55), inset 0 0 0 1px rgba(111,224,140,0.15);
   }
   .cardFront .num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:.1em;}
   .cardFront .icon{width:34px;height:34px;opacity:.9;}
@@ -259,7 +272,7 @@
   @keyframes spin{to{transform:rotate(360deg);}}
   .loadingWrap p{color:var(--muted);font-style:italic;font-size:16px;}
 
-  .errBox{border:1px solid var(--burgundy-bright);background:rgba(138,39,64,0.12);color:var(--pearl);padding:16px 18px;border-radius:3px;font-size:14px;line-height:1.6;}
+  .errBox{border:1px solid var(--burgundy-bright);background:rgba(91,47,138,0.12);color:var(--pearl);padding:16px 18px;border-radius:3px;font-size:14px;line-height:1.6;}
 
   /* HISTORY */
   .histItem{border:1px solid var(--line);border-radius:3px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s;}
@@ -413,37 +426,41 @@ function salinaPortraitSvg(){
   return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="bgGrad" cx="50%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#2b1120"/>
-      <stop offset="65%" stop-color="#161022"/>
-      <stop offset="100%" stop-color="#0a0a12"/>
+      <stop offset="0%" stop-color="#2c1450"/>
+      <stop offset="65%" stop-color="#170b28"/>
+      <stop offset="100%" stop-color="#0d0716"/>
     </radialGradient>
     <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3a1626"/>
-      <stop offset="100%" stop-color="#100810"/>
+      <stop offset="0%" stop-color="#2c1345"/>
+      <stop offset="100%" stop-color="#0d0716"/>
     </linearGradient>
     <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#6b2038"/>
-      <stop offset="100%" stop-color="#3a1020"/>
+      <stop offset="0%" stop-color="#5b2f8a"/>
+      <stop offset="100%" stop-color="#2a1245"/>
     </linearGradient>
     <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f6efe1"/>
       <stop offset="100%" stop-color="#e9dcc3"/>
     </linearGradient>
+    <linearGradient id="hatGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#4a2470"/>
+      <stop offset="100%" stop-color="#2a1245"/>
+    </linearGradient>
   </defs>
 
   <circle cx="150" cy="150" r="148" fill="url(#bgGrad)"/>
-  <circle cx="150" cy="150" r="143" fill="none" stroke="#c9a868" stroke-width="1" opacity="0.55"/>
-  <circle cx="150" cy="150" r="134" fill="none" stroke="#c9a868" stroke-width="0.5" opacity="0.35"/>
+  <circle cx="150" cy="150" r="143" fill="none" stroke="#6fe08c" stroke-width="1" opacity="0.5"/>
+  <circle cx="150" cy="150" r="134" fill="none" stroke="#6fe08c" stroke-width="0.5" opacity="0.3"/>
 
   <!-- ambient stars -->
-  <g fill="#e8c783" opacity="0.75">
+  <g fill="#6fe08c" opacity="0.7">
     <circle cx="52" cy="70" r="1.6"/><circle cx="70" cy="48" r="1.1"/>
     <circle cx="240" cy="66" r="1.4"/><circle cx="258" cy="96" r="1"/>
     <circle cx="46" cy="200" r="1.2"/><circle cx="252" cy="210" r="1.3"/>
     <circle cx="120" cy="34" r="1"/>
   </g>
   <!-- crescent moon -->
-  <path d="M220 55 a20 20 0 1 0 0 30 a15 15 0 1 1 0 -30 Z" fill="#e8c783" opacity="0.9"/>
+  <path d="M225 55 a20 20 0 1 0 0 30 a15 15 0 1 1 0 -30 Z" fill="#9b5fe0" opacity="0.85"/>
 
   <!-- flowing hair, back layer -->
   <path d="M150 96
@@ -471,12 +488,12 @@ function salinaPortraitSvg(){
     C 260 160, 240 108, 194 90
     Z" fill="url(#hairGrad)"/>
 
-  <!-- shoulders / dress -->
-  <path d="M96 300 C 100 250, 118 224, 150 222 C 182 224, 200 250, 204 300 Z" fill="url(#dressGrad)" stroke="#c9a868" stroke-width="1" opacity="0.95"/>
-  <path d="M120 226 C 130 240, 170 240, 180 226" fill="none" stroke="#e8c783" stroke-width="1" opacity="0.8"/>
-  <!-- thin gold necklace -->
-  <path d="M136 228 Q150 244 164 228" fill="none" stroke="#e8c783" stroke-width="1" opacity="0.7"/>
-  <circle cx="150" cy="243" r="2" fill="#e8c783"/>
+  <!-- shoulders / robe -->
+  <path d="M96 300 C 100 250, 118 224, 150 222 C 182 224, 200 250, 204 300 Z" fill="url(#dressGrad)" stroke="#6fe08c" stroke-width="1" opacity="0.95"/>
+  <path d="M120 226 C 130 240, 170 240, 180 226" fill="none" stroke="#6fe08c" stroke-width="1" opacity="0.8"/>
+  <!-- thin green amulet chain -->
+  <path d="M136 228 Q150 244 164 228" fill="none" stroke="#6fe08c" stroke-width="1" opacity="0.7"/>
+  <circle cx="150" cy="243" r="2.4" fill="#6fe08c"/>
 
   <!-- neck -->
   <path d="M136 196 L136 224 C142 232 158 232 164 224 L164 196 Z" fill="url(#skinGrad)"/>
@@ -491,38 +508,39 @@ function salinaPortraitSvg(){
   <path d="M192 150 C196 190, 190 216, 178 236 C 188 206, 190 176, 184 152 Z" fill="url(#hairGrad)"/>
 
   <!-- eyebrows -->
-  <path d="M124 148 Q134 141 145 146" fill="none" stroke="#5c1a2e" stroke-width="2" stroke-linecap="round"/>
-  <path d="M176 148 Q166 141 155 146" fill="none" stroke="#5c1a2e" stroke-width="2" stroke-linecap="round"/>
+  <path d="M124 148 Q134 141 145 146" fill="none" stroke="#3a1a5c" stroke-width="2" stroke-linecap="round"/>
+  <path d="M176 148 Q166 141 155 146" fill="none" stroke="#3a1a5c" stroke-width="2" stroke-linecap="round"/>
 
   <!-- closed, serene eyes -->
-  <path d="M122 160 Q133 166 146 160" fill="none" stroke="#3a1020" stroke-width="2" stroke-linecap="round"/>
-  <path d="M178 160 Q167 166 154 160" fill="none" stroke="#3a1020" stroke-width="2" stroke-linecap="round"/>
-  <path d="M124 163 Q133 167 144 163" fill="none" stroke="#c9a868" stroke-width="0.75" opacity="0.7"/>
-  <path d="M176 163 Q167 167 156 163" fill="none" stroke="#c9a868" stroke-width="0.75" opacity="0.7"/>
+  <path d="M122 160 Q133 166 146 160" fill="none" stroke="#1f0f2e" stroke-width="2" stroke-linecap="round"/>
+  <path d="M178 160 Q167 166 154 160" fill="none" stroke="#1f0f2e" stroke-width="2" stroke-linecap="round"/>
+  <path d="M124 163 Q133 167 144 163" fill="none" stroke="#6fe08c" stroke-width="0.75" opacity="0.7"/>
+  <path d="M176 163 Q167 167 156 163" fill="none" stroke="#6fe08c" stroke-width="0.75" opacity="0.7"/>
 
   <!-- nose -->
   <path d="M150 160 C148 170, 147 178, 150 182" fill="none" stroke="#d8c6a8" stroke-width="1.4" stroke-linecap="round"/>
 
   <!-- lips -->
-  <path d="M136 192 Q150 188 164 192 Q150 200 136 192 Z" fill="#8a2740" opacity="0.85"/>
+  <path d="M136 192 Q150 188 164 192 Q150 200 136 192 Z" fill="#5b2f8a" opacity="0.85"/>
 
   <!-- blush -->
-  <ellipse cx="120" cy="178" rx="8" ry="5" fill="#c9a868" opacity="0.18"/>
-  <ellipse cx="180" cy="178" rx="8" ry="5" fill="#c9a868" opacity="0.18"/>
+  <ellipse cx="120" cy="178" rx="8" ry="5" fill="#9b5fe0" opacity="0.16"/>
+  <ellipse cx="180" cy="178" rx="8" ry="5" fill="#9b5fe0" opacity="0.16"/>
 
   <!-- crescent earring -->
-  <path d="M108 176 a5 5 0 1 0 0 8 a3.6 3.6 0 1 1 0 -8 Z" fill="#e8c783"/>
+  <path d="M108 176 a5 5 0 1 0 0 8 a3.6 3.6 0 1 1 0 -8 Z" fill="#6fe08c"/>
 
-  <!-- headpiece / circlet -->
-  <path d="M110 118 Q150 100 190 118" fill="none" stroke="#e8c783" stroke-width="1.5" opacity="0.85"/>
-  <circle cx="150" cy="106" r="3.5" fill="#e8c783"/>
-  <path d="M144 106 L150 96 L156 106" fill="none" stroke="#e8c783" stroke-width="1"/>
+  <!-- witch hat -->
+  <ellipse cx="150" cy="112" rx="36" ry="7.5" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
+  <path d="M132 112 C136 88, 143 56, 151 32 C 158 54, 167 88, 171 110 C 160 104, 142 105, 132 112 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="1"/>
+  <path d="M151 32 Q159 20 153 14 Q147 22 151 32 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="0.8"/>
+  <circle cx="150" cy="112" r="3" fill="#6fe08c"/>
 
   <!-- tarot card held near cheek -->
   <g transform="translate(198,150) rotate(18)">
-    <rect x="0" y="0" width="34" height="50" rx="3" fill="#161022" stroke="#e8c783" stroke-width="1.4"/>
-    <rect x="4" y="4" width="26" height="42" rx="1.5" fill="none" stroke="#c9a868" stroke-width="0.6" opacity="0.7"/>
-    <path d="M17 14 L20 22 L28 25 L20 28 L17 36 L14 28 L6 25 L14 22 Z" fill="#e8c783" opacity="0.9"/>
+    <rect x="0" y="0" width="34" height="50" rx="3" fill="#170b28" stroke="#6fe08c" stroke-width="1.4"/>
+    <rect x="4" y="4" width="26" height="42" rx="1.5" fill="none" stroke="#3f9e5c" stroke-width="0.6" opacity="0.7"/>
+    <path d="M17 14 L20 22 L28 25 L20 28 L17 36 L14 28 L6 25 L14 22 Z" fill="#6fe08c" opacity="0.9"/>
   </g>
   </svg>`;
 }
@@ -533,9 +551,61 @@ function salinaFaceSvg(){
 function salinaPortraitInner(){
   // reuse same drawing without the outer frame rings, for tight avatar crops
   return salinaPortraitSvg().replace(/<svg[^>]*>/,'').replace('</svg>','')
-    .replace(/<circle cx="150" cy="150" r="148"[^/]*\/>/,'<rect x="0" y="0" width="300" height="300" fill="#161022"/>')
+    .replace(/<circle cx="150" cy="150" r="148"[^/]*\/>/,'<rect x="0" y="0" width="300" height="300" fill="#1a0f2e"/>')
     .replace(/<circle cx="150" cy="150" r="143"[^/]*\/>/,'')
     .replace(/<circle cx="150" cy="150" r="134"[^/]*\/>/,'');
+}
+
+/* Cauldron & frog companion illustration — bubbling green potion with a little frog on the rim */
+function cauldronSvg(){
+  const bubbles = [
+    {cx:130, cy:150, r:4, delay:0}, {cx:150, cy:145, r:5, delay:0.4},
+    {cx:168, cy:152, r:3.5, delay:0.9}, {cx:142, cy:155, r:3, delay:1.3},
+    {cx:160, cy:148, r:2.6, delay:1.7}
+  ].map(b=>`<circle class="bubble" cx="${b.cx}" cy="${b.cy}" r="${b.r}" fill="#6fe08c" style="animation-delay:${b.delay}s"/>`).join('');
+  const wisps = [0,1,2].map(i=>`<path class="steamWisp" style="animation-delay:${i*0.7}s" d="M${138+i*12} 130 C ${134+i*12} 116, ${146+i*12} 108, ${140+i*12} 92" fill="none" stroke="#c9b6e8" stroke-width="2" stroke-linecap="round" opacity="0.35"/>`).join('');
+  return `<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="potionGrad" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#8fef9c"/>
+        <stop offset="100%" stop-color="#2f9e52"/>
+      </radialGradient>
+      <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#241640"/>
+        <stop offset="100%" stop-color="#0d0716"/>
+      </linearGradient>
+    </defs>
+
+    ${wisps}
+
+    <!-- cauldron body -->
+    <path d="M96 128 C96 128 92 190 150 192 C 208 190 204 128 204 128 Z" fill="url(#potGrad)" stroke="#6fe08c" stroke-width="1.4"/>
+    <ellipse cx="150" cy="128" rx="54" ry="14" fill="url(#potionGrad)" stroke="#6fe08c" stroke-width="1.2"/>
+    <ellipse cx="150" cy="126" rx="46" ry="9" fill="#0d0716" opacity="0.25"/>
+    ${bubbles}
+
+    <!-- legs -->
+    <path d="M110 188 L100 202" stroke="#6fe08c" stroke-width="4" stroke-linecap="round"/>
+    <path d="M150 192 L150 206" stroke="#6fe08c" stroke-width="4" stroke-linecap="round"/>
+    <path d="M190 188 L200 202" stroke="#6fe08c" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- rim highlight -->
+    <ellipse cx="150" cy="128" rx="54" ry="14" fill="none" stroke="#9b5fe0" stroke-width="0.8" opacity="0.5"/>
+
+    <!-- little frog sitting on the rim -->
+    <g transform="translate(200,110)">
+      <ellipse cx="0" cy="10" rx="17" ry="12" fill="#3f9e5c"/>
+      <circle cx="-8" cy="-2" r="6.5" fill="#3f9e5c"/>
+      <circle cx="8" cy="-2" r="6.5" fill="#3f9e5c"/>
+      <circle cx="-8" cy="-3" r="2.6" fill="#0d0716"/>
+      <circle cx="8" cy="-3" r="2.6" fill="#0d0716"/>
+      <circle cx="-9" cy="-4" r="0.8" fill="#eaffef"/>
+      <circle cx="7" cy="-4" r="0.8" fill="#eaffef"/>
+      <path d="M-7 14 Q0 19 7 14" fill="none" stroke="#0d0716" stroke-width="1.2" stroke-linecap="round"/>
+      <ellipse cx="-13" cy="20" rx="4" ry="2.4" fill="#3f9e5c"/>
+      <ellipse cx="13" cy="20" rx="4" ry="2.4" fill="#3f9e5c"/>
+    </g>
+  </svg>`;
 }
 
 /* ============== I18N ============== */
@@ -687,7 +757,8 @@ function homeScreen(){
     </div>
     <h1>SALINA</h1>
     <h2 class="disp">TAROT</h2>
-    <div class="brandCrest">✦ Tarot de Marseille · Depuis 1890 ✦</div>
+    <div class="brandCrest">✦ ตำรับเวทมนตร์แห่งไพ่ทาโรต์ ✦</div>
+    <div class="cauldronWrap">${cauldronSvg()}</div>
     <div class="flourish"><span class="fline"></span>${diamondSvg()}<span class="fline right"></span></div>
     <p class="tagline">${t('tagline')}</p>
     <div class="ctaWrap">

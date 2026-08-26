@@ -74,6 +74,23 @@
   .steamWisp{animation:steamDrift 3.6s ease-in-out infinite;transform-origin:center;}
   @keyframes steamDrift{0%,100%{opacity:.2;transform:translateY(0) translateX(0);}50%{opacity:.5;transform:translateY(-8px) translateX(3px);}}
 
+  /* PARTY SCREEN */
+  .partyTitle{font-size:26px;color:var(--gold-bright);margin:0 0 6px;}
+  .partySub{color:var(--muted);margin:0 0 4px;font-size:15px;}
+  .frogStage{position:relative;height:190px;margin:20px 0 4px;overflow:hidden;border-radius:8px;
+    background:radial-gradient(ellipse at 50% 100%, rgba(111,224,140,0.14), transparent 70%);
+    border:1px solid var(--line);}
+  .dancingFrog{position:absolute;bottom:8px;animation-name:frogHop;animation-timing-function:ease-in-out;animation-iteration-count:infinite;}
+  @keyframes frogHop{
+    0%,100%{transform:translateY(0) rotate(-6deg) scaleY(1);}
+    25%{transform:translateY(-30px) rotate(7deg) scaleY(1.1);}
+    50%{transform:translateY(0) rotate(-5deg) scaleY(0.88);}
+    75%{transform:translateY(-16px) rotate(5deg) scaleY(1.06);}
+  }
+  .confetti{position:absolute;top:-10px;width:6px;height:6px;border-radius:1px;opacity:.85;
+    animation-name:confettiFall;animation-timing-function:linear;animation-iteration-count:infinite;}
+  @keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:0;}10%{opacity:1;}100%{transform:translateY(210px) rotate(360deg);opacity:0;}}
+
   .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:8px;}
   .brand{display:flex;flex-direction:column;line-height:1;}
   .brand .k1{font-size:11px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;}
@@ -608,6 +625,116 @@ function cauldronSvg(){
   </svg>`;
 }
 
+/* Standalone dancing frog for the after-reading party screen */
+function frogMiniSvg(color){
+  return `<svg viewBox="-20 -20 40 45" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="0" cy="10" rx="17" ry="12" fill="${color}"/>
+    <circle cx="-8" cy="-2" r="6.5" fill="${color}"/>
+    <circle cx="8" cy="-2" r="6.5" fill="${color}"/>
+    <circle cx="-8" cy="-3" r="2.6" fill="#0d0716"/>
+    <circle cx="8" cy="-3" r="2.6" fill="#0d0716"/>
+    <circle cx="-9" cy="-4" r="0.8" fill="#eaffef"/>
+    <circle cx="7" cy="-4" r="0.8" fill="#eaffef"/>
+    <path d="M-7 14 Q0 19 7 14" fill="none" stroke="#0d0716" stroke-width="1.2" stroke-linecap="round"/>
+    <ellipse cx="-13" cy="20" rx="4" ry="2.4" fill="${color}"/>
+    <ellipse cx="13" cy="20" rx="4" ry="2.4" fill="${color}"/>
+  </svg>`;
+}
+const FROG_COLORS = ['#3f9e5c','#6fe08c','#5b2f8a','#9b5fe0','#2f9e52','#7ed957'];
+function dancingFrogsMarkup(count){
+  let s='';
+  for(let i=0;i<count;i++){
+    const left = 4 + i*(92/(count-1));
+    const delay = (i*0.13).toFixed(2);
+    const dur = (0.55 + (i%3)*0.09).toFixed(2);
+    const size = 40 + (i%3)*8;
+    s += `<div class="dancingFrog" style="left:${left}%;width:${size}px;height:${size*1.14}px;animation-delay:${delay}s;animation-duration:${dur}s;">${frogMiniSvg(FROG_COLORS[i%FROG_COLORS.length])}</div>`;
+  }
+  return s;
+}
+function confettiMarkup(count){
+  const colors = ['#6fe08c','#9b5fe0','#3f9e5c','#c9b6e8','#eaffef'];
+  let s='';
+  for(let i=0;i<count;i++){
+    const left=(Math.random()*100).toFixed(1), delay=(Math.random()*3).toFixed(2), dur=(2+Math.random()*2.2).toFixed(2);
+    const color = colors[i%colors.length];
+    s += `<span class="confetti" style="left:${left}%;background:${color};animation-delay:${delay}s;animation-duration:${dur}s;"></span>`;
+  }
+  return s;
+}
+function partyScreen(){
+  return `<div class="panel glassCard" style="text-align:center;">
+    <h2 class="disp partyTitle">🎉 ${t('partyTitle')}</h2>
+    <p class="partySub">${t('partySub')}</p>
+    <div class="frogStage">${dancingFrogsMarkup(7)}${confettiMarkup(22)}</div>
+    <div class="navrow" style="margin-top:24px;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <button class="ghostbtn" id="btn-toggle-music">${state.musicOn ? t('muteMusic') : t('playMusic')}</button>
+      <button class="goldbtn" id="btn-party-home"><span class="shimmerText">${t('backHome')}</span></button>
+    </div>
+  </div>`;
+}
+
+/* ============== ORIGINAL PARTY MUSIC (Web Audio API) ==============
+   A small original, generative festive loop — not a reproduction of any
+   existing song. Latin-pop-inspired tempo & rhythm, written from scratch. */
+function audioNote(freq, time, dur, type, vol){
+  const ctx = state.audioCtx; if(!ctx) return;
+  const osc = ctx.createOscillator();
+  osc.type = type; osc.frequency.value = freq;
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.0001, ctx.currentTime+time);
+  gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime+time+0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+time+dur);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(ctx.currentTime+time);
+  osc.stop(ctx.currentTime+time+dur+0.05);
+}
+function audioClap(time){
+  const ctx = state.audioCtx; if(!ctx) return;
+  const bufSize = Math.floor(ctx.sampleRate*0.06);
+  const buffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<bufSize;i++){ data[i] = (Math.random()*2-1) * Math.pow(1-i/bufSize, 2); }
+  const noise = ctx.createBufferSource(); noise.buffer = buffer;
+  const filter = ctx.createBiquadFilter(); filter.type='bandpass'; filter.frequency.value=1600;
+  const gain = ctx.createGain();
+  gain.gain.setValueAtTime(0.4, ctx.currentTime+time);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+time+0.08);
+  noise.connect(filter).connect(gain).connect(ctx.destination);
+  noise.start(ctx.currentTime+time);
+}
+function schedulePartyBar(){
+  if(!state.audioCtx || !state.musicOn || state.screen!=='party') return;
+  const bpm = 116, stepDur = 60/bpm/4;
+  const bassFreqs = [98,98,123.47,110]; // G2,G2,B2,A2 — original simple pattern
+  const scale = [392,440,494,587,659]; // playful pentatonic-ish flourishes
+  for(let i=0;i<16;i++){
+    const t = i*stepDur;
+    if(i%4===0){ audioNote(bassFreqs[(i/4)|0], t, stepDur*1.8, 'sine', 0.3); }
+    if(i%4===2){ audioClap(t); }
+    if(i%2===0 && Math.random()<0.45){
+      audioNote(scale[Math.floor(Math.random()*scale.length)], t, stepDur*0.85, 'triangle', 0.1);
+    }
+  }
+  state.partyTimer = setTimeout(schedulePartyBar, stepDur*16*1000);
+}
+function startPartyMusic(){
+  try{
+    if(!state.audioCtx){ state.audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }
+    if(state.audioCtx.state==='suspended'){ state.audioCtx.resume(); }
+    state.musicOn = true;
+    schedulePartyBar();
+  }catch(e){ state.musicOn = false; }
+}
+function pausePartyMusic(){
+  state.musicOn = false;
+  if(state.partyTimer){ clearTimeout(state.partyTimer); state.partyTimer=null; }
+}
+function stopPartyMusic(){
+  pausePartyMusic();
+  if(state.audioCtx){ try{ state.audioCtx.close(); }catch(e){} state.audioCtx=null; }
+}
+
 /* ============== I18N ============== */
 const STR = {
   th:{
@@ -636,7 +763,9 @@ const STR = {
     retry:"ลองอีกครั้ง",
     histEmpty:"ยังไม่มีประวัติการดูไพ่",
     histBack:"← กลับหน้าแรก",
-    question:"คำถาม"
+    question:"คำถาม",
+    nextParty:"ถัดไป → ปาร์ตี้กบ 🐸", partyTitle:"ปาร์ตี้ฉลองคำทำนาย!", partySub:"ให้เหล่ากบเต้นฉลองไปกับคุณ",
+    muteMusic:"ปิดเสียง", playMusic:"เปิดเสียง", backHome:"กลับหน้าแรก"
   },
   fr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -664,7 +793,9 @@ const STR = {
     retry:"Réessayer",
     histEmpty:"Aucun tirage enregistré pour le moment",
     histBack:"← Retour à l'accueil",
-    question:"Question"
+    question:"Question",
+    nextParty:"Suivant → Fête des grenouilles 🐸", partyTitle:"La fête après le tirage !", partySub:"Les grenouilles dansent pour célébrer avec vous",
+    muteMusic:"Couper le son", playMusic:"Activer le son", backHome:"Retour à l'accueil"
   },
   tr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -692,7 +823,9 @@ const STR = {
     retry:"Tekrar dene",
     histEmpty:"Henüz kaydedilmiş bir fal yok",
     histBack:"← Ana sayfaya dön",
-    question:"Soru"
+    question:"Soru",
+    nextParty:"İleri → Kurbağa Partisi 🐸", partyTitle:"Fal Sonrası Parti!", partySub:"Kurbağalar seninle kutluyor",
+    muteMusic:"Sesi kapat", playMusic:"Sesi aç", backHome:"Ana sayfaya dön"
   }
 };
 
@@ -702,7 +835,8 @@ let state = {
   question:"", category:"general",
   deck:[], picks:[], // {card, orientation, position}
   reading:null, loading:false, error:null,
-  history:[]
+  history:[],
+  musicOn:false, audioCtx:null, partyTimer:null
 };
 function t(k){ return STR[state.lang][k]; }
 
@@ -744,6 +878,7 @@ function body(){
     case "locked": return lockedScreen();
     case "reading": return readingScreen();
     case "history": return historyScreen();
+    case "party": return partyScreen();
     default: return homeScreen();
   }
 }
@@ -890,7 +1025,8 @@ function readingScreen(){
     <div class="readingBody">${state.reading || ''}</div>
     <div class="hairline"></div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <button class="goldbtn" id="btn-reset"><span class="shimmerText">${t('newReading')}</span></button>
+      <button class="goldbtn" id="btn-next-party"><span class="shimmerText">${t('nextParty')}</span></button>
+      <button class="ghostbtn" id="btn-reset">${t('newReading')}</button>
       <button class="ghostbtn" id="btn-history">${t('history')}</button>
     </div>
   </div>`;
@@ -953,6 +1089,18 @@ function attachHandlers(){
   const bas=document.getElementById('btn-ask-salina'); if(bas) bas.onclick=()=>{ state.screen='reading'; state.loading=true; state.error=null; render(); askSalina(); };
   const brs=document.getElementById('btn-retry-salina'); if(brs) brs.onclick=()=>{ state.loading=true; state.error=null; render(); askSalina(); };
   const brt=document.getElementById('btn-reset'); if(brt) brt.onclick=()=>{
+    stopPartyMusic();
+    state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.screen='home'; render();
+  };
+  const bnp=document.getElementById('btn-next-party'); if(bnp) bnp.onclick=()=>{
+    state.screen='party'; render(); startPartyMusic();
+  };
+  const btm=document.getElementById('btn-toggle-music'); if(btm) btm.onclick=()=>{
+    if(state.musicOn) pausePartyMusic(); else startPartyMusic();
+    render();
+  };
+  const bph=document.getElementById('btn-party-home'); if(bph) bph.onclick=()=>{
+    stopPartyMusic();
     state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.screen='home'; render();
   };
   document.querySelectorAll('[data-histidx]').forEach(h=>h.onclick=()=>{

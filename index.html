@@ -1188,7 +1188,34 @@ const RT = {
     adviceUpright:(name)=>`ไพ่ <strong>${name}</strong> ในตำแหน่งทิศทางบอกเป็นนัยว่า ทางที่ดีที่สุดตอนนี้คือการเดินหน้าอย่างมีสติ ไม่ต้องรีบร้อน แต่ก็ไม่ต้องรีรอจนเกินไป — เชื่อในสัญชาตญาณที่พาคุณมาถึงจุดนี้`,
     adviceReversed:(name)=>`ไพ่ <strong>${name}</strong> ที่กลับหัวในตำแหน่งทิศทาง ชวนให้คุณถอยกลับมาหนึ่งก้าวก่อน ทบทวนสิ่งที่ค้างคาใจ แล้วค่อยตัดสินใจอีกครั้งเมื่อใจสงบพอ การไม่รีบตัดสินใจในตอนนี้ก็ถือเป็นการตัดสินใจที่ดีเช่นกัน`,
     closingTitle:'🌙 คำสุดท้ายจาก Salina',
-    closing:(q)=>`สิ่งที่ไพ่บอกคุณวันนี้ไม่ใช่คำทำนายที่ตายตัว แต่เป็นกระจกสะท้อนสิ่งที่คุณรู้อยู่แล้วลึก ๆ ในใจ เกี่ยวกับคำถามที่ว่า “${q}” จงฟังเสียงนั้นให้ดี แล้วเลือกก้าวต่อไปด้วยความมั่นใจของคุณเอง — Salina อยู่ตรงนี้เสมอ เมื่อคุณต้องการกลับมาหาคำตอบอีกครั้ง`
+    closing:(q)=>`สิ่งที่ไพ่บอกคุณวันนี้ไม่ใช่คำทำนายที่ตายตัว แต่เป็นกระจกสะท้อนสิ่งที่คุณรู้อยู่แล้วลึก ๆ ในใจ เกี่ยวกับคำถามที่ว่า “${q}” จงฟังเสียงนั้นให้ดี แล้วเลือกก้าวต่อไปด้วยความมั่นใจของคุณเอง — Salina อยู่ตรงนี้เสมอ เมื่อคุณต้องการกลับมาหาคำตอบอีกครั้ง`,
+    secTitles:{core:'✦ ใจความสำคัญ', story:'✦ เรื่องราวของไพ่คุณ', dominant:'✦ พลังงานเด่น', happening:'✦ สิ่งที่กำลังเกิดขึ้น', hidden:'✦ สิ่งที่คุณอาจยังมองไม่เห็น', advice:'✦ คำแนะนำจาก Salina', key:'🌙 ข้อความสำคัญของคุณ'},
+    connectors:{
+      contrast:(a,b)=>`มีความขัดแย้งที่น่าสนใจระหว่าง <strong>${a}</strong> กับ <strong>${b}</strong> — ด้านหนึ่งคือความหวังหรือความชัดเจน อีกด้านคือแรงเสียดทานที่ยังไม่คลี่คลาย ทั้งสองมีอยู่จริงพร้อมกันได้`,
+      progression:(a,b)=>`จาก <strong>${a}</strong> ไปสู่ <strong>${b}</strong> คือการเคลื่อนจากความตึงเครียดไปสู่ทางออกที่ค่อย ๆ ชัดเจนขึ้น`,
+      repetitionSuit:{batons:'ไฟแห่งการกระทำและความมุ่งมั่นเป็นเส้นด้ายที่ร้อยไพ่เหล่านี้ไว้ด้วยกัน', coupes:'อารมณ์ความรู้สึกเป็นแกนหลักที่ชัดเจนของไพ่ชุดนี้', epees:'ความคิดและบทสนทนาที่ยังไม่ลงตัวคือสิ่งที่ไพ่ชุดนี้เน้นย้ำซ้ำ ๆ', deniers:'ความมั่นคงทางวัตถุและการปฏิบัติจริงคือแก่นของไพ่ชุดนี้'},
+      repetitionNumber:(n)=>`การที่ไพ่หมายเลข ${n} ปรากฏซ้ำ เป็นสัญญาณที่ควรให้ความสำคัญเป็นพิเศษ — ตัวเลขที่ซ้ำมักบอกว่าธีมนั้นแรงพอที่จะย้ำเตือนคุณสองครั้ง`
+    },
+    intentFrame:{
+      currentState:'ไพ่ชุดนี้สะท้อนสถานการณ์ที่คุณกำลังเผชิญอยู่ตอนนี้',
+      advice:'เพราะคุณกำลังมองหาคำแนะนำ ไพ่ชุดนี้จึงเน้นไปทางการกระทำที่ทำได้จริง มากกว่าการทำนายผล',
+      direction:'เพราะคุณถามถึงทิศทางที่จะเกิดขึ้น ไพ่ชุดนี้ชี้ให้เห็นแนวโน้ม ไม่ใช่ผลลัพธ์ที่ตายตัว',
+      cause:'เพราะคุณถามหาสาเหตุ ไพ่ชุดนี้จะพยายามชี้ให้เห็นรากของสถานการณ์ มากกว่าปรากฏการณ์ที่ผิวเผิน',
+      hidden:'เพราะคุณรู้สึกว่ามีบางอย่างที่มองไม่เห็น ไพ่ชุดนี้จะเน้นไปที่มุมที่มักถูกมองข้าม',
+      decision:'เพราะคุณกำลังต้องตัดสินใจ ไพ่ชุดนี้จะช่วยชั่งน้ำหนักพลังงานของแต่ละทางเลือก มากกว่าจะฟันธงให้'
+    },
+    categoryLens:{
+      love:'ในแง่ความรักและความสัมพันธ์', career:'ในแง่การงานและเส้นทางอาชีพ', money:'ในแง่การเงิน',
+      study:'ในแง่การเรียน', family:'ในแง่ครอบครัว', friendship:'ในแง่มิตรภาพ',
+      personalGrowth:'ในแง่การเติบโตส่วนตัว', decision:'ในแง่การตัดสินใจครั้งนี้', futureDirection:'ในแง่ทิศทางชีวิตข้างหน้า'
+    },
+    themeLabels:{love:'ความรัก', healing:'การเยียวยา', communication:'การสื่อสาร', conflict:'ความขัดแย้งที่รอคลี่คลาย', ambition:'ความทะเยอทะยาน', stability:'ความมั่นคง', change:'การเปลี่ยนแปลง', growth:'การเติบโต'},
+    confidenceLabels:{strong:'ธีมชัดเจนและสอดคล้องกัน', mixed:'พลังงานผสมผสาน มีหลายมิติ', reflective:'ควรใคร่ครวญมากกว่าฟันธง'},
+    safetyNote:'คำถามนี้แตะประเด็นที่ละเอียดอ่อนและสำคัญต่อชีวิตจริง ไพ่ทาโรต์เป็นเครื่องมือสะท้อนความคิด ไม่ใช่คำตอบทางการแพทย์หรือกฎหมาย หากเรื่องนี้กระทบชีวิตคุณโดยตรง การพูดคุยกับผู้เชี่ยวชาญที่เกี่ยวข้องจะให้คำตอบที่น่าเชื่อถือกว่าครับ',
+    coreMsg:(q,themeLabel)=>`จากคำถามของคุณ — “${q}” — ไพ่ทั้งสามใบร่วมกันชี้ไปที่ธีมเรื่อง<strong>${themeLabel}</strong>เป็นแกนหลัก ไม่ใช่คำตอบสำเร็จรูป แต่เป็นภาพสะท้อนที่ช่วยให้คุณเห็นสถานการณ์ชัดขึ้น`,
+    happeningIntro:(lens, name, meaning)=>`${lens} ไพ่ <strong>${name}</strong> ในตำแหน่งปัจจุบันบ่งบอกว่า${meaning}`,
+    hiddenIntro:(name, meaning)=>`ไพ่ <strong>${name}</strong> ในตำแหน่งสิ่งที่ซ่อนอยู่ ชี้ให้เห็นว่า${meaning} นี่อาจเป็นมุมที่คุณยังไม่ทันสังเกตเห็นชัด ๆ`,
+    keyMessage:(name)=>`สิ่งที่ไพ่ <strong>${name}</strong> อยากฝากไว้กับคุณคือ — ฟังใจตัวเองให้มากพอ ๆ กับที่ฟังไพ่ใบนี้`
   },
   fr:{
     posLabel:{situation:'Situation actuelle', hidden:'Influence cachée', direction:'Direction / Conseil'},
@@ -1207,7 +1234,34 @@ const RT = {
     adviceUpright:(name)=>`La carte <strong>${name}</strong> en position Direction suggère que la meilleure voie, maintenant, est d\'avancer avec conscience — sans précipitation, mais sans trop attendre non plus. Faites confiance à l\'intuition qui vous a menée jusqu\'ici.`,
     adviceReversed:(name)=>`La carte <strong>${name}</strong>, renversée en position Direction, vous invite à faire un pas en arrière, à examiner ce qui pèse encore sur votre cœur, puis à décider quand l\'esprit sera plus calme. Ne pas trancher tout de suite peut, ici, être la décision la plus sage.`,
     closingTitle:'🌙 Le dernier mot de Salina',
-    closing:(q)=>`Ce que les cartes vous disent aujourd\'hui n\'est pas une prédiction figée, mais un miroir de ce que vous savez déjà, au fond de vous, à propos de « ${q} ». Écoutez cette voix avec attention, puis avancez avec votre propre certitude. Salina sera toujours là, lorsque vous voudrez revenir chercher une réponse.`
+    closing:(q)=>`Ce que les cartes vous disent aujourd\'hui n\'est pas une prédiction figée, mais un miroir de ce que vous savez déjà, au fond de vous, à propos de « ${q} ». Écoutez cette voix avec attention, puis avancez avec votre propre certitude. Salina sera toujours là, lorsque vous voudrez revenir chercher une réponse.`,
+    secTitles:{core:'✦ Le message central', story:'✦ L\'histoire de vos cartes', dominant:'✦ Énergie dominante', happening:'✦ Ce qui se joue en ce moment', hidden:'✦ Ce que vous ne voyez peut-être pas', advice:'✦ Le conseil de Salina', key:'🌙 Votre message clé'},
+    connectors:{
+      contrast:(a,b)=>`Il existe une tension intéressante entre <strong>${a}</strong> et <strong>${b}</strong> — d\'un côté l\'espoir ou la clarté, de l\'autre une friction non résolue. Les deux peuvent coexister.`,
+      progression:(a,b)=>`De <strong>${a}</strong> à <strong>${b}</strong>, on passe d\'une tension à une résolution qui se dessine peu à peu.`,
+      repetitionSuit:{batons:'Le feu de l\'action et de la détermination relie ces cartes entre elles.', coupes:'L\'émotion est le fil conducteur clair de ce tirage.', epees:'Une pensée ou un dialogue non résolu revient comme thème central.', deniers:'La stabilité matérielle et le concret sont au cœur de ce tirage.'},
+      repetitionNumber:(n)=>`La répétition du chiffre ${n} mérite une attention particulière — un thème qui revient est souvent un thème qui insiste.`
+    },
+    intentFrame:{
+      currentState:'Ce tirage reflète la situation que vous traversez actuellement.',
+      advice:'Comme vous cherchez un conseil, ce tirage met l\'accent sur des actions concrètes plutôt que sur une prédiction.',
+      direction:'Comme vous interrogez une direction future, ce tirage indique une tendance, pas un résultat figé.',
+      cause:'Comme vous cherchez une cause, ce tirage tente de montrer la racine de la situation plutôt que sa surface.',
+      hidden:'Comme vous sentez qu\'il y a un angle mort, ce tirage met en lumière ce qui est souvent négligé.',
+      decision:'Comme vous devez décider, ce tirage pèse l\'énergie de chaque option plutôt que de trancher à votre place.'
+    },
+    categoryLens:{
+      love:'Du point de vue de l\'amour et de la relation', career:'Du point de vue de la carrière', money:'Du point de vue des finances',
+      study:'Du point de vue des études', family:'Du point de vue de la famille', friendship:'Du point de vue de l\'amitié',
+      personalGrowth:'Du point de vue de votre développement personnel', decision:'Du point de vue de cette décision', futureDirection:'Du point de vue de votre chemin à venir'
+    },
+    themeLabels:{love:'l\'amour', healing:'la guérison', communication:'la communication', conflict:'un conflit à résoudre', ambition:'l\'ambition', stability:'la stabilité', change:'le changement', growth:'la croissance'},
+    confidenceLabels:{strong:'un thème clair et cohérent', mixed:'une énergie mêlée, à plusieurs facettes', reflective:'une invitation à la réflexion plus qu\'une certitude'},
+    safetyNote:'Cette question touche un sujet sensible et important pour votre vie réelle. Le tarot est un outil de réflexion, pas une réponse médicale ou juridique. Si ce sujet vous affecte directement, un professionnel compétent pourra vous offrir une réponse plus fiable.',
+    coreMsg:(q,themeLabel)=>`À partir de votre question — « ${q} » — les trois cartes convergent vers un thème central : <strong>${themeLabel}</strong>. Ce n\'est pas une réponse toute faite, mais un miroir pour éclaircir votre situation.`,
+    happeningIntro:(lens, name, meaning)=>`${lens}, la carte <strong>${name}</strong> en position Présent indique que ${meaning}`,
+    hiddenIntro:(name, meaning)=>`La carte <strong>${name}</strong>, en position Influence cachée, révèle que ${meaning} C\'est peut-être un angle que vous n\'aviez pas encore clairement identifié.`,
+    keyMessage:(name)=>`Ce que la carte <strong>${name}</strong> souhaite vous laisser, c\'est ceci : écoutez votre cœur autant que vous écoutez cette carte.`
   },
   tr:{
     posLabel:{situation:'Şu Anki Durum', hidden:'Gizli Etki', direction:'Yön / Tavsiye'},
@@ -1226,7 +1280,34 @@ const RT = {
     adviceUpright:(name)=>`Yön konumundaki <strong>${name}</strong> kartı, şu anda en doğru yolun bilinçli şekilde ilerlemek olduğunu söylüyor — ne acele et ne de çok bekle. Seni buraya kadar getiren sezgine güven.`,
     adviceReversed:(name)=>`Yön konumunda ters gelen <strong>${name}</strong> kartı, bir adım geri atmanı, içindeki çözülmemiş duyguyu gözden geçirmeni ve zihnin sakinleştiğinde tekrar karar vermeni öneriyor. Şimdi acele etmemek de başlı başına doğru bir karardır.`,
     closingTitle:'🌙 Salina\'nın Son Sözü',
-    closing:(q)=>`Kartların bugün sana söylediği şey sabit bir kehanet değil; "${q}" sorusu hakkında zaten derinlerinde bildiğin şeyin bir yansıması. O sesi dikkatle dinle, sonra kendi netliğinle ilerle. Cevaba tekrar ihtiyaç duyduğunda, Salina hep burada olacak.`
+    closing:(q)=>`Kartların bugün sana söylediği şey sabit bir kehanet değil; "${q}" sorusu hakkında zaten derinlerinde bildiğin şeyin bir yansıması. O sesi dikkatle dinle, sonra kendi netliğinle ilerle. Cevaba tekrar ihtiyaç duyduğunda, Salina hep burada olacak.`,
+    secTitles:{core:'✦ Ana Mesaj', story:'✦ Kartlarının Hikâyesi', dominant:'✦ Baskın Enerji', happening:'✦ Şu An Ne Oluyor', hidden:'✦ Belki Görmediğin Şey', advice:'✦ Salina\'nın Tavsiyesi', key:'🌙 Senin İçin Anahtar Mesaj'},
+    connectors:{
+      contrast:(a,b)=>`<strong>${a}</strong> ile <strong>${b}</strong> arasında ilginç bir gerilim var — bir yanda umut ya da netlik, diğer yanda henüz çözülmemiş bir sürtüşme. İkisi aynı anda var olabilir.`,
+      progression:(a,b)=>`<strong>${a}</strong>'dan <strong>${b}</strong>'ya geçiş, gerilimden yavaşça netleşen bir çözüme doğru bir harekettir.`,
+      repetitionSuit:{batons:'Eylem ve kararlılık ateşi bu kartları birbirine bağlıyor.', coupes:'Duygu, bu açılımın net ana teması.', epees:'Çözülmemiş bir düşünce ya da konuşma tekrar eden tema.', deniers:'Maddi istikrar ve somut adımlar bu açılımın özü.'},
+      repetitionNumber:(n)=>`${n} sayısının tekrar etmesi özellikle dikkat çekici — tekrar eden bir tema genelde ısrarla vurgulanan bir temadır.`
+    },
+    intentFrame:{
+      currentState:'Bu açılım şu anda içinde bulunduğun durumu yansıtıyor.',
+      advice:'Tavsiye aradığın için bu açılım kehanetten çok somut eylemlere odaklanıyor.',
+      direction:'Gelecekteki bir yönü sorduğun için bu açılım kesin bir sonuç değil, bir eğilim gösteriyor.',
+      cause:'Bir neden aradığın için bu açılım durumun yüzeyinden çok kökenine işaret etmeye çalışıyor.',
+      hidden:'Görmediğin bir şey olduğunu hissettiğin için bu açılım genelde gözden kaçan noktayı vurguluyor.',
+      decision:'Bir karar vermen gerektiği için bu açılım senin yerine karar vermek yerine her seçeneğin enerjisini tartıyor.'
+    },
+    categoryLens:{
+      love:'Aşk ve ilişki açısından', career:'Kariyer açısından', money:'Finans açısından',
+      study:'Eğitim açısından', family:'Aile açısından', friendship:'Arkadaşlık açısından',
+      personalGrowth:'Kişisel gelişimin açısından', decision:'Bu karar açısından', futureDirection:'Önündeki hayat yolu açısından'
+    },
+    themeLabels:{love:'aşk', healing:'iyileşme', communication:'iletişim', conflict:'çözülmeyi bekleyen çatışma', ambition:'hırs', stability:'istikrar', change:'değişim', growth:'büyüme'},
+    confidenceLabels:{strong:'net ve tutarlı bir tema', mixed:'karışık, çok yönlü bir enerji', reflective:'kesinlikten çok düşünmeye davet'},
+    safetyNote:'Bu soru gerçek hayatında önemli ve hassas bir konuya değiniyor. Tarot bir yansıma aracıdır, tıbbi ya da hukuki bir cevap değildir. Bu konu seni doğrudan etkiliyorsa, ilgili bir uzmanla konuşmak daha güvenilir bir yanıt verecektir.',
+    coreMsg:(q,themeLabel)=>`Sorduğun soruya göre — "${q}" — üç kart birlikte <strong>${themeLabel}</strong> temasına işaret ediyor. Bu hazır bir cevap değil, durumunu daha net görmeni sağlayacak bir aynadır.`,
+    happeningIntro:(lens, name, meaning)=>`${lens}, Şu An konumundaki <strong>${name}</strong> kartı ${meaning} anlamına geliyor.`,
+    hiddenIntro:(name, meaning)=>`Gizli Etki konumundaki <strong>${name}</strong> kartı, ${meaning} olduğunu gösteriyor. Bu belki de henüz net görmediğin bir açı.`,
+    keyMessage:(name)=>`<strong>${name}</strong> kartının sana bırakmak istediği şey şu: bu kartı dinlediğin kadar kendi kalbini de dinle.`
   }
 };
 
@@ -1236,22 +1317,124 @@ function localMeaning(pick){
 
 const CATEGORY_KEYWORDS = {
   th:{ love:['รัก','แฟน','คนรัก','ความสัมพันธ์','เขา','สามี','ภรรยา','คู่','อกหัก','แต่งงาน'],
-       career:['งาน','อาชีพ','เรียน','สอบ','สัมภาษณ์','บริษัท','เจ้านาย','ลาออก','ทำงาน'],
-       money:['เงิน','การเงิน','ธุรกิจ','หนี้','ลงทุน','รายได้','เศรษฐกิจ','หุ้น'] },
+       career:['งาน','อาชีพ','สัมภาษณ์','บริษัท','เจ้านาย','ลาออก','ทำงาน','สมัครงาน'],
+       money:['เงิน','การเงิน','ธุรกิจ','หนี้','ลงทุน','รายได้','เศรษฐกิจ','หุ้น'],
+       study:['เรียน','สอบ','การบ้าน','มหาวิทยาลัย','ป.โท','วิทยานิพนธ์','เกรด'],
+       family:['ครอบครัว','พ่อ','แม่','พี่น้อง','ญาติ','ลูก'],
+       friendship:['เพื่อน','มิตรภาพ','เพื่อนสนิท'],
+       personalGrowth:['ตัวเอง','พัฒนาตัวเอง','เติบโต','เข้าใจตัวเอง','จุดอ่อน','ชีวิตฉัน'],
+       decision:['ตัดสินใจ','ควรเลือก','หรือดี'],
+       futureDirection:['อนาคต','เส้นทางชีวิต','ทิศทางชีวิต'] },
   fr:{ love:['amour','relation','copain','copine','couple','mari','femme','mariage'],
-       career:['travail','carrière','emploi','entretien','patron','étude','examen'],
-       money:['argent','finance','dette','investir','business','revenu'] },
+       career:['travail','carrière','emploi','entretien','patron','démission'],
+       money:['argent','finance','dette','investir','business','revenu'],
+       study:['étude','examen','université','mémoire','diplôme'],
+       family:['famille','père','mère','frère','sœur','parents'],
+       friendship:['ami','amie','amitié'],
+       personalGrowth:['moi-même','grandir','développement personnel','confiance en soi'],
+       decision:['décider','décision','choisir entre'],
+       futureDirection:['avenir','chemin de vie','direction de ma vie'] },
   tr:{ love:['aşk','ilişki','sevgili','eş','evlilik','flört'],
-       career:['iş','kariyer','sınav','patron','mülakat','meslek'],
-       money:['para','finans','borç','yatırım','gelir'] }
+       career:['iş','kariyer','patron','mülakat','istifa'],
+       money:['para','finans','borç','yatırım','gelir'],
+       study:['sınav','okul','üniversite','tez','not'],
+       family:['aile','baba','anne','kardeş','akraba'],
+       friendship:['arkadaş','dostluk'],
+       personalGrowth:['kendim','gelişim','özgüven','kendimi anlamak'],
+       decision:['karar','seçmeli miyim','tercih'],
+       futureDirection:['gelecek','hayat yolum','yön'] }
 };
+const CATEGORY_ORDER = ['love','career','money','study','family','friendship','personalGrowth','decision','futureDirection'];
 function detectCategoryFromQuestion(q, lang){
   const dict = CATEGORY_KEYWORDS[lang] || CATEGORY_KEYWORDS.th;
   const lower = (q||'').toLowerCase();
-  for(const cat of ['love','career','money']){
-    if(dict[cat].some(k => lower.includes(k.toLowerCase()))) return cat;
+  for(const cat of CATEGORY_ORDER){
+    if(dict[cat] && dict[cat].some(k => lower.includes(k.toLowerCase()))) return cat;
   }
   return null;
+}
+
+const INTENT_PATTERNS = {
+  th:{ advice:/ควร|ทำยังไง|ทำอย่างไร|แนะนำ/, direction:/จะ.*ไหม|จะเป็นอย่างไร|จะสำเร็จ/, cause:/ทำไม|เพราะอะไร/, hidden:/มองไม่เห็น|ไม่รู้ตัว|ซ่อนอยู่/, decision:/ควรเลือก|หรือดี|ตัดสินใจ/ },
+  fr:{ advice:/devrais|comment faire|conseil/, direction:/est-ce que.*(va|réussira)|va-t-il|va-t-elle/, cause:/pourquoi/, hidden:/ne vois pas|caché/, decision:/devrais-je choisir|ou bien/ },
+  tr:{ advice:/ne yapmalıyım|nasıl|tavsiye/, direction:/olacak mı|başarılı olur mu/, cause:/neden/, hidden:/göremediğim|gizli/, decision:/seçmeli miyim|yoksa|karar/ }
+};
+function detectIntent(q, lang){
+  const p = INTENT_PATTERNS[lang] || INTENT_PATTERNS.th;
+  const text = (q||'');
+  if(p.decision.test(text)) return 'decision';
+  if(p.advice.test(text)) return 'advice';
+  if(p.cause.test(text)) return 'cause';
+  if(p.hidden.test(text)) return 'hidden';
+  if(p.direction.test(text)) return 'direction';
+  return 'currentState';
+}
+
+const SENSITIVE_PATTERNS = {
+  th:/ตาย|เสียชีวิต|มะเร็ง|โรคร้าย|ท้อง|ตั้งครรภ์|ติดคุก|ผิดกฎหมาย/,
+  fr:/mourir|décès|cancer|maladie grave|enceinte|grossesse|prison|illégal/,
+  tr:/ölüm|ölecek|kanser|ciddi hastalık|hamile|hapis|yasa dışı/
+};
+function isSensitiveQuestion(q, lang){
+  const p = SENSITIVE_PATTERNS[lang] || SENSITIVE_PATTERNS.th;
+  return p.test(q||'');
+}
+
+/* ---- lightweight valence tagging, used only to shape connective narration
+   (not shown to the user as a score — internal structuring only) ---- */
+const MAJOR_VALENCE = ['neutral','neutral','neutral','positive','neutral','neutral','neutral','neutral','neutral','neutral',
+  'change','neutral','challenging','challenging','neutral','challenging','challenging','positive','challenging','positive','positive','positive'];
+const RANK_VALENCE = {'1':'neutral','2':'neutral','3':'resolving','4':'neutral','5':'challenging','6':'resolving','7':'challenging','8':'tension','9':'tension','10':'resolving','court':'neutral'};
+function getValence(card){
+  if(card.arcana==='major'){
+    const idx = MAJOR_TH.findIndex(m=>m[0]===card.number);
+    return MAJOR_VALENCE[idx] ?? 'neutral';
+  }
+  return RANK_VALENCE[card.number] || 'neutral';
+}
+function analyzeSpread(picks, lang, category){
+  const majors = picks.filter(p=>p.card.arcana==='major').length;
+  const reversedCount = picks.filter(p=>p.orientation==='reversed').length;
+  const suitCounts = {};
+  picks.filter(p=>p.card.arcana==='minor').forEach(p=>{ suitCounts[p.card.suit] = (suitCounts[p.card.suit]||0)+1; });
+  let dominantSuit = null, dominantSuitCount = 0;
+  Object.keys(suitCounts).forEach(s=>{ if(suitCounts[s]>dominantSuitCount){ dominantSuit=s; dominantSuitCount=suitCounts[s]; } });
+  const numberCounts = {};
+  picks.filter(p=>p.card.arcana==='minor' && p.card.number!=='court').forEach(p=>{ numberCounts[p.card.number] = (numberCounts[p.card.number]||0)+1; });
+  let dominantNumber = null;
+  Object.keys(numberCounts).forEach(n=>{ if(numberCounts[n]>=2) dominantNumber = n; });
+  const valences = picks.map(p=>{
+    let v = getValence(p.card);
+    if(p.orientation==='reversed'){
+      if(v==='positive') v='tension';
+      else if(v==='challenging') v='resolving';
+    }
+    return v;
+  });
+  const contrastAB = (valences[0]==='positive' && (valences[1]==='challenging'||valences[1]==='tension')) ||
+                      ((valences[0]==='challenging'||valences[0]==='tension') && valences[1]==='positive');
+  const contrastBC = (valences[1]==='positive' && (valences[2]==='challenging'||valences[2]==='tension')) ||
+                      ((valences[1]==='challenging'||valences[1]==='tension') && valences[2]==='positive');
+  const progressionBC = (valences[1]==='challenging'||valences[1]==='tension') && (valences[2]==='resolving'||valences[2]==='positive');
+  let score = 0;
+  if(majors>=2) score+=1;
+  if(dominantSuit && dominantSuitCount>=2) score+=1;
+  if(reversedCount===0 || reversedCount===3) score+=1; else score-=1;
+  if(contrastAB || contrastBC) score-=1;
+  const confidence = score>=2 ? 'strong' : (score<=0 ? 'reflective' : 'mixed');
+  const CATEGORY_THEME = {love:'love', career:'ambition', money:'stability', study:'growth', family:'love', friendship:'communication', personalGrowth:'growth', decision:'change', futureDirection:'growth'};
+  let theme = 'growth';
+  if(dominantSuit && dominantSuitCount>=2){
+    if(dominantSuit==='coupes') theme = reversedCount>=2 ? 'healing' : 'love';
+    else if(dominantSuit==='epees') theme = reversedCount>=2 ? 'conflict' : 'communication';
+    else if(dominantSuit==='batons') theme = 'ambition';
+    else if(dominantSuit==='deniers') theme = 'stability';
+  } else if(majors>=2){
+    theme = 'change';
+  } else if(category && CATEGORY_THEME[category]){
+    theme = CATEGORY_THEME[category];
+  }
+  return { majors, reversedCount, suitCounts, dominantSuit, dominantSuitCount, numberCounts, dominantNumber, valences, contrastAB, contrastBC, progressionBC, confidence, theme };
 }
 
 const DAILY_RT = {
@@ -1297,38 +1480,62 @@ function buildLocalReading(){
   const posKeys = ['situation','hidden','direction'];
   const cardName = (c)=> cardDisplayName(c, lang);
   const effectiveCategory = state.category!=='general' ? state.category : detectCategoryFromQuestion(state.question, lang);
+  const intent = detectIntent(state.question, lang);
+  const analysis = analyzeSpread(state.picks, lang, effectiveCategory);
+  const n1 = cardName(state.picks[0].card), n2 = cardName(state.picks[1].card), n3 = cardName(state.picks[2].card);
+  const themeLabel = R.themeLabels[analysis.theme] || R.themeLabels.growth;
 
   let html = `<p>${R.opening(state.question)}</p>`;
 
+  if(isSensitiveQuestion(state.question, lang)){
+    html += `<p style="opacity:.85;font-style:italic;">${R.safetyNote}</p>`;
+  }
+
+  // 1. CORE MESSAGE
+  html += `<h2>${R.secTitles.core}</h2>`;
+  html += `<p>${R.coreMsg(state.question, themeLabel)}</p>`;
+  html += `<p>${R.intentFrame[intent]}</p>`;
+
+  // 2. THE STORY — foundation → present → path, connected as one narrative
+  html += `<h2>${R.secTitles.story}</h2>`;
   state.picks.forEach((p,i)=>{
     const label = R.posLabel[posKeys[i]];
     const orientLabel = R.orient[p.orientation];
-    html += `<h2>${label}</h2>`;
-    html += `<p>${R.cardLine(cardName(p.card), orientLabel, localMeaning(p), p.card.keywords)}.</p>`;
+    html += `<p><strong>${label}:</strong> ${R.cardLine(cardName(p.card), orientLabel, localMeaning(p), p.card.keywords)}.</p>`;
   });
-
-  const majors = state.picks.filter(p=>p.card.arcana==='major').length;
-  const reversedCount = state.picks.filter(p=>p.orientation==='reversed').length;
-
-  html += `<h2>${R.synthTitle}</h2>`;
-  html += `<p>${R.synthIntro(cardName(state.picks[0].card), cardName(state.picks[1].card), cardName(state.picks[2].card))}</p>`;
-  html += `<p>${R.synthQuestionEcho(state.question)}</p>`;
-  if(majors>=2){ html += `<p>${R.synthMajors}</p>`; }
-  if(reversedCount>=2){ html += `<p>${R.synthReversedHeavy}</p>`; }
-  else { html += `<p>${R.synthUprightHeavy}</p>`; }
-
-  if(effectiveCategory && effectiveCategory!=='general' && R.catTitle[effectiveCategory]){
-    const dirPick = state.picks[2];
-    html += `<h2>${R.catTitle[effectiveCategory]}</h2>`;
-    html += `<p>${R.catBody(R.catTitle[effectiveCategory].replace(/^\S+\s/,''), cardName(dirPick.card), localMeaning(dirPick))}</p>`;
+  if(analysis.contrastAB){ html += `<p>${R.connectors.contrast(n1, n2)}</p>`; }
+  if(analysis.contrastBC){ html += `<p>${R.connectors.contrast(n2, n3)}</p>`; }
+  else if(analysis.progressionBC){ html += `<p>${R.connectors.progression(n2, n3)}</p>`; }
+  if(analysis.dominantSuit && analysis.dominantSuitCount>=2 && R.connectors.repetitionSuit[analysis.dominantSuit]){
+    html += `<p>${R.connectors.repetitionSuit[analysis.dominantSuit]}</p>`;
   }
+  if(analysis.dominantNumber){ html += `<p>${R.connectors.repetitionNumber(analysis.dominantNumber)}</p>`; }
+  if(analysis.majors>=2){ html += `<p>${R.synthMajors}</p>`; }
 
+  // 3. DOMINANT ENERGY
+  html += `<h2>${R.secTitles.dominant}</h2>`;
+  html += `<p><strong>${themeLabel}</strong> — ${R.confidenceLabels[analysis.confidence]}</p>`;
+
+  // 4. WHAT MAY BE HAPPENING — category-lens on the present card
+  const presentPick = state.picks[0];
+  const lens = R.categoryLens[effectiveCategory] || R.categoryLens.futureDirection;
+  html += `<h2>${R.secTitles.happening}</h2>`;
+  html += `<p>${R.happeningIntro(lens, cardName(presentPick.card), localMeaning(presentPick))}</p>`;
+
+  // 5. WHAT YOU MAY NOT BE SEEING — the hidden-influence card
+  const hiddenPick = state.picks[1];
+  html += `<h2>${R.secTitles.hidden}</h2>`;
+  html += `<p>${R.hiddenIntro(cardName(hiddenPick.card), localMeaning(hiddenPick))}</p>`;
+  if(analysis.reversedCount>=2){ html += `<p>${R.synthReversedHeavy}</p>`; }
+
+  // 6. SALINA'S ADVICE — grounded in the path-ahead card's orientation
   const dirPick = state.picks[2];
-  html += `<h2>${R.adviceTitle}</h2>`;
+  html += `<h2>${R.secTitles.advice}</h2>`;
   html += `<p>${dirPick.orientation==='upright' ? R.adviceUpright(cardName(dirPick.card)) : R.adviceReversed(cardName(dirPick.card))}</p>`;
 
-  html += `<h2>${R.closingTitle}</h2>`;
-  html += `<p>${R.closing(state.question)}</p>`;
+  // 7. KEY MESSAGE — the emotional close
+  html += `<h2>${R.secTitles.key}</h2>`;
+  html += `<p>${R.keyMessage(cardName(dirPick.card))}</p>`;
 
   return html;
 }

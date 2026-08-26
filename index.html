@@ -100,28 +100,34 @@
     50%{filter:brightness(0.85);}
     52%{filter:brightness(1.1);}
   }
-  .ritualStage{position:relative;height:220px;margin:6px 0 18px;overflow:hidden;border-radius:8px;
+  .ritualStage{position:relative;height:250px;margin:6px 0 18px;overflow:hidden;border-radius:8px;
     background:radial-gradient(ellipse at 50% 100%, rgba(91,47,138,0.3), transparent 70%);
     border:1px solid var(--line);}
   .ritualFog{position:absolute;inset:0;background:linear-gradient(0deg, rgba(63,158,92,0.16), transparent 55%);
     animation:fogDrift 3.6s ease-in-out infinite alternate;}
   @keyframes fogDrift{0%{opacity:.35;transform:translateX(-6px);}100%{opacity:.65;transform:translateX(10px);}}
-  .ritualWitch{position:absolute;bottom:8px;width:96px;animation:witchWalk 3.4s ease-in-out forwards;}
+  .ritualWitch{position:absolute;bottom:8px;width:150px;animation:witchWalk 9s ease-in-out forwards;}
   @keyframes witchWalk{
-    0%{left:-22%;transform:translateY(0) rotate(0deg);}
-    35%{transform:translateY(-5px) rotate(-2deg);}
-    65%{transform:translateY(0) rotate(2deg);}
-    100%{left:36%;transform:translateY(0) rotate(0deg);}
+    0%{left:-30%;transform:translateY(0) rotate(0deg);}
+    12%{transform:translateY(-5px) rotate(-2deg);}
+    24%{left:-4%;transform:translateY(0) rotate(2deg);}
+    36%{transform:translateY(-4px) rotate(-1deg);}
+    50%{left:20%;transform:translateY(0) rotate(1deg);}
+    60%{left:30%;transform:translateY(-3px) rotate(-1deg);}
+    70%{transform:translateY(0) rotate(1deg);}
+    80%{transform:translateY(-3px) rotate(-1deg);}
+    90%{transform:translateY(0) rotate(1deg);}
+    100%{left:32%;transform:translateY(0) rotate(0deg);}
   }
-  .ritualFrog{position:absolute;bottom:10px;width:32px;animation:frogFollow 3.4s ease-in-out forwards, frogHop .5s ease-in-out infinite;}
-  @keyframes frogFollow{0%{left:-32%;}100%{left:22%;}}
+  .ritualFrog{position:absolute;bottom:10px;width:32px;animation:frogFollow 9s ease-in-out forwards, frogHop .5s ease-in-out infinite;}
+  @keyframes frogFollow{0%{left:-32%;}55%{left:14%;}100%{left:18%;}}
   .incantWrap{min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
   .incantLine{font-family:'Cinzel',serif;font-size:17px;letter-spacing:.06em;color:var(--gold-bright);
     opacity:0;text-shadow:0 0 12px rgba(111,224,140,0.5);
     animation:incantIn .8s ease forwards;display:flex;flex-direction:column;gap:4px;}
-  .incantLine.l1{animation-delay:.3s;}
-  .incantLine.l2{animation-delay:1.4s;}
-  .incantLine.l3{animation-delay:2.5s;}
+  .incantLine.l1{animation-delay:.4s;}
+  .incantLine.l2{animation-delay:3.8s;}
+  .incantLine.l3{animation-delay:7.2s;}
   @keyframes incantIn{from{opacity:0;transform:translateY(8px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
   .incantSub{font-family:'Sarabun',sans-serif;font-size:12.5px;color:var(--muted);letter-spacing:.02em;font-style:italic;}
 
@@ -757,26 +763,79 @@ function confettiMarkup(count){
 /* ============== RITUAL SCREEN — witch + frog walk in and chant before the reading ============== */
 const INCANT_LINES = ["Umbra Lucis, Aperi Viam...", "Tres Cartae, Unum Fatum...", "Salina Vocat — Revelare!"];
 function ritualWitchSvg(){
-  return `<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="cloakGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#3a1a5c"/>
-        <stop offset="100%" stop-color="#0d0716"/>
-      </linearGradient>
-    </defs>
-    <!-- staff -->
-    <line x1="118" y1="70" x2="128" y2="200" stroke="#4a2470" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="117" cy="64" r="7" fill="#6fe08c" opacity="0.85"/>
-    <circle cx="117" cy="64" r="12" fill="#6fe08c" opacity="0.25"/>
-    <!-- cloak / body silhouette -->
-    <path d="M80 60 C 55 60, 30 130, 24 200 L136 200 C 130 130, 105 60, 80 60 Z" fill="url(#cloakGrad)" stroke="#6fe08c" stroke-width="1" opacity="0.95"/>
-    <path d="M80 60 C 65 70, 58 90, 58 110 L102 110 C102 90, 95 70, 80 60 Z" fill="#170b28"/>
-    <!-- hat -->
-    <ellipse cx="80" cy="60" rx="30" ry="7" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
-    <path d="M63 60 C67 34, 74 8, 80 -14 C 86 8, 93 34, 97 58 C 88 53, 72 53, 63 60 Z" fill="#3a1a5c" stroke="#6fe08c" stroke-width="1"/>
-    <!-- glowing eyes -->
-    <circle cx="72" cy="92" r="3" fill="#6fe08c"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/></circle>
-    <circle cx="88" cy="92" r="3" fill="#6fe08c"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite" begin="0.15s"/></circle>
+  return `<svg viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rHairGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c1345"/><stop offset="100%" stop-color="#0d0716"/>
+    </linearGradient>
+    <linearGradient id="rRobeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b2f8a"/><stop offset="100%" stop-color="#20103a"/>
+    </linearGradient>
+    <linearGradient id="rSkinGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f6efe1"/><stop offset="100%" stop-color="#e9dcc3"/>
+    </linearGradient>
+    <linearGradient id="rHatGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#4a2470"/><stop offset="100%" stop-color="#2a1245"/>
+    </linearGradient>
+  </defs>
+
+  <!-- staff with glowing orb -->
+  <line x1="150" y1="120" x2="160" y2="300" stroke="#4a2470" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="149" cy="112" r="7" fill="#6fe08c" opacity="0.9"/>
+  <circle cx="149" cy="112" r="14" fill="#6fe08c" opacity="0.3"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="1.4s" repeatCount="indefinite"/></circle>
+
+  <!-- flowing robe -->
+  <path d="M70 160 C 50 200, 36 260, 30 320 L170 320 C 164 260, 150 200, 130 160 Z" fill="url(#rRobeGrad)" stroke="#6fe08c" stroke-width="1.4"/>
+  <path d="M85 175 C 80 230, 78 280, 82 320 M115 175 C120 230,122 280,118 320" stroke="#6fe08c" stroke-width="0.6" opacity="0.35" fill="none"/>
+  <path d="M62 320 L54 336 M100 320 L100 336 M138 320 L146 336" stroke="#6fe08c" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- hair flowing behind -->
+  <path d="M100 60 C 60 60, 36 110, 44 168 C 48 196, 64 214, 82 224
+    C 68 198, 64 164, 74 136 C 54 164, 50 198, 60 226
+    C 44 204, 38 164, 52 128
+    C 36 116, 60 66, 100 60 Z" fill="url(#rHairGrad)"/>
+  <path d="M100 60 C 140 60, 164 110, 156 168 C 152 196, 136 214, 118 224
+    C 132 198, 136 164, 126 136 C 146 164, 150 198, 140 226
+    C 156 204, 162 164, 148 128
+    C 164 116, 140 66, 100 60 Z" fill="url(#rHairGrad)"/>
+
+  <!-- shoulders -->
+  <path d="M64 168 C 68 148, 82 136, 100 134 C 118 136, 132 148, 136 168 L136 178 L64 178 Z" fill="url(#rRobeGrad)" stroke="#6fe08c" stroke-width="1"/>
+
+  <!-- neck & face -->
+  <path d="M92 96 L92 116 C96 122 104 122 108 116 L108 96 Z" fill="url(#rSkinGrad)"/>
+  <ellipse cx="100" cy="80" rx="28" ry="34" fill="url(#rSkinGrad)"/>
+
+  <!-- front hair framing -->
+  <path d="M74 76 C72 56, 84 42, 100 42 C 116 42, 128 56, 126 76
+    C122 60, 110 50, 100 50 C 90 50, 78 60, 74 76 Z" fill="url(#rHairGrad)"/>
+
+  <!-- witch hat -->
+  <ellipse cx="100" cy="46" rx="24" ry="5.5" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
+  <path d="M88 46 C90 26, 95 4, 101 -22 C 107 4, 113 26, 114 44
+    C 106 40, 94 40, 88 46 Z" fill="url(#rHatGrad)" stroke="#6fe08c" stroke-width="1"/>
+  <path d="M101 -22 Q110 -38 103 -46 Q95 -36 101 -22 Z" fill="url(#rHatGrad)" stroke="#6fe08c" stroke-width="0.8"/>
+  <circle cx="100" cy="46" r="2.4" fill="#6fe08c"/>
+
+  <!-- eyebrows, slightly arched (mischievous) -->
+  <path d="M80 70 Q88 63 96 68" fill="none" stroke="#3a1a5c" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M120 70 Q112 63 104 68" fill="none" stroke="#3a1a5c" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- open, glowing eyes -->
+  <ellipse cx="88" cy="78" rx="5" ry="4" fill="#0d0716"/>
+  <ellipse cx="112" cy="78" rx="5" ry="4" fill="#0d0716"/>
+  <circle cx="88" cy="78" r="2.6" fill="#6fe08c"><animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite"/></circle>
+  <circle cx="112" cy="78" r="2.6" fill="#6fe08c"><animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite" begin="0.12s"/></circle>
+
+  <!-- nose -->
+  <path d="M100 80 C99 86, 98 90, 100 93" fill="none" stroke="#d8c6a8" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- mischievous smiling mouth -->
+  <path d="M88 100 Q100 108 112 100 Q100 102 88 100 Z" fill="#5b2f8a" opacity="0.9"/>
+  <path d="M111 99 Q116 97 118 92" fill="none" stroke="#5b2f8a" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- earring -->
+  <path d="M74 90 a4 4 0 1 0 0 6 a3 3 0 1 1 0 -6 Z" fill="#6fe08c"/>
   </svg>`;
 }
 function ritualScreen(){
@@ -793,6 +852,27 @@ function ritualScreen(){
     </div>
   </div>`;
 }
+function playWitchCackle(startTime){
+  const ctx = state.audioCtx; if(!ctx) return;
+  const syllables = 5;
+  for(let i=0;i<syllables;i++){
+    const t = startTime + i*0.16;
+    const osc = ctx.createOscillator();
+    osc.type = 'sawtooth';
+    const baseFreq = 460 + Math.random()*90;
+    osc.frequency.setValueAtTime(baseFreq, ctx.currentTime+t);
+    osc.frequency.exponentialRampToValueAtTime(baseFreq*0.55, ctx.currentTime+t+0.13);
+    const filter = ctx.createBiquadFilter();
+    filter.type='bandpass'; filter.frequency.value=1200; filter.Q.value=3;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, ctx.currentTime+t);
+    gain.gain.exponentialRampToValueAtTime(0.16, ctx.currentTime+t+0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+t+0.15);
+    osc.connect(filter).connect(gain).connect(ctx.destination);
+    osc.start(ctx.currentTime+t);
+    osc.stop(ctx.currentTime+t+0.17);
+  }
+}
 function startRitualAudio(){
   try{
     if(!state.audioCtx){ state.audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }
@@ -802,13 +882,15 @@ function startRitualAudio(){
     const osc2 = ctx.createOscillator(); osc2.type='sine'; osc2.frequency.value=58.5;
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.1, ctx.currentTime+1.2);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+4.1);
+    gain.gain.exponentialRampToValueAtTime(0.09, ctx.currentTime+1.4);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+9.5);
     osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
     osc1.start(); osc2.start();
-    osc1.stop(ctx.currentTime+4.2); osc2.stop(ctx.currentTime+4.2);
+    osc1.stop(ctx.currentTime+9.7); osc2.stop(ctx.currentTime+9.7);
     state.ritualOsc = {osc1, osc2, gain};
-    [1.1, 2.3, 3.1].forEach(t => audioClap(t));
+    [2.6, 7.2].forEach(t => audioClap(t));
+    playWitchCackle(1.6);
+    playWitchCackle(5.9);
   }catch(e){ /* audio unavailable, ritual still plays visually */ }
 }
 function stopRitualAudio(){
@@ -1312,7 +1394,7 @@ function attachHandlers(){
     setTimeout(()=>{
       stopRitualAudio();
       state.screen='reading'; state.loading=true; state.error=null; render(); askSalina();
-    }, 4200);
+    }, 10000);
   };
   const brs=document.getElementById('btn-retry-salina'); if(brs) brs.onclick=()=>{ state.loading=true; state.error=null; render(); askSalina(); };
   const brt=document.getElementById('btn-reset'); if(brt) brt.onclick=()=>{

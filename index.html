@@ -91,6 +91,40 @@
     animation-name:confettiFall;animation-timing-function:linear;animation-iteration-count:infinite;}
   @keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:0;}10%{opacity:1;}100%{transform:translateY(210px) rotate(360deg);opacity:0;}}
 
+  /* RITUAL SCREEN */
+  .ritualPanel{text-align:center;animation:eerieFlicker 3.4s steps(1) infinite;}
+  @keyframes eerieFlicker{
+    0%,18%,22%,48%,54%,100%{filter:brightness(1);}
+    19%{filter:brightness(0.78);}
+    20%{filter:brightness(1.15);}
+    50%{filter:brightness(0.85);}
+    52%{filter:brightness(1.1);}
+  }
+  .ritualStage{position:relative;height:220px;margin:6px 0 18px;overflow:hidden;border-radius:8px;
+    background:radial-gradient(ellipse at 50% 100%, rgba(91,47,138,0.3), transparent 70%);
+    border:1px solid var(--line);}
+  .ritualFog{position:absolute;inset:0;background:linear-gradient(0deg, rgba(63,158,92,0.16), transparent 55%);
+    animation:fogDrift 3.6s ease-in-out infinite alternate;}
+  @keyframes fogDrift{0%{opacity:.35;transform:translateX(-6px);}100%{opacity:.65;transform:translateX(10px);}}
+  .ritualWitch{position:absolute;bottom:8px;width:96px;animation:witchWalk 3.4s ease-in-out forwards;}
+  @keyframes witchWalk{
+    0%{left:-22%;transform:translateY(0) rotate(0deg);}
+    35%{transform:translateY(-5px) rotate(-2deg);}
+    65%{transform:translateY(0) rotate(2deg);}
+    100%{left:36%;transform:translateY(0) rotate(0deg);}
+  }
+  .ritualFrog{position:absolute;bottom:10px;width:32px;animation:frogFollow 3.4s ease-in-out forwards, frogHop .5s ease-in-out infinite;}
+  @keyframes frogFollow{0%{left:-32%;}100%{left:22%;}}
+  .incantWrap{min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
+  .incantLine{font-family:'Cinzel',serif;font-size:17px;letter-spacing:.06em;color:var(--gold-bright);
+    opacity:0;text-shadow:0 0 12px rgba(111,224,140,0.5);
+    animation:incantIn .8s ease forwards;display:flex;flex-direction:column;gap:4px;}
+  .incantLine.l1{animation-delay:.3s;}
+  .incantLine.l2{animation-delay:1.4s;}
+  .incantLine.l3{animation-delay:2.5s;}
+  @keyframes incantIn{from{opacity:0;transform:translateY(8px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+  .incantSub{font-family:'Sarabun',sans-serif;font-size:12.5px;color:var(--muted);letter-spacing:.02em;font-style:italic;}
+
   .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:8px;}
   .brand{display:flex;flex-direction:column;line-height:1;}
   .brand .k1{font-size:11px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;}
@@ -719,6 +753,71 @@ function confettiMarkup(count){
   }
   return s;
 }
+
+/* ============== RITUAL SCREEN — witch + frog walk in and chant before the reading ============== */
+const INCANT_LINES = ["Umbra Lucis, Aperi Viam...", "Tres Cartae, Unum Fatum...", "Salina Vocat — Revelare!"];
+function ritualWitchSvg(){
+  return `<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cloakGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3a1a5c"/>
+        <stop offset="100%" stop-color="#0d0716"/>
+      </linearGradient>
+    </defs>
+    <!-- staff -->
+    <line x1="118" y1="70" x2="128" y2="200" stroke="#4a2470" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="117" cy="64" r="7" fill="#6fe08c" opacity="0.85"/>
+    <circle cx="117" cy="64" r="12" fill="#6fe08c" opacity="0.25"/>
+    <!-- cloak / body silhouette -->
+    <path d="M80 60 C 55 60, 30 130, 24 200 L136 200 C 130 130, 105 60, 80 60 Z" fill="url(#cloakGrad)" stroke="#6fe08c" stroke-width="1" opacity="0.95"/>
+    <path d="M80 60 C 65 70, 58 90, 58 110 L102 110 C102 90, 95 70, 80 60 Z" fill="#170b28"/>
+    <!-- hat -->
+    <ellipse cx="80" cy="60" rx="30" ry="7" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
+    <path d="M63 60 C67 34, 74 8, 80 -14 C 86 8, 93 34, 97 58 C 88 53, 72 53, 63 60 Z" fill="#3a1a5c" stroke="#6fe08c" stroke-width="1"/>
+    <!-- glowing eyes -->
+    <circle cx="72" cy="92" r="3" fill="#6fe08c"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/></circle>
+    <circle cx="88" cy="92" r="3" fill="#6fe08c"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite" begin="0.15s"/></circle>
+  </svg>`;
+}
+function ritualScreen(){
+  return `<div class="panel ritualPanel">
+    <div class="ritualStage">
+      <div class="ritualFog"></div>
+      <div class="ritualWitch">${ritualWitchSvg()}</div>
+      <div class="ritualFrog">${frogMiniSvg('#3f9e5c')}</div>
+    </div>
+    <div class="incantWrap">
+      <p class="incantLine l1">${INCANT_LINES[0]}<span class="incantSub">${t('ritualIncant1')}</span></p>
+      <p class="incantLine l2">${INCANT_LINES[1]}<span class="incantSub">${t('ritualIncant2')}</span></p>
+      <p class="incantLine l3">${INCANT_LINES[2]}<span class="incantSub">${t('ritualIncant3')}</span></p>
+    </div>
+  </div>`;
+}
+function startRitualAudio(){
+  try{
+    if(!state.audioCtx){ state.audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }
+    if(state.audioCtx.state==='suspended'){ state.audioCtx.resume(); }
+    const ctx = state.audioCtx;
+    const osc1 = ctx.createOscillator(); osc1.type='sine'; osc1.frequency.value=55;
+    const osc2 = ctx.createOscillator(); osc2.type='sine'; osc2.frequency.value=58.5;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.1, ctx.currentTime+1.2);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+4.1);
+    osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
+    osc1.start(); osc2.start();
+    osc1.stop(ctx.currentTime+4.2); osc2.stop(ctx.currentTime+4.2);
+    state.ritualOsc = {osc1, osc2, gain};
+    [1.1, 2.3, 3.1].forEach(t => audioClap(t));
+  }catch(e){ /* audio unavailable, ritual still plays visually */ }
+}
+function stopRitualAudio(){
+  if(state.ritualOsc){
+    try{ state.ritualOsc.osc1.stop(); state.ritualOsc.osc2.stop(); }catch(e){}
+    state.ritualOsc = null;
+  }
+}
+
 function partyScreen(){
   return `<div class="panel glassCard" style="text-align:center;">
     <h2 class="disp partyTitle">🎉 ${t('partyTitle')}</h2>
@@ -823,7 +922,8 @@ const STR = {
     question:"คำถาม",
     nextParty:"ถัดไป → ปาร์ตี้กบ 🐸", partyTitle:"ปาร์ตี้ฉลองคำทำนาย!", partySub:"ให้เหล่ากบเต้นฉลองไปกับคุณ",
     muteMusic:"ปิดเสียง", playMusic:"เปิดเสียง", backHome:"กลับหน้าแรก",
-    revealAll:"เปิดไพ่ทั้งหมด ✦", revealHint:"ไพ่ทั้งสามใบพร้อมแล้ว แตะเพื่อเปิดเผยพร้อมกัน"
+    revealAll:"เปิดไพ่ทั้งหมด ✦", revealHint:"ไพ่ทั้งสามใบพร้อมแล้ว แตะเพื่อเปิดเผยพร้อมกัน",
+    ritualIncant1:"เงาแห่งแสง จงเปิดทาง...", ritualIncant2:"ไพ่สามใบ โชคชะตาเดียว...", ritualIncant3:"Salina เรียกขาน — จงเผยความจริง!"
   },
   fr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -854,7 +954,8 @@ const STR = {
     question:"Question",
     nextParty:"Suivant → Fête des grenouilles 🐸", partyTitle:"La fête après le tirage !", partySub:"Les grenouilles dansent pour célébrer avec vous",
     muteMusic:"Couper le son", playMusic:"Activer le son", backHome:"Retour à l'accueil",
-    revealAll:"Révéler les trois cartes ✦", revealHint:"Vos trois cartes sont prêtes — touchez pour les révéler ensemble"
+    revealAll:"Révéler les trois cartes ✦", revealHint:"Vos trois cartes sont prêtes — touchez pour les révéler ensemble",
+    ritualIncant1:"Ombre de lumière, ouvre la voie...", ritualIncant2:"Trois cartes, un seul destin...", ritualIncant3:"Salina appelle — révèle-toi !"
   },
   tr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -885,7 +986,8 @@ const STR = {
     question:"Soru",
     nextParty:"İleri → Kurbağa Partisi 🐸", partyTitle:"Fal Sonrası Parti!", partySub:"Kurbağalar seninle kutluyor",
     muteMusic:"Sesi kapat", playMusic:"Sesi aç", backHome:"Ana sayfaya dön",
-    revealAll:"Tüm Kartları Aç ✦", revealHint:"Üç kartın hazır — birlikte açmak için dokun"
+    revealAll:"Tüm Kartları Aç ✦", revealHint:"Üç kartın hazır — birlikte açmak için dokun",
+    ritualIncant1:"Işığın gölgesi, yolu aç...", ritualIncant2:"Üç kart, tek bir kader...", ritualIncant3:"Salina çağırıyor — açığa çık!"
   }
 };
 
@@ -897,7 +999,8 @@ let state = {
   reading:null, loading:false, error:null,
   history:[],
   musicOn:false, audioCtx:null, partyTimer:null,
-  revealTriggered:false
+  revealTriggered:false,
+  ritualOsc:null
 };
 function t(k){ return STR[state.lang][k]; }
 
@@ -937,6 +1040,7 @@ function body(){
     case "question": return questionScreen();
     case "select": return selectScreen();
     case "locked": return lockedScreen();
+    case "ritual": return ritualScreen();
     case "reading": return readingScreen();
     case "history": return historyScreen();
     case "party": return partyScreen();
@@ -1203,10 +1307,16 @@ function attachHandlers(){
     }, 850);
   };
 
-  const bas=document.getElementById('btn-ask-salina'); if(bas) bas.onclick=()=>{ state.screen='reading'; state.loading=true; state.error=null; render(); askSalina(); };
+  const bas=document.getElementById('btn-ask-salina'); if(bas) bas.onclick=()=>{
+    state.screen='ritual'; render(); startRitualAudio();
+    setTimeout(()=>{
+      stopRitualAudio();
+      state.screen='reading'; state.loading=true; state.error=null; render(); askSalina();
+    }, 4200);
+  };
   const brs=document.getElementById('btn-retry-salina'); if(brs) brs.onclick=()=>{ state.loading=true; state.error=null; render(); askSalina(); };
   const brt=document.getElementById('btn-reset'); if(brt) brt.onclick=()=>{
-    stopPartyMusic();
+    stopPartyMusic(); stopRitualAudio();
     state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.revealTriggered=false; state.screen='home'; render();
   };
   const bnp=document.getElementById('btn-next-party'); if(bnp) bnp.onclick=()=>{
@@ -1217,7 +1327,7 @@ function attachHandlers(){
     render();
   };
   const bph=document.getElementById('btn-party-home'); if(bph) bph.onclick=()=>{
-    stopPartyMusic();
+    stopPartyMusic(); stopRitualAudio();
     state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.revealTriggered=false; state.screen='home'; render();
   };
   document.querySelectorAll('[data-histidx]').forEach(h=>h.onclick=()=>{

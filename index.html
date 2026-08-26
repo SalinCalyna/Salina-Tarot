@@ -288,6 +288,8 @@
   }
   .cardBack:hover:not(.taken){transform:translateY(-6px) scale(1.04);box-shadow:0 12px 22px rgba(0,0,0,0.55), 0 0 14px rgba(111,224,140,0.25);}
   .cardBack.taken{opacity:0;pointer-events:none;transform:scale(.4);}
+  .dailyBack{width:130px;height:200px;}
+  .dailyBack:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 28px rgba(0,0,0,0.6), 0 0 18px rgba(111,224,140,0.3);}
 
   .traySpace{display:flex;gap:14px;justify-content:center;margin:30px 0;min-height:170px;}
   .traySlot{width:100px;display:flex;flex-direction:column;align-items:center;}
@@ -1005,7 +1007,8 @@ const STR = {
     nextParty:"ถัดไป → ปาร์ตี้กบ 🐸", partyTitle:"ปาร์ตี้ฉลองคำทำนาย!", partySub:"ให้เหล่ากบเต้นฉลองไปกับคุณ",
     muteMusic:"ปิดเสียง", playMusic:"เปิดเสียง", backHome:"กลับหน้าแรก",
     revealAll:"เปิดไพ่ทั้งหมด ✦", revealHint:"ไพ่ทั้งสามใบพร้อมแล้ว แตะเพื่อเปิดเผยพร้อมกัน",
-    ritualIncant1:"เงาแห่งแสง จงเปิดทาง...", ritualIncant2:"ไพ่สามใบ โชคชะตาเดียว...", ritualIncant3:"Salina เรียกขาน — จงเผยความจริง!"
+    ritualIncant1:"เงาแห่งแสง จงเปิดทาง...", ritualIncant2:"ไพ่สามใบ โชคชะตาเดียว...", ritualIncant3:"Salina เรียกขาน — จงเผยความจริง!",
+    dailyNavLabel:"🌙 ไพ่ประจำวัน"
   },
   fr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -1037,7 +1040,8 @@ const STR = {
     nextParty:"Suivant → Fête des grenouilles 🐸", partyTitle:"La fête après le tirage !", partySub:"Les grenouilles dansent pour célébrer avec vous",
     muteMusic:"Couper le son", playMusic:"Activer le son", backHome:"Retour à l'accueil",
     revealAll:"Révéler les trois cartes ✦", revealHint:"Vos trois cartes sont prêtes — touchez pour les révéler ensemble",
-    ritualIncant1:"Ombre de lumière, ouvre la voie...", ritualIncant2:"Trois cartes, un seul destin...", ritualIncant3:"Salina appelle — révèle-toi !"
+    ritualIncant1:"Ombre de lumière, ouvre la voie...", ritualIncant2:"Trois cartes, un seul destin...", ritualIncant3:"Salina appelle — révèle-toi !",
+    dailyNavLabel:"🌙 Carte du jour"
   },
   tr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -1069,7 +1073,8 @@ const STR = {
     nextParty:"İleri → Kurbağa Partisi 🐸", partyTitle:"Fal Sonrası Parti!", partySub:"Kurbağalar seninle kutluyor",
     muteMusic:"Sesi kapat", playMusic:"Sesi aç", backHome:"Ana sayfaya dön",
     revealAll:"Tüm Kartları Aç ✦", revealHint:"Üç kartın hazır — birlikte açmak için dokun",
-    ritualIncant1:"Işığın gölgesi, yolu aç...", ritualIncant2:"Üç kart, tek bir kader...", ritualIncant3:"Salina çağırıyor — açığa çık!"
+    ritualIncant1:"Işığın gölgesi, yolu aç...", ritualIncant2:"Üç kart, tek bir kader...", ritualIncant3:"Salina çağırıyor — açığa çık!",
+    dailyNavLabel:"🌙 Günün Kartı"
   }
 };
 
@@ -1082,7 +1087,8 @@ let state = {
   history:[],
   musicOn:false, audioCtx:null, partyTimer:null,
   revealTriggered:false,
-  ritualOsc:null
+  ritualOsc:null,
+  dailyCard:null, dailyLoading:false
 };
 function t(k){ return STR[state.lang][k]; }
 
@@ -1097,6 +1103,28 @@ async function saveHistoryEntry(entry){
   state.history.unshift(entry);
   state.history = state.history.slice(0,20);
   try{ await window.storage.set("salina:history", JSON.stringify(state.history), false); }catch(e){}
+}
+
+/* ============== DAILY TAROT — one card per day, locked ============== */
+function todayKey(){
+  const d = new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+async function loadDailyCard(){
+  try{
+    const r = await window.storage.get('salina:daily:'+todayKey(), false);
+    state.dailyCard = r ? JSON.parse(r.value) : null;
+  }catch(e){ state.dailyCard = null; }
+}
+async function drawDailyCard(){
+  if(state.dailyCard) return; // already locked for today
+  const deck = cryptoShuffle(FULL_DECK);
+  const card = deck[0];
+  const orientation = randomOrientation();
+  const entry = { date: todayKey(), cardId: card.id, orientation };
+  state.dailyCard = entry;
+  render();
+  try{ await window.storage.set('salina:daily:'+todayKey(), JSON.stringify(entry), false); }catch(e){}
 }
 
 /* ============== RENDER ============== */
@@ -1126,6 +1154,7 @@ function body(){
     case "reading": return readingScreen();
     case "history": return historyScreen();
     case "party": return partyScreen();
+    case "daily": return dailyScreen();
     default: return homeScreen();
   }
 }
@@ -1146,7 +1175,7 @@ function homeScreen(){
     <p class="tagline">${t('tagline')}</p>
     <div class="ctaWrap">
       <button class="goldbtn" id="btn-start"><span class="shimmerText">${t('cta')}</span></button>
-      <div class="footlink"><button id="btn-history">${t('history')} (${state.history.length})</button></div>
+      <div class="footlink"><button id="btn-daily-nav">${t('dailyNavLabel')}</button> · <button id="btn-history">${t('history')} (${state.history.length})</button></div>
     </div>
   </div>`;
 }
@@ -1320,6 +1349,42 @@ function readingScreen(){
     </div>
   </div>`;
 }
+function dailyScreen(){
+  const D = DAILY_RT[state.lang];
+  if(state.dailyLoading){
+    return `<div class="panel" style="text-align:center;">
+      <div class="loadingWrap"><div class="sigilspin">${sigilSvg()}</div><p>...</p></div>
+    </div>`;
+  }
+  if(!state.dailyCard){
+    return `<div class="panel glassCard" style="text-align:center;">
+      <div class="stepLabel">${D.heading}</div>
+      <p style="color:var(--muted);margin-bottom:26px;">${D.sub}</p>
+      <div style="display:flex;justify-content:center;">
+        <div class="cardBack dailyBack" id="daily-draw-back"></div>
+      </div>
+      <button class="goldbtn" id="btn-draw-daily" style="margin-top:26px;"><span class="shimmerText">${D.drawBtn}</span></button>
+      <div class="footlink"><button id="btn-back-home">${t('histBack')}</button></div>
+    </div>`;
+  }
+  const card = FULL_DECK.find(c=>c.id===state.dailyCard.cardId);
+  const orientation = state.dailyCard.orientation;
+  const reflection = buildDailyReflection(card, orientation, state.lang);
+  return `<div class="panel glassCard readingCert" style="text-align:center;">
+    <div class="certSeal">${diamondSvg()}</div>
+    <div class="stepLabel">${D.heading}</div>
+    <div class="lockedGrid" style="margin:20px 0;">
+      <div class="lockedCol">
+        ${cardFrontHtml(card, orientation)}
+        <div class="orientLabel"><b>${orientation==='reversed'?t('reversed'):t('upright')}</b></div>
+      </div>
+    </div>
+    <div class="readingBody" style="text-align:left;">${reflection}</div>
+    <div class="hairline"></div>
+    <p style="color:var(--muted);font-size:13px;">${D.comeBack}</p>
+    <button class="ghostbtn" id="btn-back-home" style="margin-top:14px;">${t('histBack')}</button>
+  </div>`;
+}
 function historyScreen(){
   if(!state.history.length){
     return `<div class="panel">
@@ -1350,6 +1415,13 @@ function attachHandlers(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{state.lang=b.dataset.lang; render();});
   const s1=document.getElementById('btn-start'); if(s1) s1.onclick=()=>{state.screen='question'; render();};
   const hh=document.getElementById('btn-history'); if(hh) hh.onclick=()=>{state.screen='history'; render();};
+  const bdn=document.getElementById('btn-daily-nav'); if(bdn) bdn.onclick=async ()=>{
+    state.screen='daily'; state.dailyLoading=true; render();
+    await loadDailyCard();
+    state.dailyLoading=false; render();
+  };
+  const ddb=document.getElementById('daily-draw-back'); if(ddb) ddb.onclick=()=>{ drawDailyCard(); };
+  const bdd=document.getElementById('btn-draw-daily'); if(bdd) bdd.onclick=()=>{ drawDailyCard(); };
   const bh=document.getElementById('btn-back-home'); if(bh) bh.onclick=()=>{state.screen='home'; render();};
 
   attachPortraitTilt();
@@ -1510,6 +1582,43 @@ function detectCategoryFromQuestion(q, lang){
     if(dict[cat].some(k => lower.includes(k.toLowerCase()))) return cat;
   }
   return null;
+}
+
+const DAILY_RT = {
+  th:{
+    heading:'ไพ่ประจำวันของคุณ', sub:'ดึงไพ่ 1 ใบเพื่อจุดสนใจของวันนี้',
+    drawBtn:'จั่วไพ่วันนี้ ✦',
+    already:(name,orientLabel)=>`วันนี้ไพ่ <strong>${name}</strong> ปรากฏขึ้นในลักษณะ<strong>${orientLabel}</strong> เพื่อคุณโดยเฉพาะ`,
+    body:(meaning,keywords)=>`<p>ให้ไพ่ใบนี้เตือนคุณถึง${meaning} ลองสังเกตแง่มุมเรื่อง${keywords}ในชีวิตของคุณเป็นพิเศษวันนี้</p>`,
+    advice:`<p>ไม่ต้องรีบตีความทุกอย่างให้ชัดเจนตั้งแต่เช้า ปล่อยให้ความหมายของไพ่ค่อย ๆ เผยตัวไปพร้อมกับวันของคุณ</p>`,
+    comeBack:'กลับมาใหม่พรุ่งนี้เพื่อข้อความใหม่จาก Salina 🌙'
+  },
+  fr:{
+    heading:'Votre carte du jour', sub:'Tirez une carte pour le fil de votre journée',
+    drawBtn:'Tirer la carte du jour ✦',
+    already:(name,orientLabel)=>`Aujourd'hui, la carte <strong>${name}</strong> est apparue <strong>${orientLabel}</strong>, rien que pour vous`,
+    body:(meaning,keywords)=>`<p>Laissez cette carte vous rappeler ${meaning} Portez une attention particulière à ${keywords} aujourd'hui.</p>`,
+    advice:`<p>Pas besoin de tout comprendre dès le matin — laissez le sens de la carte se révéler au fil de votre journée.</p>`,
+    comeBack:"Revenez demain pour un nouveau message de Salina 🌙"
+  },
+  tr:{
+    heading:'Günün Kartın', sub:'Bugüne odaklanmak için tek bir kart çek',
+    drawBtn:'Bugünün Kartını Çek ✦',
+    already:(name,orientLabel)=>`Bugün <strong>${name}</strong> kartı <strong>${orientLabel}</strong> şekilde, özellikle senin için belirdi`,
+    body:(meaning,keywords)=>`<p>Bu kart sana ${meaning} hatırlatsın. Bugün özellikle ${keywords} temasına dikkat et.</p>`,
+    advice:`<p>Sabahtan her şeyi netleştirmene gerek yok — kartın anlamı gün boyunca kendiliğinden açığa çıksın.</p>`,
+    comeBack:'Salina\'dan yeni bir mesaj için yarın tekrar gel 🌙'
+  }
+};
+function buildDailyReflection(card, orientation, lang){
+  const D = DAILY_RT[lang];
+  const name = cardDisplayName(card, lang);
+  const orientLabel = RT[lang].orient[orientation];
+  const meaning = orientation==='reversed' ? card.reversed : card.upright;
+  let html = `<p>${D.already(name, orientLabel)}</p>`;
+  html += D.body(meaning, card.keywords);
+  html += D.advice;
+  return html;
 }
 
 function buildLocalReading(){

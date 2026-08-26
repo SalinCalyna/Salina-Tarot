@@ -8,23 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Charmonman:wght@400;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#0d0716;
-    --deep:#1a0f2e;
-    --deep2:#241640;
-    --burgundy:#5b2f8a;
-    --burgundy-bright:#9b5fe0;
-    --gold:#3f9e5c;
-    --gold-bright:#6fe08c;
-    --pearl:#f1e9fb;
-    --muted:#a996c4;
-    --line: rgba(111,224,140,0.28);
+    --void:#0b0a12;
+    --deep:#14101f;
+    --deep2:#1c1730;
+    --burgundy:#362a52;
+    --burgundy-bright:#5b4a86;
+    --gold:#b8975e;
+    --gold-bright:#d9bf8a;
+    --pearl:#f2ede2;
+    --muted:#948d9c;
+    --line: rgba(184,151,94,0.22);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     background:
-      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(91,47,138,0.35), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 85% 100%, rgba(111,224,140,0.10), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 50% -10%, rgba(54,42,82,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 85% 100%, rgba(184,151,94,0.10), transparent 60%),
       var(--void);
     color:var(--pearl);
     font-family:'Sarabun','EB Garamond',serif;
@@ -34,26 +34,19 @@
   }
   /* premium film-grain overlay */
   body::after{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.05;mix-blend-mode:overlay;
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.025;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   /* subtle vignette for depth */
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;box-shadow:inset 0 0 180px rgba(0,0,0,0.65);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:4;box-shadow:inset 0 0 140px rgba(0,0,0,0.4);}
   .disp{font-family:'Charmonman','Cinzel',serif;}
   ::selection{background:var(--gold); color:var(--void);}
   #app{max-width:720px;margin:0 auto;padding:28px 20px 80px;position:relative;min-height:100vh;}
 
-  /* ambient stars & embers */
+  /* ambient stars — calm, subtle */
   .stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
-  .stars span.star{position:absolute;width:2px;height:2px;background:var(--gold-bright);border-radius:50%;opacity:.35;animation:twinkle 4s ease-in-out infinite;}
-  @keyframes twinkle{0%,100%{opacity:.15;}50%{opacity:.65;}}
-  .stars span.ember{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:radial-gradient(circle, #baffc9, #2f9e52 70%, transparent);animation:emberRise linear infinite;opacity:0;box-shadow:0 0 6px 1px rgba(111,224,140,0.5);}
-  @keyframes emberRise{
-    0%{transform:translateY(0) translateX(0);opacity:0;}
-    10%{opacity:.75;}
-    90%{opacity:.4;}
-    100%{transform:translateY(-100vh) translateX(var(--drift,20px));opacity:0;}
-  }
+  .stars span.star{position:absolute;width:2px;height:2px;background:var(--gold-bright);border-radius:50%;opacity:.3;animation:twinkle 4s ease-in-out infinite;}
+  @keyframes twinkle{0%,100%{opacity:.12;}50%{opacity:.5;}}
 
   .brandCrest{font-size:10px;letter-spacing:.3em;color:var(--gold);opacity:.75;text-align:center;margin-bottom:10px;text-transform:uppercase;}
   .flourish{display:flex;align-items:center;justify-content:center;gap:10px;max-width:260px;margin:0 auto 26px;opacity:.8;}
@@ -61,77 +54,36 @@
   .flourish .fline.right{background:linear-gradient(90deg, var(--gold), transparent);}
   .flourish svg{width:16px;height:16px;flex-shrink:0;}
 
-  /* cauldron & frog */
-  .cauldronWrap{width:170px;margin:0 auto 6px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5));}
-  .cauldronWrap svg{width:100%;height:auto;display:block;}
-  .bubble{transform-origin:center;animation:bubbleRise 2.4s ease-in infinite;}
-  @keyframes bubbleRise{
-    0%{transform:translateY(0) scale(0.5);opacity:0;}
-    15%{opacity:1;}
-    85%{opacity:.7;}
-    100%{transform:translateY(-24px) scale(1.2);opacity:0;}
-  }
-  .steamWisp{animation:steamDrift 3.6s ease-in-out infinite;transform-origin:center;}
-  @keyframes steamDrift{0%,100%{opacity:.2;transform:translateY(0) translateX(0);}50%{opacity:.5;transform:translateY(-8px) translateX(3px);}}
-
-  /* PARTY SCREEN */
-  .partyTitle{font-size:26px;color:var(--gold-bright);margin:0 0 6px;}
-  .partySub{color:var(--muted);margin:0 0 4px;font-size:15px;}
-  .frogStage{position:relative;height:190px;margin:20px 0 4px;overflow:hidden;border-radius:8px;
-    background:radial-gradient(ellipse at 50% 100%, rgba(111,224,140,0.14), transparent 70%);
-    border:1px solid var(--line);}
-  .dancingFrog{position:absolute;bottom:8px;animation-name:frogHop;animation-timing-function:ease-in-out;animation-iteration-count:infinite;}
-  @keyframes frogHop{
-    0%,100%{transform:translateY(0) rotate(-6deg) scaleY(1);}
-    25%{transform:translateY(-30px) rotate(7deg) scaleY(1.1);}
-    50%{transform:translateY(0) rotate(-5deg) scaleY(0.88);}
-    75%{transform:translateY(-16px) rotate(5deg) scaleY(1.06);}
-  }
-  .confetti{position:absolute;top:-10px;width:6px;height:6px;border-radius:1px;opacity:.85;
-    animation-name:confettiFall;animation-timing-function:linear;animation-iteration-count:infinite;}
-  @keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:0;}10%{opacity:1;}100%{transform:translateY(210px) rotate(360deg);opacity:0;}}
-
-  /* RITUAL SCREEN */
-  .ritualPanel{text-align:center;animation:eerieFlicker 3.4s steps(1) infinite;}
-  @keyframes eerieFlicker{
-    0%,18%,22%,48%,54%,100%{filter:brightness(1);}
-    19%{filter:brightness(0.78);}
-    20%{filter:brightness(1.15);}
-    50%{filter:brightness(0.85);}
-    52%{filter:brightness(1.1);}
-  }
-  .ritualStage{position:relative;height:250px;margin:6px 0 18px;overflow:hidden;border-radius:8px;
-    background:radial-gradient(ellipse at 50% 100%, rgba(91,47,138,0.3), transparent 70%);
-    border:1px solid var(--line);}
-  .ritualFog{position:absolute;inset:0;background:linear-gradient(0deg, rgba(63,158,92,0.16), transparent 55%);
-    animation:fogDrift 3.6s ease-in-out infinite alternate;}
-  @keyframes fogDrift{0%{opacity:.35;transform:translateX(-6px);}100%{opacity:.65;transform:translateX(10px);}}
-  .ritualWitch{position:absolute;bottom:8px;width:150px;animation:witchWalk 9s ease-in-out forwards;}
-  @keyframes witchWalk{
-    0%{left:-30%;transform:translateY(0) rotate(0deg);}
-    12%{transform:translateY(-5px) rotate(-2deg);}
-    24%{left:-4%;transform:translateY(0) rotate(2deg);}
-    36%{transform:translateY(-4px) rotate(-1deg);}
-    50%{left:20%;transform:translateY(0) rotate(1deg);}
-    60%{left:30%;transform:translateY(-3px) rotate(-1deg);}
-    70%{transform:translateY(0) rotate(1deg);}
-    80%{transform:translateY(-3px) rotate(-1deg);}
-    90%{transform:translateY(0) rotate(1deg);}
-    100%{left:32%;transform:translateY(0) rotate(0deg);}
-  }
-  .ritualFrog{position:absolute;bottom:10px;width:32px;animation:frogFollow 9s ease-in-out forwards, frogHop .5s ease-in-out infinite;}
-  @keyframes frogFollow{0%{left:-32%;}55%{left:14%;}100%{left:18%;}}
-  .incantWrap{min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
-  .incantLine{font-family:'Cinzel',serif;font-size:17px;letter-spacing:.06em;color:var(--gold-bright);
-    opacity:0;text-shadow:0 0 12px rgba(111,224,140,0.5);
-    animation:incantIn .8s ease forwards;display:flex;flex-direction:column;gap:4px;}
-  .incantLine.l1{animation-delay:.4s;}
-  .incantLine.l2{animation-delay:3.8s;}
-  .incantLine.l3{animation-delay:7.2s;}
-  @keyframes incantIn{from{opacity:0;transform:translateY(8px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
-  .incantSub{font-family:'Sarabun',sans-serif;font-size:12.5px;color:var(--muted);letter-spacing:.02em;font-style:italic;}
+  /* TRANSITION SCREEN — calm, minimal moment before the reading */
+  .transitionPanel{padding:60px 0;}
+  .transitionPortrait{width:100px;height:100px;margin:0 auto 22px;border-radius:50%;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    animation:breathe 2.4s ease-in-out infinite;}
+  .transitionPortrait svg{width:100%;height:100%;display:block;}
+  @keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.045);}}
+  .transitionText{color:var(--muted);font-size:15.5px;letter-spacing:.02em;margin-bottom:18px;}
+  .transitionDots{display:flex;justify-content:center;gap:6px;}
+  .transitionDots span{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.35;animation:dotPulse 1.2s ease-in-out infinite;}
+  .transitionDots span:nth-child(2){animation-delay:.2s;}
+  .transitionDots span:nth-child(3){animation-delay:.4s;}
+  @keyframes dotPulse{0%,100%{opacity:.25;transform:scale(1);}50%{opacity:.9;transform:scale(1.3);}}
 
   .topbar{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:8px;}
+  .navBar{display:flex;gap:2px;margin:14px 0 26px;padding-bottom:10px;border-bottom:1px solid var(--line);
+    overflow-x:auto;position:relative;z-index:2;}
+  .navBar button{background:none;border:none;color:var(--muted);font-size:12.5px;letter-spacing:.02em;
+    padding:7px 13px;border-radius:8px;cursor:pointer;white-space:nowrap;
+    font-family:'Sarabun',sans-serif;transition:color .15s ease, background .15s ease;}
+  .navBar button.active{color:var(--gold-bright);background:rgba(184,151,94,0.09);}
+  .navBar button:hover{color:var(--pearl);}
+  .stepProgress{display:flex;justify-content:center;gap:6px;margin-bottom:28px;flex-wrap:wrap;}
+  .stepProgress .step{display:flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:.05em;color:var(--muted);}
+  .stepProgress .step .n{width:18px;height:18px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:9.5px;color:var(--muted);}
+  .stepProgress .step.active{color:var(--gold-bright);}
+  .stepProgress .step.active .n{border-color:var(--gold);color:var(--gold-bright);background:rgba(184,151,94,0.1);}
+  .stepProgress .step.done .n{border-color:var(--gold);background:var(--gold);color:var(--void);}
+  .stepProgress .sep{width:14px;height:1px;background:var(--line);align-self:center;}
   .brand{display:flex;flex-direction:column;line-height:1;}
   .brand .k1{font-size:11px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;}
   .brand .k2{font-family:'Cinzel',serif;font-size:17px;letter-spacing:.12em;color:var(--gold-bright);}
@@ -144,7 +96,7 @@
   /* HOME */
   .home{text-align:center;padding-top:6vh;position:relative;z-index:2;}
   .home .eyebrow{font-size:12px;letter-spacing:.35em;color:var(--muted);text-transform:uppercase;margin-bottom:22px;animation:fadeUp .6s ease;}
-  .home h1{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:38px;letter-spacing:.08em;color:var(--gold-bright);margin:0;text-shadow:0 0 40px rgba(111,224,140,0.3);animation:fadeUp .8s ease .05s backwards;}
+  .home h1{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:38px;letter-spacing:.08em;color:var(--gold-bright);margin:0;text-shadow:0 0 40px rgba(184,151,94,0.3);animation:fadeUp .8s ease .05s backwards;}
   .home h2.disp{font-size:20px;font-weight:500;color:var(--pearl);margin:6px 0 22px;letter-spacing:.1em;animation:fadeUp .8s ease .1s backwards;}
   .home .tagline{font-size:18px;color:var(--muted);line-height:1.85;margin-bottom:38px;font-style:italic;animation:fadeUp .8s ease .15s backwards;}
   .home .ctaWrap{animation:fadeUp .8s ease .2s backwards;}
@@ -164,7 +116,7 @@
   }
   .portraitGlow{
     position:absolute;inset:-36px;border-radius:50%;
-    background:radial-gradient(circle, rgba(111,224,140,0.32), rgba(91,47,138,0.18) 55%, transparent 75%);
+    background:radial-gradient(circle, rgba(184,151,94,0.32), rgba(54,42,82,0.18) 55%, transparent 75%);
     filter:blur(8px);z-index:0;
   }
   .portraitGroundShadow{
@@ -190,7 +142,7 @@
     filter:
       drop-shadow(0 4px 8px rgba(0,0,0,.45))
       drop-shadow(0 22px 46px rgba(0,0,0,.55))
-      drop-shadow(0 0 22px rgba(111,224,140,0.18));
+      drop-shadow(0 0 22px rgba(184,151,94,0.18));
   }
 
   .salinaAvatar.big{width:84px;height:84px;}
@@ -198,23 +150,17 @@
 
   .goldbtn{
     display:inline-flex;align-items:center;gap:10px;
-    background:linear-gradient(135deg, var(--gold-bright), var(--gold) 60%, #b8935a);
-    color:var(--void);font-weight:600;letter-spacing:.03em;
-    border:none;border-radius:3px;padding:16px 34px;font-size:16px;cursor:pointer;
+    background:linear-gradient(135deg, var(--gold-bright), var(--gold) 65%);
+    color:var(--void);font-weight:600;letter-spacing:.02em;
+    border:none;border-radius:10px;padding:15px 32px;font-size:15.5px;cursor:pointer;
     font-family:'Sarabun',sans-serif;
-    box-shadow:0 8px 28px rgba(111,224,140,0.28), inset 0 1px 0 rgba(255,255,255,0.35);
-    transition:transform .25s cubic-bezier(.2,.8,.3,1), box-shadow .25s ease;
-    position:relative;overflow:hidden;
+    box-shadow:0 4px 14px rgba(11,10,18,0.4);
+    transition:transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .2s ease;
+    position:relative;
   }
-  .goldbtn::before{
-    content:"";position:absolute;top:0;left:-60%;width:35%;height:100%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
-    transform:skewX(-20deg);animation:shimmerSweep 3.4s ease-in-out infinite;
-  }
-  @keyframes shimmerSweep{0%,55%{left:-60%;}100%{left:130%;}}
   .goldbtn .shimmerText{position:relative;z-index:1;}
-  .goldbtn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(111,224,140,0.4), inset 0 1px 0 rgba(255,255,255,0.4);}
-  .goldbtn:active{transform:translateY(0);}
+  .goldbtn:hover{transform:translateY(-1px) scale(1.01);box-shadow:0 8px 20px rgba(11,10,18,0.5);}
+  .goldbtn:active{transform:translateY(0) scale(0.99);}
   .goldbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
   .ghostbtn{
     background:transparent;border:1px solid var(--line);color:var(--pearl);
@@ -255,7 +201,7 @@
   textarea.qInput:focus{outline:none;border-color:var(--gold);}
   .chipRow{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 34px;}
   .chip{border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--muted);cursor:pointer;background:transparent;font-family:inherit;}
-  .chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(111,224,140,0.08);}
+  .chip.active{border-color:var(--gold);color:var(--gold-bright);background:rgba(184,151,94,0.08);}
   .navrow{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
 
   /* SHUFFLE / SELECT */
@@ -263,33 +209,33 @@
   .positionHint{font-size:15px;color:var(--muted);margin-bottom:22px;text-align:center;line-height:1.7;}
   .posBadges{display:flex;justify-content:center;gap:10px;margin-bottom:26px;}
   .posBadge{border:1px solid var(--line);border-radius:2px;padding:8px 14px;font-size:12px;letter-spacing:.05em;color:var(--muted);text-align:center;min-width:88px;}
-  .posBadge.done{border-color:var(--gold);color:var(--gold-bright);background:rgba(111,224,140,0.06);}
+  .posBadge.done{border-color:var(--gold);color:var(--gold-bright);background:rgba(184,151,94,0.06);}
   .posBadge .n{display:block;font-size:10px;color:var(--muted);letter-spacing:.2em;margin-bottom:3px;}
 
   .deckWrap{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:14px;border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,0.015);}
   .cardBack{
     width:34px;height:52px;border-radius:3px;cursor:pointer;position:relative;flex-shrink:0;
     background:
-      radial-gradient(circle at 50% 50%, rgba(111,224,140,0.22) 0%, transparent 45%),
-      repeating-linear-gradient(45deg, rgba(111,224,140,0.13) 0 2px, transparent 2px 7px),
+      radial-gradient(circle at 50% 50%, rgba(184,151,94,0.22) 0%, transparent 45%),
+      repeating-linear-gradient(45deg, rgba(184,151,94,0.13) 0 2px, transparent 2px 7px),
       linear-gradient(160deg, var(--deep2), var(--burgundy) 130%);
     border:1px solid var(--gold);
     transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease, opacity .3s ease;
     box-shadow:0 2px 6px rgba(0,0,0,0.35);
   }
   .cardBack::after{
-    content:"";position:absolute;inset:4px;border:1px solid rgba(111,224,140,0.5);border-radius:2px;
-    background-image:radial-gradient(circle, rgba(111,224,140,0.55) 0.5px, transparent 0.5px);
+    content:"";position:absolute;inset:4px;border:1px solid rgba(184,151,94,0.5);border-radius:2px;
+    background-image:radial-gradient(circle, rgba(184,151,94,0.55) 0.5px, transparent 0.5px);
     background-size:6px 6px;background-position:center;
   }
   .cardBack::before{
     content:"✦";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     font-size:9px;color:var(--gold-bright);opacity:.6;z-index:1;
   }
-  .cardBack:hover:not(.taken){transform:translateY(-6px) scale(1.04);box-shadow:0 12px 22px rgba(0,0,0,0.55), 0 0 14px rgba(111,224,140,0.25);}
+  .cardBack:hover:not(.taken){transform:translateY(-6px) scale(1.04);box-shadow:0 12px 22px rgba(0,0,0,0.55), 0 0 14px rgba(184,151,94,0.25);}
   .cardBack.taken{opacity:0;pointer-events:none;transform:scale(.4);}
   .dailyBack{width:130px;height:200px;}
-  .dailyBack:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 28px rgba(0,0,0,0.6), 0 0 18px rgba(111,224,140,0.3);}
+  .dailyBack:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 14px 28px rgba(0,0,0,0.6), 0 0 18px rgba(184,151,94,0.3);}
 
   .traySpace{display:flex;gap:14px;justify-content:center;margin:30px 0;min-height:170px;}
   .traySlot{width:100px;display:flex;flex-direction:column;align-items:center;}
@@ -298,14 +244,14 @@
     width:100px;height:158px;border-radius:4px;border:2px solid var(--gold);
     background:linear-gradient(165deg, #1a2340, #0d1220 70%);
     position:relative;padding:6px;
-    box-shadow:0 10px 26px rgba(0,0,0,.55), inset 0 0 0 1px rgba(111,224,140,0.15);
+    box-shadow:0 10px 26px rgba(0,0,0,.55), inset 0 0 0 1px rgba(184,151,94,0.15);
   }
   .cardFront.majorCard{border-color:var(--burgundy-bright);}
   .cardCorner{position:absolute;font-family:'Cinzel',serif;font-size:10px;color:var(--gold-bright);letter-spacing:.05em;z-index:1;}
   .cardCorner.tl{top:6px;left:8px;}
   .cardCorner.br{bottom:6px;right:8px;transform:rotate(180deg);}
   .cardInnerFrame{
-    position:absolute;inset:5px;border:1px solid rgba(111,224,140,0.45);border-radius:2px;
+    position:absolute;inset:5px;border:1px solid rgba(184,151,94,0.45);border-radius:2px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px 6px;
   }
   .cardFront.majorCard .cardInnerFrame{border-color:rgba(155,95,224,0.55);}
@@ -322,8 +268,8 @@
   .flipFace.flipFront{transform:rotateY(180deg);}
   .trayCardBack{
     width:100%;height:100%;border-radius:5px;border:1px solid var(--gold);
-    background:radial-gradient(circle at 50% 50%, rgba(111,224,140,0.22) 0%, transparent 45%),
-      repeating-linear-gradient(45deg, rgba(111,224,140,0.13) 0 2px, transparent 2px 7px),
+    background:radial-gradient(circle at 50% 50%, rgba(184,151,94,0.22) 0%, transparent 45%),
+      repeating-linear-gradient(45deg, rgba(184,151,94,0.13) 0 2px, transparent 2px 7px),
       linear-gradient(160deg, var(--deep2), var(--burgundy) 130%);
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 10px 26px rgba(0,0,0,.5);
@@ -332,7 +278,7 @@
   .flipCard.suspense{animation:suspensePulse .7s ease-in-out infinite alternate;}
   @keyframes suspensePulse{
     0%{filter:brightness(1);}
-    100%{filter:brightness(1.22) drop-shadow(0 0 16px rgba(111,224,140,0.45));}
+    100%{filter:brightness(1.22) drop-shadow(0 0 16px rgba(184,151,94,0.45));}
   }
   .revealCta{text-align:center;margin:26px 0 6px;}
   .revealHint{font-size:12px;color:var(--muted);margin-top:10px;}
@@ -381,7 +327,7 @@
   @keyframes spin{to{transform:rotate(360deg);}}
   .loadingWrap p{color:var(--muted);font-style:italic;font-size:16px;}
 
-  .errBox{border:1px solid var(--burgundy-bright);background:rgba(91,47,138,0.12);color:var(--pearl);padding:16px 18px;border-radius:3px;font-size:14px;line-height:1.6;}
+  .errBox{border:1px solid var(--burgundy-bright);background:rgba(54,42,82,0.12);color:var(--pearl);padding:16px 18px;border-radius:3px;font-size:14px;line-height:1.6;}
 
   /* HISTORY */
   .histItem{border:1px solid var(--line);border-radius:3px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s;}
@@ -535,17 +481,17 @@ function salinaPortraitSvg(){
   return `<svg viewBox="-10 -34 320 334" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
   <defs>
     <radialGradient id="bgGrad" cx="50%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#2c1450"/>
-      <stop offset="65%" stop-color="#170b28"/>
-      <stop offset="100%" stop-color="#0d0716"/>
+      <stop offset="0%" stop-color="#221b38"/>
+      <stop offset="65%" stop-color="#14101f"/>
+      <stop offset="100%" stop-color="#0b0a12"/>
     </radialGradient>
     <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#2c1345"/>
-      <stop offset="100%" stop-color="#0d0716"/>
+      <stop offset="100%" stop-color="#0b0a12"/>
     </linearGradient>
     <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#5b2f8a"/>
-      <stop offset="100%" stop-color="#2a1245"/>
+      <stop offset="0%" stop-color="#4a3a68"/>
+      <stop offset="100%" stop-color="#1c1730"/>
     </linearGradient>
     <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f6efe1"/>
@@ -553,23 +499,23 @@ function salinaPortraitSvg(){
     </linearGradient>
     <linearGradient id="hatGrad" x1="0" y1="1" x2="0" y2="0">
       <stop offset="0%" stop-color="#4a2470"/>
-      <stop offset="100%" stop-color="#2a1245"/>
+      <stop offset="100%" stop-color="#1c1730"/>
     </linearGradient>
   </defs>
 
   <circle cx="150" cy="150" r="148" fill="url(#bgGrad)"/>
-  <circle cx="150" cy="150" r="143" fill="none" stroke="#6fe08c" stroke-width="1" opacity="0.5"/>
-  <circle cx="150" cy="150" r="134" fill="none" stroke="#6fe08c" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="150" cy="150" r="143" fill="none" stroke="#d9bf8a" stroke-width="1" opacity="0.5"/>
+  <circle cx="150" cy="150" r="134" fill="none" stroke="#d9bf8a" stroke-width="0.5" opacity="0.3"/>
 
   <!-- ambient stars -->
-  <g fill="#6fe08c" opacity="0.7">
+  <g fill="#d9bf8a" opacity="0.7">
     <circle cx="52" cy="70" r="1.6"/><circle cx="70" cy="48" r="1.1"/>
     <circle cx="240" cy="66" r="1.4"/><circle cx="258" cy="96" r="1"/>
     <circle cx="46" cy="200" r="1.2"/><circle cx="252" cy="210" r="1.3"/>
     <circle cx="120" cy="34" r="1"/>
   </g>
   <!-- crescent moon -->
-  <path d="M225 55 a20 20 0 1 0 0 30 a15 15 0 1 1 0 -30 Z" fill="#9b5fe0" opacity="0.85"/>
+  <path d="M225 55 a20 20 0 1 0 0 30 a15 15 0 1 1 0 -30 Z" fill="#7d6ba8" opacity="0.85"/>
 
   <!-- flowing hair, back layer -->
   <path d="M150 96
@@ -598,11 +544,11 @@ function salinaPortraitSvg(){
     Z" fill="url(#hairGrad)"/>
 
   <!-- shoulders / robe -->
-  <path d="M96 300 C 100 250, 118 224, 150 222 C 182 224, 200 250, 204 300 Z" fill="url(#dressGrad)" stroke="#6fe08c" stroke-width="1" opacity="0.95"/>
-  <path d="M120 226 C 130 240, 170 240, 180 226" fill="none" stroke="#6fe08c" stroke-width="1" opacity="0.8"/>
+  <path d="M96 300 C 100 250, 118 224, 150 222 C 182 224, 200 250, 204 300 Z" fill="url(#dressGrad)" stroke="#d9bf8a" stroke-width="1" opacity="0.95"/>
+  <path d="M120 226 C 130 240, 170 240, 180 226" fill="none" stroke="#d9bf8a" stroke-width="1" opacity="0.8"/>
   <!-- thin green amulet chain -->
-  <path d="M136 228 Q150 244 164 228" fill="none" stroke="#6fe08c" stroke-width="1" opacity="0.7"/>
-  <circle cx="150" cy="243" r="2.4" fill="#6fe08c"/>
+  <path d="M136 228 Q150 244 164 228" fill="none" stroke="#d9bf8a" stroke-width="1" opacity="0.7"/>
+  <circle cx="150" cy="243" r="2.4" fill="#d9bf8a"/>
 
   <!-- neck -->
   <path d="M136 196 L136 224 C142 232 158 232 164 224 L164 196 Z" fill="url(#skinGrad)"/>
@@ -610,11 +556,11 @@ function salinaPortraitSvg(){
   <!-- face -->
   <ellipse cx="150" cy="158" rx="44" ry="54" fill="url(#skinGrad)"/>
   <!-- under-chin contact shadow for roundness -->
-  <ellipse cx="150" cy="204" rx="26" ry="8" fill="#0d0716" opacity="0.22"/>
+  <ellipse cx="150" cy="204" rx="26" ry="8" fill="#0b0a12" opacity="0.22"/>
   <!-- soft specular highlight (upper-left light source) -->
   <ellipse cx="130" cy="132" rx="22" ry="26" fill="#ffffff" opacity="0.10"/>
   <!-- rim light along right silhouette -->
-  <path d="M186 118 C196 138, 196 178, 180 202" fill="none" stroke="#9b5fe0" stroke-width="2.5" opacity="0.35" stroke-linecap="round"/>
+  <path d="M186 118 C196 138, 196 178, 180 202" fill="none" stroke="#7d6ba8" stroke-width="2.5" opacity="0.35" stroke-linecap="round"/>
 
   <!-- front hair framing face -->
   <path d="M104 150 C100 120, 118 98, 150 96 C 182 98, 200 120, 196 150
@@ -623,40 +569,39 @@ function salinaPortraitSvg(){
   <path d="M192 150 C196 190, 190 216, 178 236 C 188 206, 190 176, 184 152 Z" fill="url(#hairGrad)"/>
 
   <!-- eyebrows -->
-  <path d="M124 148 Q134 141 145 146" fill="none" stroke="#3a1a5c" stroke-width="2" stroke-linecap="round"/>
-  <path d="M176 148 Q166 141 155 146" fill="none" stroke="#3a1a5c" stroke-width="2" stroke-linecap="round"/>
+  <path d="M124 148 Q134 141 145 146" fill="none" stroke="#2a2138" stroke-width="2" stroke-linecap="round"/>
+  <path d="M176 148 Q166 141 155 146" fill="none" stroke="#2a2138" stroke-width="2" stroke-linecap="round"/>
 
   <!-- closed, serene eyes -->
-  <path d="M122 160 Q133 166 146 160" fill="none" stroke="#1f0f2e" stroke-width="2" stroke-linecap="round"/>
-  <path d="M178 160 Q167 166 154 160" fill="none" stroke="#1f0f2e" stroke-width="2" stroke-linecap="round"/>
-  <path d="M124 163 Q133 167 144 163" fill="none" stroke="#6fe08c" stroke-width="0.75" opacity="0.7"/>
-  <path d="M176 163 Q167 167 156 163" fill="none" stroke="#6fe08c" stroke-width="0.75" opacity="0.7"/>
+  <path d="M122 160 Q133 166 146 160" fill="none" stroke="#17121f" stroke-width="2" stroke-linecap="round"/>
+  <path d="M178 160 Q167 166 154 160" fill="none" stroke="#17121f" stroke-width="2" stroke-linecap="round"/>
+  <path d="M124 163 Q133 167 144 163" fill="none" stroke="#d9bf8a" stroke-width="0.75" opacity="0.7"/>
+  <path d="M176 163 Q167 167 156 163" fill="none" stroke="#d9bf8a" stroke-width="0.75" opacity="0.7"/>
 
   <!-- nose -->
   <path d="M150 160 C148 170, 147 178, 150 182" fill="none" stroke="#d8c6a8" stroke-width="1.4" stroke-linecap="round"/>
 
   <!-- lips -->
-  <path d="M136 192 Q150 188 164 192 Q150 200 136 192 Z" fill="#5b2f8a" opacity="0.85"/>
+  <path d="M136 192 Q150 188 164 192 Q150 200 136 192 Z" fill="#4a3a68" opacity="0.85"/>
 
   <!-- blush -->
-  <ellipse cx="120" cy="178" rx="8" ry="5" fill="#9b5fe0" opacity="0.16"/>
-  <ellipse cx="180" cy="178" rx="8" ry="5" fill="#9b5fe0" opacity="0.16"/>
+  <ellipse cx="120" cy="178" rx="8" ry="5" fill="#7d6ba8" opacity="0.16"/>
+  <ellipse cx="180" cy="178" rx="8" ry="5" fill="#7d6ba8" opacity="0.16"/>
 
   <!-- crescent earring -->
-  <path d="M108 176 a5 5 0 1 0 0 8 a3.6 3.6 0 1 1 0 -8 Z" fill="#6fe08c"/>
+  <path d="M108 176 a5 5 0 1 0 0 8 a3.6 3.6 0 1 1 0 -8 Z" fill="#d9bf8a"/>
 
-  <!-- witch hat — tall, pops past the frame for depth -->
-  <ellipse cx="150" cy="112" rx="36" ry="7.5" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
-  <path d="M132 112 C136 82, 142 30, 150 -8 C 158 30, 167 82, 171 110 C 160 104, 142 105, 132 112 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="1"/>
-  <path d="M132 112 C138 90, 144 55, 149 15 L153 16 C 150 55, 146 90, 141 111 Z" fill="#6fe08c" opacity="0.14"/>
-  <path d="M150 -8 Q162 -28 152 -38 Q142 -26 150 -8 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="0.8"/>
-  <circle cx="150" cy="112" r="3" fill="#6fe08c"/>
+  <!-- elegant circlet headpiece -->
+  <path d="M110 118 Q150 100 190 118" fill="none" stroke="#d9bf8a" stroke-width="1.5" opacity="0.85"/>
+  <circle cx="150" cy="106" r="3.5" fill="#d9bf8a"/>
+  <path d="M144 106 L150 96 L156 106" fill="none" stroke="#d9bf8a" stroke-width="1"/>
+  <circle cx="150" cy="98" r="2.2" fill="#d9bf8a" opacity="0.85"/>
 
   <!-- tarot card held near cheek -->
   <g transform="translate(198,150) rotate(18)">
-    <rect x="0" y="0" width="34" height="50" rx="3" fill="#170b28" stroke="#6fe08c" stroke-width="1.4"/>
-    <rect x="4" y="4" width="26" height="42" rx="1.5" fill="none" stroke="#3f9e5c" stroke-width="0.6" opacity="0.7"/>
-    <path d="M17 14 L20 22 L28 25 L20 28 L17 36 L14 28 L6 25 L14 22 Z" fill="#6fe08c" opacity="0.9"/>
+    <rect x="0" y="0" width="34" height="50" rx="3" fill="#14101f" stroke="#d9bf8a" stroke-width="1.4"/>
+    <rect x="4" y="4" width="26" height="42" rx="1.5" fill="none" stroke="#b8975e" stroke-width="0.6" opacity="0.7"/>
+    <path d="M17 14 L20 22 L28 25 L20 28 L17 36 L14 28 L6 25 L14 22 Z" fill="#d9bf8a" opacity="0.9"/>
   </g>
   </svg>`;
 }
@@ -672,307 +617,13 @@ function salinaPortraitInner(){
     .replace(/<circle cx="150" cy="150" r="134"[^/]*\/>/,'');
 }
 
-/* Cauldron & frog companion illustration — bubbling green potion with a little frog on the rim */
-function cauldronSvg(){
-  const bubbles = [
-    {cx:130, cy:150, r:4, delay:0}, {cx:150, cy:145, r:5, delay:0.4},
-    {cx:168, cy:152, r:3.5, delay:0.9}, {cx:142, cy:155, r:3, delay:1.3},
-    {cx:160, cy:148, r:2.6, delay:1.7}
-  ].map(b=>`<circle class="bubble" cx="${b.cx}" cy="${b.cy}" r="${b.r}" fill="#6fe08c" style="animation-delay:${b.delay}s"/>`).join('');
-  const wisps = [0,1,2].map(i=>`<path class="steamWisp" style="animation-delay:${i*0.7}s" d="M${138+i*12} 130 C ${134+i*12} 116, ${146+i*12} 108, ${140+i*12} 92" fill="none" stroke="#c9b6e8" stroke-width="2" stroke-linecap="round" opacity="0.35"/>`).join('');
-  return `<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="potionGrad" cx="50%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="#8fef9c"/>
-        <stop offset="100%" stop-color="#2f9e52"/>
-      </radialGradient>
-      <linearGradient id="potGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#241640"/>
-        <stop offset="100%" stop-color="#0d0716"/>
-      </linearGradient>
-    </defs>
-
-    ${wisps}
-
-    <!-- cauldron body -->
-    <path d="M96 128 C96 128 92 190 150 192 C 208 190 204 128 204 128 Z" fill="url(#potGrad)" stroke="#6fe08c" stroke-width="1.4"/>
-    <ellipse cx="150" cy="128" rx="54" ry="14" fill="url(#potionGrad)" stroke="#6fe08c" stroke-width="1.2"/>
-    <ellipse cx="150" cy="126" rx="46" ry="9" fill="#0d0716" opacity="0.25"/>
-    ${bubbles}
-
-    <!-- legs -->
-    <path d="M110 188 L100 202" stroke="#6fe08c" stroke-width="4" stroke-linecap="round"/>
-    <path d="M150 192 L150 206" stroke="#6fe08c" stroke-width="4" stroke-linecap="round"/>
-    <path d="M190 188 L200 202" stroke="#6fe08c" stroke-width="4" stroke-linecap="round"/>
-
-    <!-- rim highlight -->
-    <ellipse cx="150" cy="128" rx="54" ry="14" fill="none" stroke="#9b5fe0" stroke-width="0.8" opacity="0.5"/>
-
-    <!-- little frog sitting on the rim -->
-    <g transform="translate(200,110)">
-      <ellipse cx="0" cy="10" rx="17" ry="12" fill="#3f9e5c"/>
-      <circle cx="-8" cy="-2" r="6.5" fill="#3f9e5c"/>
-      <circle cx="8" cy="-2" r="6.5" fill="#3f9e5c"/>
-      <circle cx="-8" cy="-3" r="2.6" fill="#0d0716"/>
-      <circle cx="8" cy="-3" r="2.6" fill="#0d0716"/>
-      <circle cx="-9" cy="-4" r="0.8" fill="#eaffef"/>
-      <circle cx="7" cy="-4" r="0.8" fill="#eaffef"/>
-      <path d="M-7 14 Q0 19 7 14" fill="none" stroke="#0d0716" stroke-width="1.2" stroke-linecap="round"/>
-      <ellipse cx="-13" cy="20" rx="4" ry="2.4" fill="#3f9e5c"/>
-      <ellipse cx="13" cy="20" rx="4" ry="2.4" fill="#3f9e5c"/>
-    </g>
-  </svg>`;
-}
-
-/* Standalone dancing frog for the after-reading party screen */
-function frogMiniSvg(color){
-  return `<svg viewBox="-20 -20 40 45" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="0" cy="10" rx="17" ry="12" fill="${color}"/>
-    <circle cx="-8" cy="-2" r="6.5" fill="${color}"/>
-    <circle cx="8" cy="-2" r="6.5" fill="${color}"/>
-    <circle cx="-8" cy="-3" r="2.6" fill="#0d0716"/>
-    <circle cx="8" cy="-3" r="2.6" fill="#0d0716"/>
-    <circle cx="-9" cy="-4" r="0.8" fill="#eaffef"/>
-    <circle cx="7" cy="-4" r="0.8" fill="#eaffef"/>
-    <path d="M-7 14 Q0 19 7 14" fill="none" stroke="#0d0716" stroke-width="1.2" stroke-linecap="round"/>
-    <ellipse cx="-13" cy="20" rx="4" ry="2.4" fill="${color}"/>
-    <ellipse cx="13" cy="20" rx="4" ry="2.4" fill="${color}"/>
-  </svg>`;
-}
-const FROG_COLORS = ['#3f9e5c','#6fe08c','#5b2f8a','#9b5fe0','#2f9e52','#7ed957'];
-function dancingFrogsMarkup(count){
-  let s='';
-  for(let i=0;i<count;i++){
-    const left = 4 + i*(92/(count-1));
-    const delay = (i*0.13).toFixed(2);
-    const dur = (0.55 + (i%3)*0.09).toFixed(2);
-    const size = 40 + (i%3)*8;
-    s += `<div class="dancingFrog" style="left:${left}%;width:${size}px;height:${size*1.14}px;animation-delay:${delay}s;animation-duration:${dur}s;">${frogMiniSvg(FROG_COLORS[i%FROG_COLORS.length])}</div>`;
-  }
-  return s;
-}
-function confettiMarkup(count){
-  const colors = ['#6fe08c','#9b5fe0','#3f9e5c','#c9b6e8','#eaffef'];
-  let s='';
-  for(let i=0;i<count;i++){
-    const left=(Math.random()*100).toFixed(1), delay=(Math.random()*3).toFixed(2), dur=(2+Math.random()*2.2).toFixed(2);
-    const color = colors[i%colors.length];
-    s += `<span class="confetti" style="left:${left}%;background:${color};animation-delay:${delay}s;animation-duration:${dur}s;"></span>`;
-  }
-  return s;
-}
-
-/* ============== RITUAL SCREEN — witch + frog walk in and chant before the reading ============== */
-const INCANT_LINES = ["Umbra Lucis, Aperi Viam...", "Tres Cartae, Unum Fatum...", "Salina Vocat — Revelare!"];
-function ritualWitchSvg(){
-  return `<svg viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="rHairGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2c1345"/><stop offset="100%" stop-color="#0d0716"/>
-    </linearGradient>
-    <linearGradient id="rRobeGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#5b2f8a"/><stop offset="100%" stop-color="#20103a"/>
-    </linearGradient>
-    <linearGradient id="rSkinGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f6efe1"/><stop offset="100%" stop-color="#e9dcc3"/>
-    </linearGradient>
-    <linearGradient id="rHatGrad" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#4a2470"/><stop offset="100%" stop-color="#2a1245"/>
-    </linearGradient>
-  </defs>
-
-  <!-- staff with glowing orb -->
-  <line x1="150" y1="120" x2="160" y2="300" stroke="#4a2470" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="149" cy="112" r="7" fill="#6fe08c" opacity="0.9"/>
-  <circle cx="149" cy="112" r="14" fill="#6fe08c" opacity="0.3"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="1.4s" repeatCount="indefinite"/></circle>
-
-  <!-- flowing robe -->
-  <path d="M70 160 C 50 200, 36 260, 30 320 L170 320 C 164 260, 150 200, 130 160 Z" fill="url(#rRobeGrad)" stroke="#6fe08c" stroke-width="1.4"/>
-  <path d="M85 175 C 80 230, 78 280, 82 320 M115 175 C120 230,122 280,118 320" stroke="#6fe08c" stroke-width="0.6" opacity="0.35" fill="none"/>
-  <path d="M62 320 L54 336 M100 320 L100 336 M138 320 L146 336" stroke="#6fe08c" stroke-width="3" stroke-linecap="round"/>
-
-  <!-- hair flowing behind -->
-  <path d="M100 60 C 60 60, 36 110, 44 168 C 48 196, 64 214, 82 224
-    C 68 198, 64 164, 74 136 C 54 164, 50 198, 60 226
-    C 44 204, 38 164, 52 128
-    C 36 116, 60 66, 100 60 Z" fill="url(#rHairGrad)"/>
-  <path d="M100 60 C 140 60, 164 110, 156 168 C 152 196, 136 214, 118 224
-    C 132 198, 136 164, 126 136 C 146 164, 150 198, 140 226
-    C 156 204, 162 164, 148 128
-    C 164 116, 140 66, 100 60 Z" fill="url(#rHairGrad)"/>
-
-  <!-- shoulders -->
-  <path d="M64 168 C 68 148, 82 136, 100 134 C 118 136, 132 148, 136 168 L136 178 L64 178 Z" fill="url(#rRobeGrad)" stroke="#6fe08c" stroke-width="1"/>
-
-  <!-- neck & face -->
-  <path d="M92 96 L92 116 C96 122 104 122 108 116 L108 96 Z" fill="url(#rSkinGrad)"/>
-  <ellipse cx="100" cy="80" rx="28" ry="34" fill="url(#rSkinGrad)"/>
-
-  <!-- front hair framing -->
-  <path d="M74 76 C72 56, 84 42, 100 42 C 116 42, 128 56, 126 76
-    C122 60, 110 50, 100 50 C 90 50, 78 60, 74 76 Z" fill="url(#rHairGrad)"/>
-
-  <!-- witch hat -->
-  <ellipse cx="100" cy="46" rx="24" ry="5.5" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
-  <path d="M88 46 C90 26, 95 4, 101 -22 C 107 4, 113 26, 114 44
-    C 106 40, 94 40, 88 46 Z" fill="url(#rHatGrad)" stroke="#6fe08c" stroke-width="1"/>
-  <path d="M101 -22 Q110 -38 103 -46 Q95 -36 101 -22 Z" fill="url(#rHatGrad)" stroke="#6fe08c" stroke-width="0.8"/>
-  <circle cx="100" cy="46" r="2.4" fill="#6fe08c"/>
-
-  <!-- eyebrows, slightly arched (mischievous) -->
-  <path d="M80 70 Q88 63 96 68" fill="none" stroke="#3a1a5c" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M120 70 Q112 63 104 68" fill="none" stroke="#3a1a5c" stroke-width="1.8" stroke-linecap="round"/>
-
-  <!-- open, glowing eyes -->
-  <ellipse cx="88" cy="78" rx="5" ry="4" fill="#0d0716"/>
-  <ellipse cx="112" cy="78" rx="5" ry="4" fill="#0d0716"/>
-  <circle cx="88" cy="78" r="2.6" fill="#6fe08c"><animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite"/></circle>
-  <circle cx="112" cy="78" r="2.6" fill="#6fe08c"><animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite" begin="0.12s"/></circle>
-
-  <!-- nose -->
-  <path d="M100 80 C99 86, 98 90, 100 93" fill="none" stroke="#d8c6a8" stroke-width="1.2" stroke-linecap="round"/>
-
-  <!-- mischievous smiling mouth -->
-  <path d="M88 100 Q100 108 112 100 Q100 102 88 100 Z" fill="#5b2f8a" opacity="0.9"/>
-  <path d="M111 99 Q116 97 118 92" fill="none" stroke="#5b2f8a" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
-
-  <!-- earring -->
-  <path d="M74 90 a4 4 0 1 0 0 6 a3 3 0 1 1 0 -6 Z" fill="#6fe08c"/>
-  </svg>`;
-}
+/* ============== READING TRANSITION — calm, minimal moment before the result ============== */
 function ritualScreen(){
-  return `<div class="panel ritualPanel">
-    <div class="ritualStage">
-      <div class="ritualFog"></div>
-      <div class="ritualWitch">${ritualWitchSvg()}</div>
-      <div class="ritualFrog">${frogMiniSvg('#3f9e5c')}</div>
-    </div>
-    <div class="incantWrap">
-      <p class="incantLine l1">${INCANT_LINES[0]}<span class="incantSub">${t('ritualIncant1')}</span></p>
-      <p class="incantLine l2">${INCANT_LINES[1]}<span class="incantSub">${t('ritualIncant2')}</span></p>
-      <p class="incantLine l3">${INCANT_LINES[2]}<span class="incantSub">${t('ritualIncant3')}</span></p>
-    </div>
+  return `<div class="panel transitionPanel" style="text-align:center;">
+    <div class="transitionPortrait">${salinaFaceSvg()}</div>
+    <p class="transitionText">${t('transitionText')}</p>
+    <div class="transitionDots"><span></span><span></span><span></span></div>
   </div>`;
-}
-function playWitchCackle(startTime){
-  const ctx = state.audioCtx; if(!ctx) return;
-  const syllables = 5;
-  for(let i=0;i<syllables;i++){
-    const t = startTime + i*0.16;
-    const osc = ctx.createOscillator();
-    osc.type = 'sawtooth';
-    const baseFreq = 460 + Math.random()*90;
-    osc.frequency.setValueAtTime(baseFreq, ctx.currentTime+t);
-    osc.frequency.exponentialRampToValueAtTime(baseFreq*0.55, ctx.currentTime+t+0.13);
-    const filter = ctx.createBiquadFilter();
-    filter.type='bandpass'; filter.frequency.value=1200; filter.Q.value=3;
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime+t);
-    gain.gain.exponentialRampToValueAtTime(0.16, ctx.currentTime+t+0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+t+0.15);
-    osc.connect(filter).connect(gain).connect(ctx.destination);
-    osc.start(ctx.currentTime+t);
-    osc.stop(ctx.currentTime+t+0.17);
-  }
-}
-function startRitualAudio(){
-  try{
-    if(!state.audioCtx){ state.audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }
-    if(state.audioCtx.state==='suspended'){ state.audioCtx.resume(); }
-    const ctx = state.audioCtx;
-    const osc1 = ctx.createOscillator(); osc1.type='sine'; osc1.frequency.value=55;
-    const osc2 = ctx.createOscillator(); osc2.type='sine'; osc2.frequency.value=58.5;
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.09, ctx.currentTime+1.4);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+9.5);
-    osc1.connect(gain); osc2.connect(gain); gain.connect(ctx.destination);
-    osc1.start(); osc2.start();
-    osc1.stop(ctx.currentTime+9.7); osc2.stop(ctx.currentTime+9.7);
-    state.ritualOsc = {osc1, osc2, gain};
-    [2.6, 7.2].forEach(t => audioClap(t));
-    playWitchCackle(1.6);
-    playWitchCackle(5.9);
-  }catch(e){ /* audio unavailable, ritual still plays visually */ }
-}
-function stopRitualAudio(){
-  if(state.ritualOsc){
-    try{ state.ritualOsc.osc1.stop(); state.ritualOsc.osc2.stop(); }catch(e){}
-    state.ritualOsc = null;
-  }
-}
-
-function partyScreen(){
-  return `<div class="panel glassCard" style="text-align:center;">
-    <h2 class="disp partyTitle">🎉 ${t('partyTitle')}</h2>
-    <p class="partySub">${t('partySub')}</p>
-    <div class="frogStage">${dancingFrogsMarkup(7)}${confettiMarkup(22)}</div>
-    <div class="navrow" style="margin-top:24px;justify-content:center;gap:12px;flex-wrap:wrap;">
-      <button class="ghostbtn" id="btn-toggle-music">${state.musicOn ? t('muteMusic') : t('playMusic')}</button>
-      <button class="goldbtn" id="btn-party-home"><span class="shimmerText">${t('backHome')}</span></button>
-    </div>
-  </div>`;
-}
-
-/* ============== ORIGINAL PARTY MUSIC (Web Audio API) ==============
-   A small original, generative festive loop — not a reproduction of any
-   existing song. Latin-pop-inspired tempo & rhythm, written from scratch. */
-function audioNote(freq, time, dur, type, vol){
-  const ctx = state.audioCtx; if(!ctx) return;
-  const osc = ctx.createOscillator();
-  osc.type = type; osc.frequency.value = freq;
-  const gain = ctx.createGain();
-  gain.gain.setValueAtTime(0.0001, ctx.currentTime+time);
-  gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime+time+0.01);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+time+dur);
-  osc.connect(gain).connect(ctx.destination);
-  osc.start(ctx.currentTime+time);
-  osc.stop(ctx.currentTime+time+dur+0.05);
-}
-function audioClap(time){
-  const ctx = state.audioCtx; if(!ctx) return;
-  const bufSize = Math.floor(ctx.sampleRate*0.06);
-  const buffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
-  const data = buffer.getChannelData(0);
-  for(let i=0;i<bufSize;i++){ data[i] = (Math.random()*2-1) * Math.pow(1-i/bufSize, 2); }
-  const noise = ctx.createBufferSource(); noise.buffer = buffer;
-  const filter = ctx.createBiquadFilter(); filter.type='bandpass'; filter.frequency.value=1600;
-  const gain = ctx.createGain();
-  gain.gain.setValueAtTime(0.4, ctx.currentTime+time);
-  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+time+0.08);
-  noise.connect(filter).connect(gain).connect(ctx.destination);
-  noise.start(ctx.currentTime+time);
-}
-function schedulePartyBar(){
-  if(!state.audioCtx || !state.musicOn || state.screen!=='party') return;
-  const bpm = 116, stepDur = 60/bpm/4;
-  const bassFreqs = [98,98,123.47,110]; // G2,G2,B2,A2 — original simple pattern
-  const scale = [392,440,494,587,659]; // playful pentatonic-ish flourishes
-  for(let i=0;i<16;i++){
-    const t = i*stepDur;
-    if(i%4===0){ audioNote(bassFreqs[(i/4)|0], t, stepDur*1.8, 'sine', 0.3); }
-    if(i%4===2){ audioClap(t); }
-    if(i%2===0 && Math.random()<0.45){
-      audioNote(scale[Math.floor(Math.random()*scale.length)], t, stepDur*0.85, 'triangle', 0.1);
-    }
-  }
-  state.partyTimer = setTimeout(schedulePartyBar, stepDur*16*1000);
-}
-function startPartyMusic(){
-  try{
-    if(!state.audioCtx){ state.audioCtx = new (window.AudioContext||window.webkitAudioContext)(); }
-    if(state.audioCtx.state==='suspended'){ state.audioCtx.resume(); }
-    state.musicOn = true;
-    schedulePartyBar();
-  }catch(e){ state.musicOn = false; }
-}
-function pausePartyMusic(){
-  state.musicOn = false;
-  if(state.partyTimer){ clearTimeout(state.partyTimer); state.partyTimer=null; }
-}
-function stopPartyMusic(){
-  pausePartyMusic();
-  if(state.audioCtx){ try{ state.audioCtx.close(); }catch(e){} state.audioCtx=null; }
 }
 
 /* ============== I18N ============== */
@@ -1004,11 +655,11 @@ const STR = {
     histEmpty:"ยังไม่มีประวัติการดูไพ่",
     histBack:"← กลับหน้าแรก",
     question:"คำถาม",
-    nextParty:"ถัดไป → ปาร์ตี้กบ 🐸", partyTitle:"ปาร์ตี้ฉลองคำทำนาย!", partySub:"ให้เหล่ากบเต้นฉลองไปกับคุณ",
-    muteMusic:"ปิดเสียง", playMusic:"เปิดเสียง", backHome:"กลับหน้าแรก",
     revealAll:"เปิดไพ่ทั้งหมด ✦", revealHint:"ไพ่ทั้งสามใบพร้อมแล้ว แตะเพื่อเปิดเผยพร้อมกัน",
-    ritualIncant1:"เงาแห่งแสง จงเปิดทาง...", ritualIncant2:"ไพ่สามใบ โชคชะตาเดียว...", ritualIncant3:"Salina เรียกขาน — จงเผยความจริง!",
-    dailyNavLabel:"🌙 ไพ่ประจำวัน"
+    transitionText:"Salina กำลังพิจารณาไพ่ของคุณ...",
+    dailyNavLabel:"🌙 ไพ่ประจำวัน",
+    nav_home:"หน้าแรก", nav_read:"เปิดไพ่", nav_daily:"ไพ่ประจำวัน", nav_history:"ประวัติ",
+    step1:"ถาม", step2:"สับไพ่", step3:"เลือกไพ่", step4:"คำทำนาย"
   },
   fr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -1037,11 +688,11 @@ const STR = {
     histEmpty:"Aucun tirage enregistré pour le moment",
     histBack:"← Retour à l'accueil",
     question:"Question",
-    nextParty:"Suivant → Fête des grenouilles 🐸", partyTitle:"La fête après le tirage !", partySub:"Les grenouilles dansent pour célébrer avec vous",
-    muteMusic:"Couper le son", playMusic:"Activer le son", backHome:"Retour à l'accueil",
     revealAll:"Révéler les trois cartes ✦", revealHint:"Vos trois cartes sont prêtes — touchez pour les révéler ensemble",
-    ritualIncant1:"Ombre de lumière, ouvre la voie...", ritualIncant2:"Trois cartes, un seul destin...", ritualIncant3:"Salina appelle — révèle-toi !",
-    dailyNavLabel:"🌙 Carte du jour"
+    transitionText:"Salina examine vos cartes...",
+    dailyNavLabel:"🌙 Carte du jour",
+    nav_home:"Accueil", nav_read:"Tirage", nav_daily:"Carte du jour", nav_history:"Historique",
+    step1:"Question", step2:"Mélange", step3:"Choix", step4:"Lecture"
   },
   tr:{
     brandK1:"CyberGirlfriends", brandK2:"SALINA TAROT",
@@ -1070,11 +721,11 @@ const STR = {
     histEmpty:"Henüz kaydedilmiş bir fal yok",
     histBack:"← Ana sayfaya dön",
     question:"Soru",
-    nextParty:"İleri → Kurbağa Partisi 🐸", partyTitle:"Fal Sonrası Parti!", partySub:"Kurbağalar seninle kutluyor",
-    muteMusic:"Sesi kapat", playMusic:"Sesi aç", backHome:"Ana sayfaya dön",
     revealAll:"Tüm Kartları Aç ✦", revealHint:"Üç kartın hazır — birlikte açmak için dokun",
-    ritualIncant1:"Işığın gölgesi, yolu aç...", ritualIncant2:"Üç kart, tek bir kader...", ritualIncant3:"Salina çağırıyor — açığa çık!",
-    dailyNavLabel:"🌙 Günün Kartı"
+    transitionText:"Salina kartlarını inceliyor...",
+    dailyNavLabel:"🌙 Günün Kartı",
+    nav_home:"Ana Sayfa", nav_read:"Fal Aç", nav_daily:"Günün Kartı", nav_history:"Geçmiş",
+    step1:"Soru", step2:"Karıştır", step3:"Seç", step4:"Yorum"
   }
 };
 
@@ -1085,9 +736,7 @@ let state = {
   deck:[], picks:[], // {card, orientation, position}
   reading:null, loading:false, error:null,
   history:[],
-  musicOn:false, audioCtx:null, partyTimer:null,
   revealTriggered:false,
-  ritualOsc:null,
   dailyCard:null, dailyLoading:false
 };
 function t(k){ return STR[state.lang][k]; }
@@ -1130,8 +779,21 @@ async function drawDailyCard(){
 /* ============== RENDER ============== */
 function render(){
   const app = document.getElementById('app');
-  app.innerHTML = topbar() + body();
+  app.innerHTML = topbar() + navBar() + body();
   attachHandlers();
+}
+const NAV_ITEMS = [
+  {key:'home', screens:['home']},
+  {key:'read', screens:['question','select','locked','ritual','reading']},
+  {key:'daily', screens:['daily']},
+  {key:'history', screens:['history']}
+];
+function navBar(){
+  const items = NAV_ITEMS.map(n=>{
+    const active = n.screens.includes(state.screen);
+    return `<button data-nav="${n.key}" class="${active?'active':''}">${t('nav_'+n.key)}</button>`;
+  }).join('');
+  return `<nav class="navBar">${items}</nav>`;
 }
 function topbar(){
   return `
@@ -1153,7 +815,6 @@ function body(){
     case "ritual": return ritualScreen();
     case "reading": return readingScreen();
     case "history": return historyScreen();
-    case "party": return partyScreen();
     case "daily": return dailyScreen();
     default: return homeScreen();
   }
@@ -1169,8 +830,7 @@ function homeScreen(){
     </div>
     <h1>SALINA</h1>
     <h2 class="disp">TAROT</h2>
-    <div class="brandCrest">✦ ตำรับเวทมนตร์แห่งไพ่ทาโรต์ ✦</div>
-    <div class="cauldronWrap">${cauldronSvg()}</div>
+    <div class="brandCrest">✦ Tarot de Marseille ✦</div>
     <div class="flourish"><span class="fline"></span>${diamondSvg()}<span class="fline right"></span></div>
     <p class="tagline">${t('tagline')}</p>
     <div class="ctaWrap">
@@ -1179,9 +839,19 @@ function homeScreen(){
     </div>
   </div>`;
 }
+function stepProgressHtml(activeIdx){
+  const labels = [t('step1'), t('step2'), t('step3'), t('step4')];
+  return `<div class="stepProgress">${labels.map((l,i)=>{
+    const n = i+1;
+    const cls = n<activeIdx ? 'done' : (n===activeIdx ? 'active' : '');
+    const sep = i<labels.length-1 ? '<span class="sep"></span>' : '';
+    return `<div class="step ${cls}"><span class="n">${n<activeIdx?'✓':String(n).padStart(2,'0')}</span>${l}</div>${sep}`;
+  }).join('')}</div>`;
+}
 function questionScreen(){
   return `
   <div class="panel glassCard">
+    ${stepProgressHtml(1)}
     <div class="stepLabel">${t('stepQuestion')}</div>
     <h2 class="qTitle disp">${t('qTitle')}</h2>
     <textarea class="qInput" id="qInput" placeholder="${t('qPlaceholder')}">${escapeHtml(state.question)}</textarea>
@@ -1242,6 +912,7 @@ function selectScreen(){
 
   return `
   <div class="panel">
+    ${stepProgressHtml(3)}
     <div class="stepLabel">${t('stepSelect')}</div>
     <div class="positionHint">${t('selectHint')}</div>
     <div class="posBadges">${badges}</div>
@@ -1307,12 +978,13 @@ function lockedScreen(){
     </div>`).join('');
   return `
   <div class="panel" style="text-align:center;">
+    ${stepProgressHtml(4)}
     <div class="sealRibbon" style="animation:none;"><svg viewBox="0 0 40 40" fill="none" stroke="var(--void)" stroke-width="2"><path d="M20 6 L22 17 L33 20 L22 23 L20 34 L18 23 L7 20 L18 17 Z"/></svg></div>
     <h2 class="disp" style="font-size:22px;color:var(--gold-bright);margin:16px 0 6px;">${t('lockedTitle')}</h2>
     <p style="color:var(--muted);font-size:14px;max-width:440px;margin:0 auto 30px;">${t('lockedSub')}</p>
     <div class="lockedGrid">${cols}</div>
     <div class="hairline" style="max-width:300px;margin:26px auto;"></div>
-    <button class="goldbtn" id="btn-ask-salina">${t('askSalina')}</button>
+    <button class="goldbtn" id="btn-ask-salina"><span class="shimmerText">${t('askSalina')}</span></button>
     <div class="footlink"><button id="btn-reset">${t('newReading')}</button></div>
   </div>`;
 }
@@ -1343,8 +1015,7 @@ function readingScreen(){
     <div class="readingBody">${state.reading || ''}</div>
     <div class="hairline"></div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <button class="goldbtn" id="btn-next-party"><span class="shimmerText">${t('nextParty')}</span></button>
-      <button class="ghostbtn" id="btn-reset">${t('newReading')}</button>
+      <button class="goldbtn" id="btn-reset"><span class="shimmerText">${t('newReading')}</span></button>
       <button class="ghostbtn" id="btn-history">${t('history')}</button>
     </div>
   </div>`;
@@ -1413,6 +1084,18 @@ function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':
 /* ============== HANDLERS ============== */
 function attachHandlers(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{state.lang=b.dataset.lang; render();});
+  document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=async ()=>{
+    const key = b.dataset.nav;
+    if(key==='home'){ state.screen='home'; render(); return; }
+    if(key==='read'){ state.screen='question'; render(); return; }
+    if(key==='daily'){
+      state.screen='daily'; state.dailyLoading=true; render();
+      await loadDailyCard();
+      state.dailyLoading=false; render();
+      return;
+    }
+    if(key==='history'){ state.screen='history'; render(); return; }
+  });
   const s1=document.getElementById('btn-start'); if(s1) s1.onclick=()=>{state.screen='question'; render();};
   const hh=document.getElementById('btn-history'); if(hh) hh.onclick=()=>{state.screen='history'; render();};
   const bdn=document.getElementById('btn-daily-nav'); if(bdn) bdn.onclick=async ()=>{
@@ -1462,26 +1145,13 @@ function attachHandlers(){
   };
 
   const bas=document.getElementById('btn-ask-salina'); if(bas) bas.onclick=()=>{
-    state.screen='ritual'; render(); startRitualAudio();
+    state.screen='ritual'; render();
     setTimeout(()=>{
-      stopRitualAudio();
       state.screen='reading'; state.loading=true; state.error=null; render(); askSalina();
-    }, 10000);
+    }, 1600);
   };
   const brs=document.getElementById('btn-retry-salina'); if(brs) brs.onclick=()=>{ state.loading=true; state.error=null; render(); askSalina(); };
   const brt=document.getElementById('btn-reset'); if(brt) brt.onclick=()=>{
-    stopPartyMusic(); stopRitualAudio();
-    state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.revealTriggered=false; state.screen='home'; render();
-  };
-  const bnp=document.getElementById('btn-next-party'); if(bnp) bnp.onclick=()=>{
-    state.screen='party'; render(); startPartyMusic();
-  };
-  const btm=document.getElementById('btn-toggle-music'); if(btm) btm.onclick=()=>{
-    if(state.musicOn) pausePartyMusic(); else startPartyMusic();
-    render();
-  };
-  const bph=document.getElementById('btn-party-home'); if(bph) bph.onclick=()=>{
-    stopPartyMusic(); stopRitualAudio();
     state.question=''; state.picks=[]; state.deck=[]; state.reading=null; state.error=null; state.revealTriggered=false; state.screen='home'; render();
   };
   document.querySelectorAll('[data-histidx]').forEach(h=>h.onclick=()=>{
@@ -1694,7 +1364,7 @@ function attachPortraitTilt(){
   const wrap = document.getElementById('portraitWrap');
   const tilt = document.getElementById('portraitTilt');
   if(!wrap || !tilt) return;
-  const MAX = 14; // max degrees
+  const MAX = 7; // max degrees — restrained, premium feel
   function setFromClientXY(clientX, clientY){
     const r = wrap.getBoundingClientRect();
     const px = (clientX - r.left) / r.width;  // 0..1
@@ -1723,13 +1393,9 @@ function attachPortraitTilt(){
 function paintStars(){
   const el = document.getElementById('stars');
   let s='';
-  for(let i=0;i<34;i++){
+  for(let i=0;i<28;i++){
     const x=Math.random()*100, y=Math.random()*100, d=(Math.random()*3+2).toFixed(1), delay=(Math.random()*4).toFixed(1);
     s+=`<span class="star" style="left:${x}%;top:${y}%;animation-duration:${d}s;animation-delay:${delay}s;"></span>`;
-  }
-  for(let i=0;i<16;i++){
-    const x=Math.random()*100, d=(Math.random()*8+10).toFixed(1), delay=(Math.random()*12).toFixed(1), drift=((Math.random()*60)-30).toFixed(0);
-    s+=`<span class="ember" style="left:${x}%;--drift:${drift}px;animation-duration:${d}s;animation-delay:${delay}s;"></span>`;
   }
   el.innerHTML = s;
 }

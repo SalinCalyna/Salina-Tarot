@@ -110,23 +110,48 @@
   .home .ctaWrap{animation:fadeUp .8s ease .2s backwards;}
   .sigil{width:64px;height:64px;margin:0 auto 30px;opacity:.85;}
 
-  /* SALINA PORTRAIT */
+  /* SALINA PORTRAIT — bigger, layered, pseudo-3D with interactive tilt */
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-  @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  @keyframes tiltIdle{
+    0%,100%{transform:rotateX(4deg) rotateY(-6deg);}
+    50%{transform:rotateX(-3deg) rotateY(6deg);}
+  }
   .portraitWrap{
-    position:relative;width:216px;margin:0 auto 26px;
+    position:relative;width:260px;margin:0 auto 20px;
     animation:fadeUp .8s cubic-bezier(.2,.7,.2,1);
+    perspective:900px;
   }
   .portraitGlow{
-    position:absolute;inset:-30px;border-radius:50%;
-    background:radial-gradient(circle, rgba(111,224,140,0.28), rgba(91,47,138,0.16) 55%, transparent 75%);
-    filter:blur(6px);z-index:0;
+    position:absolute;inset:-36px;border-radius:50%;
+    background:radial-gradient(circle, rgba(111,224,140,0.32), rgba(91,47,138,0.18) 55%, transparent 75%);
+    filter:blur(8px);z-index:0;
+  }
+  .portraitGroundShadow{
+    position:absolute;left:50%;bottom:-14px;width:70%;height:22px;
+    transform:translateX(-50%);border-radius:50%;
+    background:radial-gradient(ellipse, rgba(0,0,0,0.6), transparent 72%);
+    z-index:0;filter:blur(2px);
   }
   .portraitFrame{
     position:relative;z-index:1;border-radius:50%;overflow:visible;
     animation:floatY 6s ease-in-out infinite;
+    transform-style:preserve-3d;
   }
-  .portraitFrame svg{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 40px rgba(0,0,0,.55));}
+  .portraitTilt{
+    transform-style:preserve-3d;
+    transition:transform .18s ease-out;
+    animation:tiltIdle 9s ease-in-out infinite;
+    will-change:transform;
+  }
+  .portraitTilt.manual{animation:none;}
+  .portraitTilt svg{
+    width:100%;height:auto;display:block;overflow:visible;
+    filter:
+      drop-shadow(0 4px 8px rgba(0,0,0,.45))
+      drop-shadow(0 22px 46px rgba(0,0,0,.55))
+      drop-shadow(0 0 22px rgba(111,224,140,0.18));
+  }
 
   .salinaAvatar.big{width:84px;height:84px;}
   .salinaAvatar.big svg{width:100%;height:100%;}
@@ -440,7 +465,7 @@ function diamondSvg(){
 
 /* Illustrated portrait of Madame Salina — original stylised fashion-line-art, not a real person */
 function salinaPortraitSvg(){
-  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  return `<svg viewBox="-10 -34 320 334" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
   <defs>
     <radialGradient id="bgGrad" cx="50%" cy="38%" r="65%">
       <stop offset="0%" stop-color="#2c1450"/>
@@ -517,6 +542,12 @@ function salinaPortraitSvg(){
 
   <!-- face -->
   <ellipse cx="150" cy="158" rx="44" ry="54" fill="url(#skinGrad)"/>
+  <!-- under-chin contact shadow for roundness -->
+  <ellipse cx="150" cy="204" rx="26" ry="8" fill="#0d0716" opacity="0.22"/>
+  <!-- soft specular highlight (upper-left light source) -->
+  <ellipse cx="130" cy="132" rx="22" ry="26" fill="#ffffff" opacity="0.10"/>
+  <!-- rim light along right silhouette -->
+  <path d="M186 118 C196 138, 196 178, 180 202" fill="none" stroke="#9b5fe0" stroke-width="2.5" opacity="0.35" stroke-linecap="round"/>
 
   <!-- front hair framing face -->
   <path d="M104 150 C100 120, 118 98, 150 96 C 182 98, 200 120, 196 150
@@ -547,10 +578,11 @@ function salinaPortraitSvg(){
   <!-- crescent earring -->
   <path d="M108 176 a5 5 0 1 0 0 8 a3.6 3.6 0 1 1 0 -8 Z" fill="#6fe08c"/>
 
-  <!-- witch hat -->
+  <!-- witch hat — tall, pops past the frame for depth -->
   <ellipse cx="150" cy="112" rx="36" ry="7.5" fill="#2a1245" stroke="#6fe08c" stroke-width="1"/>
-  <path d="M132 112 C136 88, 143 56, 151 32 C 158 54, 167 88, 171 110 C 160 104, 142 105, 132 112 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="1"/>
-  <path d="M151 32 Q159 20 153 14 Q147 22 151 32 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="0.8"/>
+  <path d="M132 112 C136 82, 142 30, 150 -8 C 158 30, 167 82, 171 110 C 160 104, 142 105, 132 112 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="1"/>
+  <path d="M132 112 C138 90, 144 55, 149 15 L153 16 C 150 55, 146 90, 141 111 Z" fill="#6fe08c" opacity="0.14"/>
+  <path d="M150 -8 Q162 -28 152 -38 Q142 -26 150 -8 Z" fill="url(#hatGrad)" stroke="#6fe08c" stroke-width="0.8"/>
   <circle cx="150" cy="112" r="3" fill="#6fe08c"/>
 
   <!-- tarot card held near cheek -->
@@ -886,9 +918,10 @@ function homeScreen(){
   return `
   <div class="home">
     <div class="eyebrow">${t('homeEyebrow')}</div>
-    <div class="portraitWrap">
+    <div class="portraitWrap" id="portraitWrap">
       <div class="portraitGlow"></div>
-      <div class="portraitFrame">${salinaPortraitSvg()}</div>
+      <div class="portraitGroundShadow"></div>
+      <div class="portraitFrame"><div class="portraitTilt" id="portraitTilt">${salinaPortraitSvg()}</div></div>
     </div>
     <h1>SALINA</h1>
     <h2 class="disp">TAROT</h2>
@@ -1062,6 +1095,8 @@ function attachHandlers(){
   const s1=document.getElementById('btn-start'); if(s1) s1.onclick=()=>{state.screen='question'; render();};
   const hh=document.getElementById('btn-history'); if(hh) hh.onclick=()=>{state.screen='history'; render();};
   const bh=document.getElementById('btn-back-home'); if(bh) bh.onclick=()=>{state.screen='home'; render();};
+
+  attachPortraitTilt();
 
   const qi=document.getElementById('qInput');
   if(qi) qi.oninput=()=>{ state.question=qi.value; document.getElementById('btn-to-select').disabled = state.question.trim().length<2; };
@@ -1246,6 +1281,37 @@ async function askSalina(){
 }
 
 /* ============== STARS ============== */
+/* ============== 3D PORTRAIT TILT ============== */
+function attachPortraitTilt(){
+  const wrap = document.getElementById('portraitWrap');
+  const tilt = document.getElementById('portraitTilt');
+  if(!wrap || !tilt) return;
+  const MAX = 14; // max degrees
+  function setFromClientXY(clientX, clientY){
+    const r = wrap.getBoundingClientRect();
+    const px = (clientX - r.left) / r.width;  // 0..1
+    const py = (clientY - r.top) / r.height;  // 0..1
+    const ry = (px - 0.5) * MAX * 2;   // rotateY driven by horizontal offset
+    const rx = (0.5 - py) * MAX * 2;   // rotateX driven by vertical offset
+    tilt.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+  }
+  wrap.addEventListener('mouseenter', ()=>{ tilt.classList.add('manual'); });
+  wrap.addEventListener('mousemove', (e)=>{ setFromClientXY(e.clientX, e.clientY); });
+  wrap.addEventListener('mouseleave', ()=>{
+    tilt.classList.remove('manual');
+    tilt.style.transform = '';
+  });
+  wrap.addEventListener('touchmove', (e)=>{
+    if(!e.touches || !e.touches[0]) return;
+    tilt.classList.add('manual');
+    setFromClientXY(e.touches[0].clientX, e.touches[0].clientY);
+  }, {passive:true});
+  wrap.addEventListener('touchend', ()=>{
+    tilt.classList.remove('manual');
+    tilt.style.transform = '';
+  });
+}
+
 function paintStars(){
   const el = document.getElementById('stars');
   let s='';
